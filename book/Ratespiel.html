@@ -1,0 +1,1607 @@
+<!DOCTYPE HTML>
+<html lang="de" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Ratespiel | Die Programmiersprache Rust</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.4.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+    
+
+        
+    
+    
+    
+    <link rel="prev" href="../book/Lerne_Rust.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="2.1" data-basepath=".." data-revision="Thu Oct 01 2015 19:51:31 GMT+0200 (CEST)">
+    
+
+<div class="book-summary">
+    <div class="book-search" role="search">
+        <input type="text" placeholder="Suchbegriff eingeben" class="form-control" />
+    </div>
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Einführung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="book/Erste_Schritte.html">
+            
+                
+                    <a href="../book/Erste_Schritte.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Erste Schritte
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="book/Rust_Installieren.html">
+            
+                
+                    <a href="../book/Rust_Installieren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Rust installieren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="book/Hallo_Welt.html">
+            
+                
+                    <a href="../book/Hallo_Welt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Hallo Welt
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="book/Hallo_Cargo.html">
+            
+                
+                    <a href="../book/Hallo_Cargo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Hallo Cargo
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="book/Lerne_Rust.html">
+            
+                
+                    <a href="../book/Lerne_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Lerne Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.1" data-path="book/Ratespiel.html">
+            
+                
+                    <a href="../book/Ratespiel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Ratespiel
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="book/Speisende_Philosophen.html">
+            
+            <span><b>2.2.</b> Speisende Philosophen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="book/Rust_In_Anderen_Sprachen.html">
+            
+            <span><b>2.3.</b> Rust in anderen Sprachen</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="book/Effektives_Rust.html">
+            
+            <span><b>3.</b> Effektives Rust</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="book/Der_Stack_Und_Der_Heap.html">
+            
+            <span><b>3.1.</b> Der Stack und der Heap</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="book/Testen.html">
+            
+            <span><b>3.2.</b> Testen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="book/Bedingte_Kompilierung.html">
+            
+            <span><b>3.3.</b> Bedingte Kompilierung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="book/Dokumentation.html">
+            
+            <span><b>3.4.</b> Dokumentation</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="book/Iteratoren.html">
+            
+            <span><b>3.5.</b> Iteratoren</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="book/Nebenläufigkeit.html">
+            
+            <span><b>3.6.</b> Nebenläufigkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="book/Fehlerbehandlung.html">
+            
+            <span><b>3.7.</b> Fehlerbehandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="book/Garantien_Wählen.html">
+            
+            <span><b>3.8.</b> Garantien Wählen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="book/FFI.html">
+            
+            <span><b>3.9.</b> FFI</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="book/Borrow_Und_AsRef.html">
+            
+            <span><b>3.10.</b> Borrow und AsRef</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="book/Release_Kanäle.html">
+            
+            <span><b>3.11.</b> Release Kanäle</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="book/Syntax_Und_Semantik.html">
+            
+            <span><b>4.</b> Syntax und Semantik</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="book/Variablenbindung.html">
+            
+            <span><b>4.1.</b> Variablenbindung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
+            
+            <span><b>4.2.</b> Funktionen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="book/Primitive_Typen.html">
+            
+            <span><b>4.3.</b> Primitive Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="book/Kommentare.html">
+            
+            <span><b>4.4.</b> Kommentare</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="book/If.html">
+            
+            <span><b>4.5.</b> if</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="book/Schleifen.html">
+            
+            <span><b>4.6.</b> Schleifen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="book/Besitz.html">
+            
+            <span><b>4.7.</b> Besitz</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="book/Referenzen_Und_Ausleihen.html">
+            
+            <span><b>4.8.</b> Referenzen und Ausleihen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="book/Lebzeiten.html">
+            
+            <span><b>4.9.</b> Lebzeiten</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="book/Veränderbarkeit.html">
+            
+            <span><b>4.10.</b> Veränderbarkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="book/Structs.html">
+            
+            <span><b>4.11.</b> Structs</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="book/Enums.html">
+            
+            <span><b>4.12.</b> Enums</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="book/Match.html">
+            
+            <span><b>4.13.</b> Match</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="book/Muster.html">
+            
+            <span><b>4.14.</b> Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="book/Methodensyntax.html">
+            
+            <span><b>4.15.</b> Methodensyntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="book/Vektoren.html">
+            
+            <span><b>4.16.</b> Vektoren</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="book/Strings.html">
+            
+            <span><b>4.17.</b> Strings</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="book/Generics.html">
+            
+            <span><b>4.18.</b> Generics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="book/Traits.html">
+            
+            <span><b>4.19.</b> Traits</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.20" data-path="book/Drop.html">
+            
+            <span><b>4.20.</b> Drop</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.21" data-path="book/If_Let.html">
+            
+            <span><b>4.21.</b> if let</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.22" data-path="book/Trait_Objekte.html">
+            
+            <span><b>4.22.</b> Trait Objekte</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.23" data-path="book/Closures.html">
+            
+            <span><b>4.23.</b> Closures</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.24" data-path="book/UFCS.html">
+            
+            <span><b>4.24.</b> Universal Function Call Syntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.25" data-path="book/Crates_Und_Module.html">
+            
+            <span><b>4.25.</b> Crates und Module</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.26" data-path="book/Const_Und_Static.html">
+            
+            <span><b>4.26.</b> `const` und `static`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.27" data-path="book/Attribute.html">
+            
+            <span><b>4.27.</b> Attribute</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.28" data-path="book/Type_Aliase.html">
+            
+            <span><b>4.28.</b> `type` Aliase</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.29" data-path="book/Zwischen_Typen_Umwandeln.html">
+            
+            <span><b>4.29.</b> Zwischen typen umwandeln</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.30" data-path="book/Assoziierte_Typen.html">
+            
+            <span><b>4.30.</b> Assoziierte Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.31" data-path="book/Operatoren_Und_Überladen.html">
+            
+            <span><b>4.31.</b> Operatoren und Überladen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.32" data-path="book/Deref_Umwandlung.html">
+            
+            <span><b>4.32.</b> Deref Umwandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.33" data-path="book/Makros.html">
+            
+            <span><b>4.33.</b> Makros</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.34" data-path="book/Raw_Zeiger.html">
+            
+            <span><b>4.34.</b> Raw Zeiger</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.35" data-path="book/Unsafe.html">
+            
+            <span><b>4.35.</b> `unsafe`</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="book/Nightly_Rust.html">
+            
+            <span><b>5.</b> Nightly Rust</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="book/Compiler_Plugins.html">
+            
+            <span><b>5.1.</b> Compiler Plugins</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="book/Inline_Assembly.html">
+            
+            <span><b>5.2.</b> Inline Assembly</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="book/No_Stdlib.html">
+            
+            <span><b>5.3.</b> `no_stdlib`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="book/Intrinsics.html">
+            
+            <span><b>5.4.</b> Intrinsics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="book/Lang_Items.html">
+            
+            <span><b>5.5.</b> Lang items</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="book/Fortgeschrittenes_Linken.html">
+            
+            <span><b>5.6.</b> Fortgeschrittenes Linken</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="book/Benchmark_Tests.html">
+            
+            <span><b>5.7.</b> Benchmark Tests</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="book/Box_Syntax_Und_Muster.html">
+            
+            <span><b>5.8.</b> Box Syntax und Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="book/Slice_Muster.html">
+            
+            <span><b>5.9.</b> Slice Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="book/Assoziierte_Konstanten.html">
+            
+            <span><b>5.10.</b> Assoziierte Konstanten</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="book/Glossar.html">
+            
+            <span><b>6.</b> Glossar</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="book/Akademische_Forschung.html">
+            
+            <span><b>7.</b> Akademische Forschung</span>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Veröffentlicht mit GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Inhaltsverzeichnis"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Suche"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Schrifteinstellungen"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">Hell</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Nacht</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Teilen"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Auf Twitter teilen
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Auf Google teilen
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Auf Facebook teilen
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Auf Weibo teilen
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Auf Instapaper teilen
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Die Programmiersprache Rust</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="ratespiel"><a name="ratespiel" class="plugin-anchor" href="#ratespiel"><span class="fa fa-link"></span></a>Ratespiel</h1>
+<p>F&#xFC;r unser erstes Projekt ein klassische Anf&#xE4;ngeraufgabe implementieren:
+das Ratespiel. So funktioniert es: Unser Programm wird eine zuf&#xE4;llige
+ganze Zahl zwischen eins und hundert erzeugen.
+Es wird uns dann fragen sie zu erraten.
+Bei einem Rateversuch wird es uns sagen, ob wir zu niedrig oder zu hoch liegen.
+Sobald wir richtig raten, wird es uns gratulieren. Klingt das gut?</p>
+<h1 id="anlegen"><a name="anlegen" class="plugin-anchor" href="#anlegen"><span class="fa fa-link"></span></a>Anlegen</h1>
+<p>Lass uns ein neues Projekt anlegen. Gehe in dein Projekteverzeichnis.
+Erinnerst du dich wie wir die Verzeichnisstruktur und eine <code>Cargo.toml</code> f&#xFC;r
+<code>hallo_welt</code> anlegen mussten? Cargo hat ein Befehl daf&#xFC;r, welcher das f&#xFC;r uns
+erledigt. Lass uns den ausprobieren:</p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> ~/projekte
+$ cargo new ratespiel --bin
+$ <span class="hljs-built_in">cd</span> ratespiel
+</code></pre>
+<p>Wir &#xFC;bergeben den Namen unseres Projektes und &#x2013; da wir eine Bin&#xE4;rdatei
+anstatt eine Bibliothek erstellen &#x2013; <code>--bin</code> an <code>cargo new</code>.</p>
+<p>Schau dir mal die erzeugte <code>Cargo.toml</code> an:</p>
+<pre><code class="lang-toml"><span class="hljs-title">[package]</span>
+
+<span class="hljs-setting">name = <span class="hljs-value"><span class="hljs-string">&quot;ratespiel&quot;</span></span></span>
+<span class="hljs-setting">version = <span class="hljs-value"><span class="hljs-string">&quot;0.1.0&quot;</span></span></span>
+<span class="hljs-setting">authors = <span class="hljs-value">[<span class="hljs-string">&quot;Dein Name &lt;du@example.com&gt;&quot;</span>]</span></span>
+</code></pre>
+<p>Cargo holt diese Informationen aus deiner Betriebssystemumgebung. Wenn diese
+nicht korrekt sind, dann korrigiere sie ruhig.</p>
+<p>Schlie&#xDF;lich generiert Cargo noch ein <code>Hallo Welt</code> f&#xFC;r uns.
+Schau dir die <code>src/main.rs</code> an:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Hello, world!&quot;</span>);
+}
+</code></pre>
+<p>Lass uns versuchen das, was uns Cargo gegeben hat, zu kompilieren:</p>
+<pre><code class="lang-{bash}">$ cargo build
+   Compiling ratespiel v0.1.0 (file:///home/du/projekte/ratespiel)
+</code></pre>
+<p>Ausgezeichnet! &#xD6;ffne nochmal deine <code>src/main.rs</code>. Wir werden unseren ganzen
+Code in diese Datei schreiben.</p>
+<p>Lass mich dir noch einen weiteren Cargo Befehl zeigen: <code>run</code>. <code>cargo run</code>
+ist fast  wie <code>cargo build</code>, aber f&#xFC;hrt zus&#xE4;tzlich noch die erzeugte ausf&#xFC;hrbare
+Datei aus.</p>
+<pre><code class="lang-bash">$ cargo run
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+     Running `target/debug/ratespiel`
+Hello, world!
+</code></pre>
+<p>Prima! Der <code>run</code> Befehl ist sehr praktisch, wenn man sein Projekt h&#xE4;ufig
+widerholt ausprobieren m&#xF6;chte. Unser Spiel ist ein solches Projekt und wir
+m&#xFC;ssen jeden Schritt z&#xFC;gig testen k&#xF6;nnen bevor wir mit dem N&#xE4;chsten fortfahren.</p>
+<h1 id="einen-rateversuch-verarbeiten"><a name="einen-rateversuch-verarbeiten" class="plugin-anchor" href="#einen-rateversuch-verarbeiten"><span class="fa fa-link"></span></a>Einen Rateversuch verarbeiten</h1>
+<p>Also lass uns anfangen! Das erste, was f&#xFC;r unser Ratespiel tun m&#xFC;ssen, ist dem
+unserem Spieler zu erlauben eine Vermutung einzugeben. Schreib das hier
+in deine <code>src/main.rs</code>:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::io;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+    io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+        .ok()
+        .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+}
+</code></pre>
+<p>Das ist &apos;ne Menge! Lass es uns St&#xFC;ck f&#xFC;r St&#xFC;ck durchgehen.</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> std::io;
+</code></pre>
+<p>Wir werden Benutzereingaben entgegennehmen und dann das Ergebnis ausgeben
+k&#xF6;nnen. Dazu werden wir das <code>io</code> Modul aus der Standardbibliothek. Rust
+importiert standardm&#xE4;&#xDF;ig ein paar Dinge in jedes Programm,
+das <a href="https://doc.rust-lang.org/std/prelude/index.html" target="_blank">das &#x2018;Prelude&#x2019;</a>. Wenn etwas nicht im Prelude ist, dann musst
+du es mittels <code>use</code> importieren.</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+</code></pre>
+<p>Wie du zuvor schon gesehen hast, ist die <code>main()</code> Funktion der Startpunkt
+in deinem Programm. Die <code>fn</code> Syntax deklariert eine neue Funktion, die <code>()</code>
+zeigen an, dass es keine Argumente gibt und <code>{</code> beginnt den
+K&#xF6;rper der Funktion. Weil wir keinen R&#xFC;ckgabewert angegeben haben, wird
+automatisch angenommn, dass dieser <code>()</code>, ein leeres <a href="book/Primitive_Typen.md#Tupel">Tupel</a> ist.</p>
+<pre><code class="lang-rust">    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+</code></pre>
+<p>Wir haben zuvor gelernt, dass <code>println!()</code> ein <a href="book/Makros.md">Makro</a> ist, dass
+einen <a href="book/Strings.md">String</a> auf dem Bildschirm ausgibt.</p>
+<pre><code class="lang-rust">    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+</code></pre>
+<p>Nun wird es interessant! In dieser kleinen Zeile ist eine Menge los.
+Das erste, was man bemerken sollte, ist eine <a href="book/Variablenbindung.md">let Anweisung</a>,
+welche verwendet wird um &#x2018;Variablenbindungen&#x2019; zu erzeugen.
+Sie nehmen diese Form an:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> foo = bar;
+</code></pre>
+<p>Dies wird eine neue Bindung namens <code>foo</code> erzeugen
+und den Wert <code>bar</code> daran binden. In vielen Sprachen wird das eine &#x2018;Variable&#x2019;
+genannt, aber Rusts Variablenbindungen haben ein paar Tricks in ihren &#xC4;rmeln.</p>
+<p>Zum Beispiel sind sie standardm&#xE4;&#xDF;ig <em>immutable</em> [unver&#xE4;nderbar]. Deswegen
+benutzt unser Beispiel <code>mut</code>: Es macht eine Bindung <em>mutable</em> [ver&#xE4;nderbar]
+anstatt <em>immutable</em>. Auf der linken Seite der Zuweisung akzeptiert <code>let</code>
+nicht einfach nur einen Namen, es akzeptiert sogar &#x2018;<a href="book/Muster.md">Muster</a>&#x2019;.
+Wir werden Muster sp&#xE4;ter noch verwenden. Es ist f&#xFC;rs erste leicht genug
+zu benutzen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> foo = <span class="hljs-number">5</span>; <span class="hljs-comment">// immutable (unver&#xE4;nderbar)</span>
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> bar = <span class="hljs-number">5</span>; <span class="hljs-comment">// mutable (ver&#xE4;nderbar)</span>
+</code></pre>
+<p>Oh, und <code>//</code> leitet einen Kommentar bis zum Ende der Zeile ein.
+Rust ignoriert alles in <a href="Kommentare.md">Kommentaren</a>.</p>
+<p>So, nun wissen wissen wir, dass <code>let mut vermutung</code> eine neue Variablenbindung
+namens <code>vermutung</code> einf&#xFC;hrt, aber wir m&#xFC;ssen noch auf die andere Seite des <code>=</code>
+schauen woran sie gebunden ist: <code>String::new()</code>.</p>
+<p><code>String</code> ist ein String typ, welcher von der Standardbibliothek zur Verf&#xFC;gung
+gestellt wird. Ein <a href="https://doc.rust-lang.org/std/string/struct.String.html" target="_blank"><code>String</code></a> ist ein UTF-8 kodierter Text,
+der wachsen kann.</p>
+<p>Die <code>::new()</code> Syntax benutzt <code>::</code> weil es eine &#x2018;assoziierte Funktion&#x2019; eines
+bestimmten Typs ist. Sprich, es ist mit <code>String</code> selbst assoziiert,
+anstatt mit einer Instanz von <code>String</code>. Manche Sprachen nennen das eine
+&#x2018;statische Methode&#x2019;.</p>
+<p>Diese Funktion hei&#xDF;t <code>new()</code>, da sie einen neuen, leeren <code>String</code>.
+Du wirst bei vielen Typen eine <code>new()</code> Funktion finden, da es ein typischer
+Name ist um irgendeine Art von neuen Wert zu erzeugen.</p>
+<p>Lass uns weiter machen:</p>
+<pre><code class="lang-rust">    io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+        .ok()
+        .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+</code></pre>
+<p>Das ist eine Menge mehr! Lass uns das wieder Schritt f&#xFC;r Schritt durchgehen.
+Die erste Zeile besteht aus zwei Teilen. Hier ist der erste:</p>
+<pre><code class="lang-rust">io::stdin()
+</code></pre>
+<p>Erinnerst du dich wie wir <code>use</code> in der ersten Zeile des Programmes benutzt
+haben um <code>std::io</code> zu importieren? Wir rufen nun eine Assozierte Funktion davon
+auf. Wenn wir <code>use std::io</code> nicht verwendet h&#xE4;tten, dann h&#xE4;tten wir diese
+Zeile als als <code>std::io::stdin()</code> schreiben k&#xF6;nnen.</p>
+<p>Diese spezielle Funktion gibt uns ein Handle f&#xFC;r die Standardeingabe deines
+Terminals. Genauer gesagt ein <a href="https://doc.rust-lang.org/std/io/struct.Stdin.html" target="_blank">std::io::Stdin</a>.</p>
+<p>Der n&#xE4;chste Teil wird dieses Handle verwenden um an die Eingaben des Benutzers
+zu gelangen:</p>
+<pre><code class="lang-rust">.read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+</code></pre>
+<p>Here rufen wir die <a href="https://doc.rust-lang.org/std/io/struct.Stdin.html#method.read_line" target="_blank"><code>read_line()</code></a> Methode unseres Handle auf.
+<a href="book/Methodensyntax.md">Methoden</a> sind wie assoziierte Funktionen, aber sind nur f&#xFC;r eine
+jeweilige Instanz eines Types verf&#xFC;gbar, anstatt f&#xFC;r den Typ selbst. Wir
+&#xFC;bergeben au&#xDF;erdem ein Argument an <code>read_line()</code>: <code>&amp;mut vermutung</code>.</p>
+<p>Erinnerst du dich wir oben <code>vermutung</code> gebunden haben? Wir hatten gesagt, dass
+es <em>mutable</em> ist. Jedoch nimmt <code>read_line</code> keinen <code>String</code> als Argument: Es
+nimmt einen <code>&amp;mut String</code>. Rust hat ein Feature namens
+&#x2018;<a href="book/Referenzen_Und_Ausleihen.md">Referenzen</a>&#x2019;, welches einem erlaubt mehrere Referenzen auf ein
+St&#xFC;ck Daten zu haben, was kopieren reduzieren kann. Referenzen sind ein
+komplexes Feature, da eines von Rusts haupt Verkaufsargumenten ist wie sicher
+und einfach es ist Referenzen zu benutzen. Wir m&#xFC;ssen jedoch nicht viele dieser
+Details wissen um unser Programm im Moment zu vollenden.
+F&#xFC;rs Erste ist alles was wir kennen m&#xFC;ssen, dass, &#xE4;hnlich wie <code>let</code>
+Bindungen, Referenzen standardm&#xE4;&#xDF;ig <em>immutable</em> sind. Daher m&#xFC;ssen wir
+<code>&amp;mut vermutung</code> schreiben anstatt <code>&amp;vermutung</code>.</p>
+<p>Warum nimmt <code>read_line()</code> eine <em>mutable</em> Referenz eines String? Der Job dieser
+Funktion ist es die Eingaben des Benutzers auf der Standardeingabe zu nehmen
+und in einem String zu platzieren. Also nimmt sie einen String als
+Argument, und um die Eingabe hinzuzuf&#xFC;gen muss dieser <em>mutable</em> sein.</p>
+<p>Aber wir sind noch nicht ganz fertig mit dieser Zeile Code.
+W&#xE4;hrend es sich um eine einzelne Textzeile handelt, ist es nur der erste
+Teil einer einzelnen logischen Zeile an Code:</p>
+<pre><code class="lang-rust">        .ok()
+        .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+</code></pre>
+<p>Wenn man eine Methode mit der <code>.foo()</code> Syntax aufruft, dann darf man eine
+neue Zeile oder andere Leerzeichen einf&#xFC;hren.
+Dies hilft einem lange Zeilen aufzuteilen. Wir <em>h&#xE4;tten</em> auch das tun k&#xF6;nnen:</p>
+<pre><code class="lang-rust">    io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung).ok().expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+</code></pre>
+<p>Aber das ist schwerer zu lesen.Also haben wir es aufgeteilt in drei Zeilen f&#xFC;r
+drei Methodenaufrufe. Wir haben bereits &#xFC;ber <code>read_line()</code> geredet,
+aber was ist mit <code>ok()</code> und <code>expect()</code>? Nun, wir haben bereits erw&#xE4;hnt,
+dass <code>read_line()</code> das, was der Benutzer eingibt, in den <code>&amp;mut String</code> steckt,
+den wir ihr &#xFC;bergeben. Aber sie gibt auch einen Wert zur&#xFC;ck:
+In diesem Fall ein <a href="https://doc.rust-lang.org/std/io/type.Result.html" target="_blank"><code>io::Result</code></a>. Rust hat eine Reihe von Typen
+namens <code>Result</code> in seiner Standardbibliothek:
+Einen allgemeines <a href="https://doc.rust-lang.org/std/result/enum.Result.html" target="_blank"><code>Result</code></a> und spezifische Versionen f&#xFC;r
+unter-bibliotheken, wie z.B. <code>io::Result</code>.</p>
+<p>Der Zweck dieser <code>Result</code> Typen ist Informationen zur Fehlerbehandung bereit
+zu stellen. Werte des <code>Result</code> Typ besitzen, wie jeder Typ, Methoden.
+In diesem Fall hat <code>io::Result</code> eine <code>ok()</code> Methode, welche sagt
+&quot;wir m&#xF6;chten annehmen, dass dieser Wert ein erfolgreicher ist&quot;. Falls nicht,
+schmei&#xDF;en wir einfach die Fehlerinformation weg. Warum sie wegwerfen? Nun,
+f&#xFC;r ein einfaches Programm wollen wir einfach einen allgemeinen Fehler
+ausgeben, da im Grunde jeder Fehler bedeutet, dass wir nicht
+fortfahren k&#xF6;nnen. Die <a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.ok" target="_blank"><code>ok()</code> Methode</a> gibt einen Wert zur&#xFC;ck, welcher
+eine weitere Methode besitzt: <code>expect()</code>. Die <a href="https://doc.rust-lang.org/std/option/enum.Option.html#method.expect" target="_blank"><code>expect()</code> Methode</a>
+nimmt einen Wert auf dem sie aufgerufen wird und, falls dieser kein
+erfolgreicher ist, wird eine <a href="book/Fehlerbehandlung.md"><code>panic</code></a> mit der Nachricht, die man
+&#xDC;bergeben hat, erzeugt. Eine <code>panic</code> wie diese sorgt daf&#xFC;r, dass unser Programm
+abst&#xFC;rzt und die Nachricht anzeigt.</p>
+<p>Falls wir diese beiden Methodenaufrufe weglassen wird unser Programm zwar
+kompilieren, aber wir werden eine Warnung bekommen:</p>
+<pre><code class="lang-bash">$ cargo build
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+src/main.rs:<span class="hljs-number">10</span>:<span class="hljs-number">5</span>: <span class="hljs-number">10</span>:<span class="hljs-number">39</span> warning: unused result <span class="hljs-built_in">which</span> must be used,
+<span class="hljs-comment">#[warn(unused_must_use)] on by default</span>
+src/main.rs:<span class="hljs-number">10</span>     io::stdin().read_line(&amp;mut vermutung);
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</code></pre>
+<p>Rust warnt uns, dass wir den <code>Result</code> Wert nicht verwendet haben.
+Diese Warnung stammt von einer speziellen Anmerkung, die <code>io::Result</code> hat.
+Rust versucht dir zu sagen, dass du einen m&#xF6;glichen Fehler nicht behandelt
+hast. Der richtige Weg um den Fehler zu unterdr&#xFC;cken ist eigentlich
+Fehlerbehandlung zu schreiben. Gl&#xFC;cklicherweise k&#xF6;nnen wir diese zwei kleinen
+Methoden verwenden, falls uns ein Crash in Ordnung ist, wenn es einen Fehler
+gibt. Falls wir uns von dem Fehler irgendwie erholen k&#xF6;nnen, dann w&#xFC;rden
+wir etwas anderes machen, aber das bewahren wir uns f&#xFC;r ein zuk&#xFC;nftiges
+Projekt auf.</p>
+<p>Es gibt nurnoch eine &#xFC;brige Zeile dieses ersten Beispiels:</p>
+<pre><code class="lang-rust">    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+</code></pre>
+<p>Dies gibt den, in dem wir unsere Eingabe gespeichert haben, aus.
+Die <code>{}</code> sind Platzhalter, und somit &#xFC;bergeben wir <code>vermutung</code> daran.
+H&#xE4;tten wir mehrere <code>{}</code>, dann w&#xFC;rde wir mehrere Argumente &#xFC;bergeben:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">10</span>;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x und y: {} und {}&quot;</span>, x, y);
+</code></pre>
+<p>Einfach.</p>
+<p>Jedenfalls war das die Tour.  Mit <code>cargo run</code> k&#xF6;nnen wir ausf&#xFC;hren,
+was wir bereits haben:</p>
+<pre><code class="lang-bash">$ cargo run
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+     Running `target/debug/ratespiel`
+Rate die Zahl!
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">6</span>
+Deine Vermutung:  <span class="hljs-number">6</span>
+</code></pre>
+<p>Also gut! Unser erster Teil ist fertig: Wir k&#xF6;nnen Eingaben von der Tastatur
+holen und sie wieder ausgeben.</p>
+<h1 id="eine-geheime-zahl-erzeugen"><a name="eine-geheime-zahl-erzeugen" class="plugin-anchor" href="#eine-geheime-zahl-erzeugen"><span class="fa fa-link"></span></a>Eine geheime Zahl erzeugen</h1>
+<p>Als n&#xE4;chstes m&#xFC;ssen wir eine zuf&#xE4;llige Zahl erzeugen. Rust hat noch keine
+M&#xF6;glichkeit um Zufallszahlen zu erzeugen in seiner Standardbibliothek.
+Das Rust Team hat jedoch eine <a href="https://crates.io/crates/rand" target="_blank"><code>rand</code> Crate</a> zur Verf&#xFC;gung gestellt.
+Eine &#x2018;Crate&#x2019; [engl.: Kiste] ist ein Paket aus Rust Code.
+Wir haben bereits eine &#x2018;binary crate&#x2019; gebaut,
+was eine ausf&#xFC;hrbare Datei ist.
+<code>rand</code> ist eine &#x2018;library crate&#x2019;, welche den Code enth&#xE4;lt,
+der dazu Gedacht ist von anderen Programmen als Bibliothek verwendet zu
+werden.</p>
+<p>Cargo ist wirklich gut darin externe Crates zu verwenden. Bevor wir Code
+schreiben k&#xF6;nnen der <code>rand</code> verwendet, m&#xFC;ssen wir unsere <code>Cargo.toml</code>
+anpassen. &#xD6;ffne sie und f&#xFC;ge diese paar Zeilen am Ende an:</p>
+<pre><code class="lang-toml"><span class="hljs-title">[dependencies]</span>
+
+<span class="hljs-setting">rand=<span class="hljs-value"><span class="hljs-string">&quot;0.3.0&quot;</span></span></span>
+</code></pre>
+<p>Der <code>[dependencies]</code> Abschnitt der <code>Cargo.toml</code> ist wie der <code>[package]</code>
+Abschnitt: Alles was diesem folgt geh&#xF6;rt dazu, bis ein n&#xE4;chster Abschnitt
+beginnt. Cargo benutzt den <em>dependencies</em> Abschnitt um zu wissen, welche
+Abh&#xE4;ngigkeiten an externen Crates du hast und welche Version du ben&#xF6;tigst.
+In diesem Fall haben wir Version <code>0.3.0</code> spezifiziert, was Cargo als ein
+Release versteht, der mit dieser spezifischen Version kompatibel ist.
+Cargo versteht <a href="http://semver.org" target="_blank">Semantische Versionierung</a>, was ein Standard ist
+um Versionsnummern zu schreiben. Falls wir nur exakt <code>0.3.0</code> verwenden wollten,
+dann k&#xF6;nnten wir <code>=0.3.0</code> schreiben. Falls wir die neueste Version verwenden
+wollten, dann k&#xF6;nnten wir <code>*</code> verwenden; wir k&#xF6;nnten eine Bereich von
+Versionen verwenden. <a href="http://doc.crates.io/crates-io.html" target="_blank">Cargos Dokumentation</a> enth&#xE4;lt mehr Details.</p>
+<p>Nun lass uns, ohne unseren Code zu &#xE4;ndern, das Projekt neu kompilieren:</p>
+<pre><code class="lang-bash">$ cargo build
+    Updating registry `https://github.com/rust-lang/crates.io-index`
+ Downloading rand v0.<span class="hljs-number">3.8</span>
+ Downloading libc v0.<span class="hljs-number">1.6</span>
+   Compiling libc v0.<span class="hljs-number">1.6</span>
+   Compiling rand v0.<span class="hljs-number">3.8</span>
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+</code></pre>
+<p>(Du k&#xF6;nntest nat&#xFC;rlich andere Versionen sehen.)</p>
+<p>Das ist eine Menge an neuer Ausgabe! Nun da wir eine externe Abh&#xE4;ngigkeit
+haben holt Cargo die aktuellste Version von allem aus der Registry, was
+eine Kopie der Daten auf <a href="https://crates.io" target="_blank">Crates.io</a> ist. Crates.io ist der Ort,
+wo Leute im Rust &#xD6;kosystem ihre Open-Source Projekte ver&#xF6;ffentlichen
+um sie f&#xFC;r andere zur Verf&#xFC;gung zu stellen.</p>
+<p>Nach dem aktualisieren der Registry pr&#xFC;ft Cargo unsere <code>[dependencies]</code> und
+l&#xE4;dt alle, die wir noch nicht haben, herunter. In diesem Fall laden wir uns
+auch eine Kopie der <code>libc</code> Crate, obwohl wir gesagt haben, dass wir nur von
+der <code>rand</code> Crate abh&#xE4;ngen wollen. Das ist so weil <code>rand</code> von <code>libc</code> abh&#xE4;ngt
+um zu funktionieren. Nach dem herunterladen kompiliert Cargo diese und danach
+unser Projekt.</p>
+<p>Falls wir <code>cargo build</code> nochmal ausf&#xFC;hren,
+dann werden wir eine andere Ausgabe bekommen:</p>
+<pre><code class="lang-bash">$ cargo build
+</code></pre>
+<p>Genau, keine Ausgabe! Cargo weis, dass unser Projekt schon kompiliert wurde
+und, dass alle unsere Abh&#xE4;ngigkeiten kompiliert sind, also gibt es keinen
+Grund diesen ganzen Kram zu machen. Da es nichts zu tun gibt, beendet es sich
+einfach. Falls wir die <code>src/main.rs</code> nochmal &#xF6;ffnen und eine trviale &#xC4;nderung
+vornehmen und speichern, dann werden wir nur eine Zeile sehen:</p>
+<pre><code class="lang-bash">$ cargo build
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+</code></pre>
+<p>So, wir haben Cargo gesagt, dass wir irgendeine <code>0.3.x</code> Version von <code>rand</code>
+wollen, also hat es die aktuellste Version
+(zur der Zeit als dies hier verfasst wurde) <code>v0.3.8</code> heruntergeladen.
+Aber was passiert, wenn n&#xE4;chste Woche Version <code>v0.3.9</code> mit einem wichtigen
+Bugfix herauskommt? W&#xE4;hrend Bugfixes zwar wichtig sind, was ist wenn <code>0.3.9</code>
+Regressionen enth&#xE4;lt, die das kompilieren mit unserem Code verhindern?</p>
+<p>Die Antwort auf dieses Problem ist die <code>Cargo.lock</code> Datei, die du nun in
+deinem Projektvrzeichniss finden wirst. Wenn du ein Projekt das erste mal
+kompilierst, dann findet Cargo die ganzen Versionen heraus, die deinen
+Kriterien entsprechen, und schreibt sie in die <code>Cargo.toml</code>. Wenn du dein
+Projekt in der Zukunft kompilierst, dann sieht Cargo, dass die <code>Cargo.lock</code>
+existiert und benutzt dann nur die darin spezifizierten Versionen, anstatt
+nochmal alles erneut herauszufinden. Damit hat man automatisch
+reproduzierbare Builds. In anderen Worten, du bleibst solange bei Version
+<code>0.3.8</code> bis wir ausdr&#xFC;cklich upgraden, das gleiche gilt f&#xFC;r jeden mit dem
+wir unseren Code teilen, dank dieser Sperrdatei.</p>
+<p>Was ist nun, wenn wir <code>v0.3.9</code> <em>doch</em> nutzen wollen? Cargo hat einen anderen
+Befehl, <code>update</code>, der besagt &quot;ignoriere die Sperrdatei, finde die neusten
+Versionen heraus die zu meiner Spezifikation passen. Falls das funktioniert,
+schreibe diese Versionen in die Sperrdatei&quot;. Aber standardm&#xE4;&#xDF;ig wird
+Cargo nur nach Versionen gr&#xF6;&#xDF;er als <code>0.3.0</code> und kleiner als <code>0.4.0</code> schauen.
+Falls wir weiter zu <code>0.4.x</code> wollten, dann m&#xFC;ssten wir das direkt in die
+<code>Cargo.toml</code> eintragen. Wenn wir das t&#xE4;ten, dann w&#xFC;rde Cargo beim n&#xE4;chsten
+<code>cargo build</code> den Index neu laden und unsere <code>rand</code> Anforderungen neu
+auswerten. </p>
+<p>Es gibt noch eine Menge mehr &#xFC;ber <a href="http://doc.crates.io" target="_blank">Cargo</a> und seinem
+<a href="http://doc.crates.io/crates-io.html" target="_blank">&#xD6;kosystem</a> zu erz&#xE4;hlen, aber f&#xFC;r das erste ist das alles
+was wir wissen m&#xFC;ssen. Cargo macht es wirklich einfach Bibliotheken
+wiederzuverwenden und deswegen neigen Rustler dazu kleinere Projekte zu
+schreiben, welche aus einer Reihe von Unterpaketen zusammengebaut sind.</p>
+<p>Lass uns beginnen die <code>rand</code> Crate tas&#xE4;chlich zu <em>benutzen</em>. Hier ist unser
+n&#xE4;chster Schritte:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rand;
+
+<span class="hljs-keyword">use</span> std::io;
+<span class="hljs-keyword">use</span> rand::Rng;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Die geheime Zahl ist: {}&quot;</span>, geheime_zahl);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+    io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+        .ok()
+        .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+}
+</code></pre>
+<p>Das erste was wir gemacht haben ist die erste Zeile zu &#xE4;ndern. Dort steht nun
+<code>extern crate rand</code>. Weil wir <code>rand</code> in unseren <code>[dependencies]</code> deklariert
+deklariert haben, k&#xF6;nnen wir <code>extern crate</code> benutzen um Rust wissen zu lassen,
+dass wir sie benutzen. Dies ist au&#xDF;erdem das &#xE4;quivalent zu einem <code>use rand;</code>,
+sodass wir alles in der <code>rand</code> Crate erreichen k&#xF6;nnen, indem wir es mit
+<code>rand::</code> einleiten.</p>
+<p>Als n&#xE4;chstes f&#xFC;gen wir noch eine weitere <code>use</code> Zeile hinzu: <code>use rand::Rng</code>.
+Wir werden gleich eine Methode verwenden, welche erfordert, dass <code>Rng</code>
+im Scope ist. Die grundlegende Idee ist folgende: Methoden k&#xF6;nnen auf
+sogenannten <code>Traits</code> definiert werden und, damit diese Methoden funktionieren,
+m&#xFC;ssen sie im aktuellen Scope sein. F&#xFC;r weitere Details lies den
+<a href="book/Traits.md">Traits</a> Abschnitt.</p>
+<p>Es gibt zwei weitere Zeilen, die wir in der Mitte hinzugef&#xFC;gt haben:</p>
+<pre><code class="lang-rust">    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Die geheime Zahl ist: {}&quot;</span>, geheime_zahl);
+</code></pre>
+<p>Wir benutzen die <code>rand__thread_rng()</code> Funktion eine Kopie des
+Zufallszahlengenerators zu erhalten, welcher dem aktuellen 
+<a href="Nebenl&#xE4;ufigkeit.md">Thread</a> in dem wir sind, angeh&#xF6;rt.
+Weil wir oben <code>use rand::Rng</code> verwendet haben, hat dieser Generator eine
+<code>gen_range()</code> Methode zur Verf&#xFC;gung. Diese Methode nimmt zwei Argumente und
+generiert eine Zahl, die zwischen diesen beiden liegt.
+Der Bereich ist einschlie&#xDF;lich dem unteren Ende und ausschlie&#xDF;lich dem oberen
+Ende, also brauchen wir <code>1</code> und <code>101</code> um eine Zahl zwischen eins bis hundert
+zu erhalten.</p>
+<p>Die zweite Zeile gibt einfach die geheime Zahl aus. Das ist n&#xFC;tzlich w&#xE4;hrend
+wir unser Programm entwickeln, damit wir es leicht testen k&#xF6;nnen.
+Aber wir werden es aus der finalen Version entfernen. Es ist wohl kaum ein
+Spiel, wenn es die Antwort schon beim Start ausgibt!</p>
+<p>Versuche unser neues Programm ein paar mal auszuf&#xFC;hren:</p>
+<pre><code class="lang-bash">$ cargo run
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+     Running `target/debug/ratespiel`
+Rate die Zahl!
+Die geheime Zahl ist: <span class="hljs-number">7</span>
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">4</span>
+Deine Vermutung: <span class="hljs-number">4</span>
+$ cargo run
+     Running `target/debug/ratespiel`
+Rate die Zahl!
+Die geheime Zahl ist: <span class="hljs-number">83</span>
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">5</span>
+Deine Vermutung: <span class="hljs-number">5</span>
+</code></pre>
+<p>Super! Weiter: Lass uns die Vermutung mit der geheimen Zahl vergleichen.</p>
+<h1 id="vermutungen-vergleichen"><a name="vermutungen-vergleichen" class="plugin-anchor" href="#vermutungen-vergleichen"><span class="fa fa-link"></span></a>Vermutungen vergleichen</h1>
+<p>Nun da wir unsere Benutzereingabe haben, lass uns unsere Vermutung mit der
+Zufallszahl vergleichen. Hier ist unser n&#xE4;chster Schritt, auch wenn er
+<strong>noch nicht wirklich kompiliert</strong>:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rand;
+
+<span class="hljs-keyword">use</span> std::io;
+<span class="hljs-keyword">use</span> std::cmp::Ordering;
+<span class="hljs-keyword">use</span> rand::Rng;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Die geheime Zahl ist: {}&quot;</span>, geheime_zahl);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+    io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+        .ok()
+        .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+
+    <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+        Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+        Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+        Ordering::Equal   =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>),
+    }
+}
+</code></pre>
+<p>Es gibt ein paar neue Sachen hier. Das erste ist ein weiteres <code>use</code>.
+Wir importieren einen Typ namens <code>std::cmp::Ordering</code> in den aktuellen Scope.
+Dann benutzen wir ihn ein paar Zeilen sp&#xE4;ter:</p>
+<pre><code class="lang-rust">    <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+        Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+        Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+        Ordering::Equal   =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>),
+    }
+</code></pre>
+<p>Die <code>cmp()</code> Methode kann auf allem aufgerufen werden,
+was verglichen werden kann und nimmt eine Referenz auf die Sache, mit der wir
+vergleichen es wollen. Es gibt den Typ <code>Ordering</code> zur&#xFC;ck, den wir zuvor
+mit <code>use</code> importiert haben. Wir benutzen eine <a href="book/Match.md"><code>Match</code></a> Anweisung um
+festzustellen welche <code>Ordering</code> genau vorliegt. <code>Ordering</code> ist ein
+<a href="book/Enums.md"><code>Enum</code></a>, kurz f&#xFC;r &#x2018;enumeration&#x2019; [engl.: Aufz&#xE4;hlung], was so aussieht:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">enum</span> <span class="hljs-title">Foo</span> {
+    Bar,
+    Baz,
+}
+</code></pre>
+<p>Mit dieser Definition ist der m&#xF6;gliche Wert des Typs <code>Foo</code>
+entweder <code>Foo::Bar</code> oder <code>Foo::Baz</code>. Wir benutzen die <code>::</code> um den Namensraum
+einer jeweiligen <code>enum</code> Variante anzuzeigen.</p>
+<p>Das <a href="https://doc.rust-lang.org/std/cmp/enum.Ordering.html" target="_blank"><code>Ordering</code></a> <code>enum</code> hat drei m&#xF6;gliche Varianten:
+<code>Less</code>, <code>Equal</code> und <code>Greater</code>. Die <code>match</code> Anweisung nimmt den Wert eines Typen
+und l&#xE4;sst dich einen &#x2018;Zweig&#x2019; f&#xFC;r jeden m&#xF6;glichen Wert erstellen. Da wir drei
+Arten von <code>Ordering</code> haben, haben wir drei Zweige:</p>
+<pre><code class="lang-rust">    <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+        Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+        Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+        Ordering::Equal   =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>),
+    }
+</code></pre>
+<p>Falls der Wert <code>Less</code> ist, geben wir <code>Zu klein!</code> aus, falls er <code>Greater</code> ist,
+<code>Zu gro&#xDF;!</code> und ist er <code>Equal</code>, dann <code>Gewonnen!</code>. <code>match</code> ist sehr n&#xFC;tzlich und
+wird h&#xE4;ufig in Rust verwendet.</p>
+<p>Ich hatte aber erw&#xE4;hnt, dass dieser Code so noch nicht ganz kompiliert.
+Mal probieren:</p>
+<pre><code class="lang-bash">$ cargo build
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+src/main.rs:<span class="hljs-number">28</span>:<span class="hljs-number">25</span>: <span class="hljs-number">28</span>:<span class="hljs-number">40</span> error: mismatched types:
+ expected `&amp;collections::string::String`,
+    found `&amp;_`
+(expected struct `collections::string::String`,
+    found integral variable) [E0308]
+src/main.rs:<span class="hljs-number">28</span>     match vermutung.cmp(&amp;geheime_zahl) {
+                                       ^~~~~~~~~~~~~
+error: aborting due to previous error
+Could not compile `ratespiel`.
+</code></pre>
+<p>Uff! Das ist ein gro&#xDF;er Fehler. Sein Kern ist, dass wir <code>mismatched types</code>,
+also nicht zusammenpassende Typen haben. Rust hat ein starkes, statisches
+Typensystem. Es hat jedoch auch Typinferenz.
+Als wir <code>let vermutung = String::new()</code> geschrieben haben war Rust in der Lage
+abzuleiten, dass <code>vermutung</code> ein <code>String</code> sein sollte und somit mussten wir
+nicht den Typ ausdr&#xFC;cklich aufschreiben. Und bei unserer <code>geheime_zahl</code> Variable
+gibt es eine Reihe von Typen, die den Wert eins bis hundert annehmen k&#xF6;nnen:
+<code>i32</code>, eine 32-bit Ganzzahl, oder <code>u32</code>, eine vorzeichenlose 32-bit
+Ganzzahl, oder <code>i64</code>, eine 64-bit Ganzzahl, oder andere.
+Soweit war das nicht wichtig, weswegen Rust standardm&#xE4;&#xDF;ig <code>i32</code> gew&#xE4;hlt hat.
+Jedoch weis Rust hier nicht wie es <code>vermutung</code> und die <code>geheime_zahl</code>
+vergleichen soll. Sie m&#xFC;ssen vom selben Typ sein. Letztlich wollen wir f&#xFC;r
+den Vergleich den <code>String</code>, den wir von der Eingabe lesen,
+in eine richtigen Zahlentyp umwandeln. Wir k&#xF6;nnen das mit drei weiteren Zeilen
+erledigen. Hier ist unser neues Programm:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rand;
+
+<span class="hljs-keyword">use</span> std::io;
+<span class="hljs-keyword">use</span> std::cmp::Ordering;
+<span class="hljs-keyword">use</span> rand::Rng;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Die geheime Zahl ist: {}&quot;</span>, geheime_zahl);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+    io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+        .ok()
+        .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+    <span class="hljs-keyword">let</span> vermutung: <span class="hljs-keyword">u32</span> = vermutung.trim().parse()
+        .ok()
+        .expect(<span class="hljs-string">&quot;Bitte eine Zahl eintippen!&quot;</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+
+    <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+        Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+        Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+        Ordering::Equal   =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>),
+    }
+}
+</code></pre>
+<p>Die drei neuen Zeilen sind:</p>
+<pre><code class="lang-rust">    <span class="hljs-keyword">let</span> vermutung: <span class="hljs-keyword">u32</span> = vermutung.trim().parse()
+        .ok()
+        .expect(<span class="hljs-string">&quot;Bitte eine Zahl eintippen!&quot;</span>);
+</code></pre>
+<p>Augenblick mal, ich dachte wir h&#xE4;tten bereits eine <code>vermutung</code>? Ja, haben wir,
+aber Rust erlaubt uns die vorherige <code>vermutung</code> mit einer neuen zu verdecken.
+Dies wird h&#xE4;ufig in genau dieser Situationen benutzt, wo <code>vermutung</code> als
+<code>String</code> beginnt, wir es es aber in ein <code>u32</code> umwandeln m&#xF6;chten. Verdeckung von
+Variablen l&#xE4;sst uns den Name <code>vermutung</code> wiederverwenden, anstatt wir gezwungen
+sind uns einen neuen eindeutigen Namen wie <code>vermutung_str</code> und <code>vermutung</code>,
+oder &#xE4;hnlich, auszudenken.</p>
+<p>Wir binden <code>vermutung</code> an einen Ausdruck, der so &#xE4;hnlich wie ein vorheriger
+aussieht:</p>
+<pre><code class="lang-rust">vermutung.trim().parse()
+</code></pre>
+<p>Gefolgt von einem <code>ok().expect()</code> Aufruf. Hier verweist <code>vermutung</code> noch auf
+die alte <code>vermutung</code>, jene, die ein String mit unserer Eingabe war. Die <code>trim()</code>
+Methode auf <code>String</code>s eliminiert jegliche Form von Leerzeichen am Anfang und
+am Ende unseres Strings. Das ist wichtig, da wir die Entertaste dr&#xFC;cken mussten
+um <code>read_line()</code> zufrieden zu stellen. Das bedeutet, dass, wenn wir <code>5</code>
+eingeben und Enter dr&#xFC;cken, <code>vermutung</code> so aussieht: <code>5\n</code>. Das <code>\n</code> stellt
+eine neue Zeile dar (erzeugt durch die Entertaste). <code>trim()</code> entfernt das und
+in unserem String bleibt nur die <code>5</code> &#xFC;brig.
+Die <a href="https://doc.rust-lang.org/std/primitive.str.html#method.parse" target="_blank"><code>parse()</code> Methode auf Strings</a> parst unseren String in einen
+Zahlentyp. Da es verschiedene m&#xF6;gliche Zahlentypen gibt, m&#xFC;ssen wir Rust einen
+Hinweis geben welchen Zahlentyp wir denn genau haben wollen.
+Deswegen <code>let vermutung: u32</code>.
+Der Doppelpunkt (<code>:</code>) nach <code>vermutung</code> sagt Rust,
+dass wir dessen Typ anmerken wollen.
+<code>u32</code> ist eine vorzeichenlose 32-bit Ganzzahl.
+Rust hat <a href="book/Primitive_Typen#numerische-typen">eine Reihe eingebauter Zahlentypen</a>,
+aber wir haben <code>u32</code> gew&#xE4;hlt.
+Es ist eine gute Standardwahl f&#xFC;r eine kleine positive Zahl.</p>
+<p>Genauso wie <code>read_line()</code>, kann unser Aufruf von <code>parse()</code> einen Fehler
+verursachen. Was ist, wenn unser String <code>A&#x2764;%</code> enthielte? Es gibt keine
+M&#xF6;glichkeit das in eine Zahl umzuwandeln. Deswegen werden wir dasselbe
+wie mit <code>read_line()</code> gemachen: Wir benutzen die <code>ok()</code> und <code>expect()</code>
+Methoden um unser Programm bei einem Fehler zu crashen.</p>
+<p>Lass uns unser Programm ausprobieren!</p>
+<pre><code class="lang-bash">$ cargo run
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/you/projects/ratespiel)
+     Running `target/ratespiel`
+Rate die Zahl!
+Die geheime Zahl ist: <span class="hljs-number">58</span>
+Bitte gib deine Vermutung ein.
+  <span class="hljs-number">76</span>
+Deine Vermutung: <span class="hljs-number">76</span>
+Zu gro&#xDF;!
+</code></pre>
+<p>Sch&#xF6;n! Du kannst sehen, dass ich vor meiner Vermutung sogar ein paar
+Leerzeichen eingetippt hat und das Programm immernoch wusste, dass Ich
+76 geraten habe. F&#xFC;hre das Programm ein paar mal aus und stelle sicher,
+dass sowohl das Raten der korrekten Zahl, als auch das Raten einer zu
+kleinen Zahl funktioniert.</p>
+<p>Nun funktioniert auch schon der gr&#xF6;&#xDF;te Teil des Spiels,
+aber wir haben nur einen Versuch. Lass uns das durch das Hinzuf&#xFC;gen von
+Schleifen &#xE4;ndern!</p>
+<h1 id="wiederholungen-mit-schleifen"><a name="wiederholungen-mit-schleifen" class="plugin-anchor" href="#wiederholungen-mit-schleifen"><span class="fa fa-link"></span></a>Wiederholungen mit Schleifen</h1>
+<p>Das <code>loop</code> Schl&#xFC;sselwort gibt uns eine Endlosschleife.
+Lass uns das hinzuf&#xFC;gen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rand;
+
+<span class="hljs-keyword">use</span> std::io;
+<span class="hljs-keyword">use</span> std::cmp::Ordering;
+<span class="hljs-keyword">use</span> rand::Rng;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Die geheime Zahl ist: {}&quot;</span>, geheime_zahl);
+
+    <span class="hljs-keyword">loop</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+        io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+            .ok()
+            .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+        <span class="hljs-keyword">let</span> vermutung: <span class="hljs-keyword">u32</span> = vermutung.trim().parse()
+            .ok()
+            .expect(<span class="hljs-string">&quot;Bitte eine Zahl eintippen!&quot;</span>);
+
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+
+        <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+            Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+            Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+            Ordering::Equal   =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>),
+        }
+    }
+}
+</code></pre>
+<p>Und probier es aus. Aber warte, haben wir nicht gerade eine
+Endlosschleife hinzugef&#xFC;gt? Japp.
+Erinnerst du dich an unsere Diskussion &#xFC;ber <code>parse()</code>?
+Wenn wir einen &quot;nicht-Zahl&quot; eingeben, dann brechen wir ab und beenden das
+Programm. Beobachte:</p>
+<pre><code class="lang-bash">$ cargo run
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+     Running `target/ratespiel`
+Rate die Zahl!
+Die geheime Zahl ist: <span class="hljs-number">59</span>
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">45</span>
+Deine Vermutung: <span class="hljs-number">45</span>
+Zu klein!
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">60</span>
+Deine Vermutung: <span class="hljs-number">60</span>
+Zu gro&#xDF;!
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">59</span>
+Deine Vermutung: <span class="hljs-number">59</span>
+Du gewinnst!
+Bitte gib deine Vermutung ein.
+ende
+thread <span class="hljs-string">&apos;&lt;main&gt;&apos;</span> panicked at <span class="hljs-string">&apos;Bitte eine Zahl eintippen!&apos;</span>
+</code></pre>
+<p>Ha! <code>ende</code> beended sogar das Programm. Genauso wie jede andere Eingabe, die
+keine Zahl ist. Nun, das ist, milde ausgedr&#xFC;ckt, eher suboptimal.
+Zuerst lass uns tats&#xE4;chlich beenden, wenn man das Spiel gewinnt:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rand;
+
+<span class="hljs-keyword">use</span> std::io;
+<span class="hljs-keyword">use</span> std::cmp::Ordering;
+<span class="hljs-keyword">use</span> rand::Rng;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Die geheime Zahl ist: {}&quot;</span>, geheime_zahl);
+
+    <span class="hljs-keyword">loop</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+        io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+            .ok()
+            .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+        <span class="hljs-keyword">let</span> vermutung: <span class="hljs-keyword">u32</span> = vermutung.trim().parse()
+            .ok()
+            .expect(<span class="hljs-string">&quot;Bitte eine Zahl eintippen!&quot;</span>);
+
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+
+        <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+            Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+            Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+            Ordering::Equal   =&gt; {
+                <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+    }
+}
+</code></pre>
+<p>Durch das Hinzuf&#xFC;gen der <code>break</code> Zeile nach dem <code>Gewonnen!</code> verlassen
+wir die Schleife, wenn wir gewinnen. Die Schleife zu verlassen bedeutet auch
+das Programm zu beenden, da sie das letzte in unserer <code>main()</code> ist.
+Wir haben noch eine weitere Anpassung zu machen: Wenn jemand eine &quot;nicht-Zahl&quot;
+eingibt, dann wollen wir nicht beenden, sondern es einfach ignorieren.
+Das k&#xF6;nnen wir so machen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rand;
+
+<span class="hljs-keyword">use</span> std::io;
+<span class="hljs-keyword">use</span> std::cmp::Ordering;
+<span class="hljs-keyword">use</span> rand::Rng;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Die geheime Zahl ist: {}&quot;</span>, geheime_zahl);
+
+    <span class="hljs-keyword">loop</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+        io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+            .ok()
+            .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+        <span class="hljs-keyword">let</span> vermutung: <span class="hljs-keyword">u32</span> = <span class="hljs-keyword">match</span> vermutung.trim().parse() {
+            <span class="hljs-built_in">Ok</span>(zahl) =&gt; zahl,
+            <span class="hljs-built_in">Err</span>(_) =&gt; <span class="hljs-keyword">continue</span>,
+        };
+
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+
+        <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+            Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+            Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+            Ordering::Equal   =&gt; {
+                <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+    }
+}
+</code></pre>
+<p>Diese Zeilen wurden ge&#xE4;ndert:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> vermutung: <span class="hljs-keyword">u32</span> = <span class="hljs-keyword">match</span> vermutung.trim().parse() {
+    <span class="hljs-built_in">Ok</span>(zahl) =&gt; zahl,
+    <span class="hljs-built_in">Err</span>(_) =&gt; <span class="hljs-keyword">continue</span>,
+};
+</code></pre>
+<p>So geht man in der Regel von &quot;st&#xFC;rze bei einem Fehler ab&quot; zu
+&quot;behandle den Fehler tats&#xE4;chlich&quot;, indem man von <code>ok().expect()</code>
+zu einer <code>match</code> Anweisung wechselt. Das <code>Result</code>, welches von <code>parse()</code>
+zur&#xFC;ckgegeben wird, ist tats&#xE4;chlich ein <code>enum</code>, genau wie <code>Ordering</code>,
+aber in diesem Fall enth&#xE4;lt jede Variante ein paar Daten:
+<code>Ok</code> ist ein Erfolg und <code>Err</code> ist ein Fehlschlag. Jeder davon enth&#xE4;lt
+ein paar Daten:  Die erfolgreich geparste Zahl oder einen Fehlertyp.
+In diesem Fall, &quot;matchen&quot; wir <code>Ok(zahl)</code>, was den inneeren Wert von <code>Ok</code>
+an den Name <code>num</code> bindet und danach diesen Wert auf der rechten Seite
+zur&#xFC;ckgibt. Im <code>Err</code> Fall interessieren wir uns nicht f&#xFC;r die Art des
+Fehlers, also benutzen wir einfach <code>_</code> anstatt einen Namen.
+Dies ignoriert den Fehler und <code>continue</code> sorgt daf&#xFC;r, dass wir mit der
+n&#xE4;chsten Iteration der Schleife fortfahren.</p>
+<p>Nun sollte alles in Ordnung sein! Mal ausprobieren:</p>
+<pre><code class="lang-bash">$ cargo run
+   Compiling ratespiel v0.<span class="hljs-number">1.0</span> (file:///home/du/projekte/ratespiel)
+     Running `target/ratespiel`
+Rate die Zahl!
+Die geheime Zahl ist: <span class="hljs-number">61</span>
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">10</span>
+Deine Vermutung: <span class="hljs-number">10</span>
+Zu klein!
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">99</span>
+Deine Vermutung: <span class="hljs-number">99</span>
+Zu gro&#xDF;!
+Bitte gib deine Vermutung ein.
+foo
+Bitte gib deine Vermutung ein.
+<span class="hljs-number">61</span>
+Deine Vermutung: <span class="hljs-number">61</span>
+Gewonnen!
+</code></pre>
+<p>Wunderbar! Es fehlt noch eine winzig kleine &#xC4;nderung damit das
+Ratespiel fertig ist. Kannst du dir vorstellen welche?
+Genau, wir wollen unsere geheime Zahl nicht ausgeben.
+Die Ausgabe war gut zum Testen, aber sie nimmt dem Spiel ein wenig
+den Sinn. Hier ist der fertige Code:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> rand;
+
+<span class="hljs-keyword">use</span> std::io;
+<span class="hljs-keyword">use</span> std::cmp::Ordering;
+<span class="hljs-keyword">use</span> rand::Rng;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
+
+    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
+
+    <span class="hljs-keyword">loop</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
+
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
+
+        io::stdin().read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
+            .ok()
+            .expect(<span class="hljs-string">&quot;Fehler beim Lesen der Zeile&quot;</span>);
+
+        <span class="hljs-keyword">let</span> vermutung: <span class="hljs-keyword">u32</span> = <span class="hljs-keyword">match</span> vermutung.trim().parse() {
+            <span class="hljs-built_in">Ok</span>(zahl) =&gt; zahl,
+            <span class="hljs-built_in">Err</span>(_) =&gt; <span class="hljs-keyword">continue</span>,
+        };
+
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Deine Vermutung: {}&quot;</span>, vermutung);
+
+        <span class="hljs-keyword">match</span> vermutung.cmp(&amp;geheime_zahl) {
+            Ordering::Less    =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu klein!&quot;</span>),
+            Ordering::Greater =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Zu gro&#xDF;!&quot;</span>),
+            Ordering::Equal   =&gt; {
+                <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Gewonnen!&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+    }
+}
+</code></pre>
+<h1 id="fertig"><a name="fertig" class="plugin-anchor" href="#fertig"><span class="fa fa-link"></span></a>Fertig!</h1>
+<p>Jetzt hast du erfolgreich das Ratespiel gebaut! Gratuliere!</p>
+<p>Dieses erste Projekt hat dir eine Menge gezeigt: <code>let</code>, <code>match</code>,
+Methoden, assoziierte Funktionen, wie man externe Crates verwendet, und mehr.
+Unser n&#xE4;chstes Projekt wird soger noch mehr demonstrieren.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../book/Lerne_Rust.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Lerne Rust"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
