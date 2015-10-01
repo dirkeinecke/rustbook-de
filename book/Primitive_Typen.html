@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Rust installieren | Die Programmiersprache Rust</title>
+        <title>Primitive Typen | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -33,10 +33,8 @@
         
     
     
-    <link rel="next" href="../book/Hallo_Welt.html" />
     
-    
-    <link rel="prev" href="../book/Erste_Schritte.html" />
+    <link rel="prev" href="../book/Ratespiel.html" />
     
 
         
@@ -44,7 +42,7 @@
     <body>
         
         
-    <div class="book" data-level="1.1" data-basepath=".." data-revision="Fri Oct 02 2015 01:06:00 GMT+0200 (CEST)">
+    <div class="book" data-level="4.3" data-basepath=".." data-revision="Fri Oct 02 2015 01:06:00 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -91,7 +89,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1" data-path="book/Rust_Installieren.html">
+        <li class="chapter " data-level="1.1" data-path="book/Rust_Installieren.html">
             
                 
                     <a href="../book/Rust_Installieren.html">
@@ -303,7 +301,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="book/Primitive_Typen.html">
+        <li class="chapter active" data-level="4.3" data-path="book/Primitive_Typen.html">
             
                 
                     <a href="../book/Primitive_Typen.html">
@@ -757,92 +755,204 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="rust-installieren"><a name="rust-installieren" class="plugin-anchor" href="#rust-installieren"><span class="fa fa-link"></span></a>Rust installieren</h1>
-<p>Der erste Schritt um Rust zu nutzen ist es zu installieren. Es gibt eine Reihe
-von M&#xF6;glichkeiten Rust zu installieren, aber die einfachste ist das <code>rustup</code>
-Skript zu verwenden. Wenn du Linux oder einen Mac verwendest, dann ist alles
-was du tun musst dies:</p>
-<blockquote>
-<p>Hinweis: Du darfst nicht die <code>$</code>-Zeichen eintippen, sie dienen nur dazu den
-Anfang eines jeden Befehls anzuzeigen. Du wirst im Internet viele Tutorials
-finden, welche dieser Konvention folgen: <code>$</code> f&#xFC;r Befehle die als normaler
-Benutzer ausgef&#xFC;hrt werden und <code>#</code> f&#xFC;r Befehle, welche du als Administrator
-ausf&#xFC;hren solltest.</p>
-</blockquote>
-<pre><code class="lang-bash">$ curl -sf -L https://static.rust-lang.org/rustup.sh | sh
+                        <h1 id="primitive-typen"><a name="primitive-typen" class="plugin-anchor" href="#primitive-typen"><span class="fa fa-link"></span></a>Primitive Typen</h1>
+<p>Die Rust Programmiersprache hat eine Reihe von Typen die als &quot;primitiv&quot;
+angesehen werden. Das bedeutet, dass sie in die Sprache eingebaut sind.
+Rust ist so strukturiert, dass die Standardbibliothek auch eine Menge
+n&#xFC;tzlicher Typen zur Verf&#xFC;gung stellt,
+auch welche auf primitiven Typen aufbauen, aber diese hier sind am
+&quot;primitivsten&quot;.</p>
+<h1 id="booleans"><a name="booleans" class="plugin-anchor" href="#booleans"><span class="fa fa-link"></span></a>Booleans</h1>
+<p>Rust hat einen boolschen Typ namens <code>bool</code>. Er hat zwei m&#xF6;gliche Werte,
+<code>true</code> und <code>false</code>:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-keyword">true</span>;
+
+<span class="hljs-keyword">let</span> y: <span class="hljs-keyword">bool</span> = <span class="hljs-keyword">false</span>;
 </code></pre>
-<p>Falls du um die <a href="http://curlpipesh.tumblr.com" target="_blank">potenzielle Unsicherheit</a> bez&#xFC;glich <code>curl | sh</code>
-besorgt bist, dann lies bitte weiter und schau dir unseren Disclaimer weiter
-unten an. Und benutze ruhig die zwei-schritte Version der Installation und
-untersuche unser Installationsskript:</p>
-<pre><code class="lang-bash">$ curl <span class="hljs-operator">-f</span> -L https://static.rust-lang.org/rustup.sh -O
-$ sh rustup.sh
+<p>Eine &#xFC;bliche Nutzung ist in <a href="book/If.md"><code>if</code> Bedingungen</a>.</p>
+<p>Du findest mehr Dokumentation zu <code>bool</code>s
+<a href="https://doc.rust-lang.org/std/primitive.bool.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
+<h1 id="-char"><a name="-char" class="plugin-anchor" href="#-char"><span class="fa fa-link"></span></a><code>char</code></h1>
+<p>Der <code>char</code> Typ stellt einen einzelnen Unicode Skalarwert dar.
+Du kannst <code>char</code>s mit einzelnen Anf&#xFC;hrungsszeichen erzeugen: (<code>&apos;</code>)</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-string">&apos;x&apos;</span>;
+<span class="hljs-keyword">let</span> smiley = &apos;&#x1F600;&apos;;
 </code></pre>
-<p>Wenn du Windows benutzt, dann lade bitte den passenden
-<a href="https://www.rust-lang.org/install.html" target="_blank">Installer</a> herunter.</p>
-<p><strong>ACHTUNG:</strong> Der Windows Installer f&#xFC;gt Rust standardm&#xE4;&#xDF;ig <strong>nicht</strong> der
-<code>%PATH%</code> Systemvariable hinzu. Falls dies die einzige Rust Version ist, die du
-installierst, und du sie von der Eingabeaufforderung aufrufen k&#xF6;nnen m&#xF6;chtest,
-dann klicke im Installationsdialog auf &quot;Advanced&quot; und stelle sicher, dass auf
-der &quot;Product Features&quot; Seite &quot;Add to PATH&quot; auf die Festplatte installiert wird.</p>
-<h2 id="deinstallieren"><a name="deinstallieren" class="plugin-anchor" href="#deinstallieren"><span class="fa fa-link"></span></a>Deinstallieren</h2>
-<p>Falls du dich dazu entscheidest Rust nicht mehr haben zu wollen, dann werden
-wir ein bisschen traurig sein, aber das ist in Ordnung. Nicht jede
-Programmiersprache ist f&#xFC;r jeden toll. F&#xFC;hre einfach das uninstall Skript aus:</p>
-<pre><code class="lang-bash">$ sudo /usr/<span class="hljs-built_in">local</span>/lib/rustlib/uninstall.sh
+<p>Anders als in manch anderen Spachen bedeutet das, dass <code>char</code>s
+kein einzelnes byte, sondern vier bytes sind.</p>
+<p>Du findest mehr Dokumentation zu <code>char</code>s
+<a href="https://doc.rust-lang.org/std/primitive.char.html" target="_blank">in der Dokumentation der Standardbibliothk</a>.</p>
+<h1 id="numerische-type"><a name="numerische-type" class="plugin-anchor" href="#numerische-type"><span class="fa fa-link"></span></a>Numerische Type</h1>
+<p>Rust hat eine Vielzahl an numerischen Typen in ein paar Kategorien:
+Vorzeichenbehaftet und Vorzeichenlos, feste und variable Gr&#xF6;&#xDF;e,
+Flie&#xDF;komma- und Ganzzahl.</p>
+<p>Diese Typen bestehen aus zwei Teilen: Der Kategorie und ihrer Gr&#xF6;&#xDF;e.
+Zum Beispiel ist <code>u16</code> ein vorzeichenloser Typ, der 16 bit gro&#xDF; ist.
+Mehr bits erlauben gr&#xF6;&#xDF;ere Zahlen.</p>
+<p>Wenn ein Zahlenliteral keinen Typ durch etwas zugewiesen bekommt, dann
+sind das hier die Standards:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>; <span class="hljs-comment">// x hat den Typ i32</span>
+
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">1.0</span>; <span class="hljs-comment">// y hat den Typ f64</span>
 </code></pre>
-<p>Falls du den Windows Installer verwendet hast, dann f&#xFC;hre einfach die <code>.msi</code>
-erneut aus und dir wird eine Option zum deinstallieren angezeigt werden.</p>
-<h2 id="der-versprochene-disclaimer"><a name="der-versprochene-disclaimer" class="plugin-anchor" href="#der-versprochene-disclaimer"><span class="fa fa-link"></span></a>Der versprochene Disclaimer</h2>
-<p>Manche leute werden, ein wenig zurecht, sehr ver&#xE4;rgert, wenn man ihnen sagt,
-dass sie <code>curl | sh</code> ausf&#xFC;hren sollen. Im Grunde vertraut man dabei den guten
-Leuten, die Rust pflegen, dass sie nicht deinen Computer hacken und b&#xF6;se Dinge
-tun. Das ist ein guter Instinkt! Falls du einer dieser Leute bist, dann schau
-dir bitte die Dokumentation auf <a href="https://github.com/rust-lang/rust#building-from-source" target="_blank">Rust aus den Quellen erstellen</a>
-oder auf <a href="https://www.rust-lang.org/install.html" target="_blank">der offiziellen Binary Downloadseite</a> an.</p>
-<h2 id="plattformunterst%C3%BCtzung"><a name="plattformunterst%C3%BCtzung" class="plugin-anchor" href="#plattformunterst%C3%BCtzung"><span class="fa fa-link"></span></a>Plattformunterst&#xFC;tzung</h2>
-<p>Oh, wir sollten auch die offiziell unterst&#xFC;tzten Plattformen erw&#xE4;hnen:</p>
+<p>Hier ist eine Liste der verschiedenen numerischen Typen, inklusive Links
+zu ihrer jeweiligen Dokumentation in der Standardbibliothek:</p>
 <ul>
-<li>Windows (7, 8, Server 2008 R2)</li>
-<li>Linux (2.6.18 oder neuer, verschiedene Distributionen), x86 und x86-64</li>
-<li>OSX 10.7 (Lion) oder neuer, x86 und x86-64</li>
+<li><a href="https://doc.rust-lang.org/std/primitive.i8.html" target="_blank">i8</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.i16.html" target="_blank">i16</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.i32.html" target="_blank">i32</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.i64.html" target="_blank">i64</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.u8.html" target="_blank">u8</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.u16.html" target="_blank">u16</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.u32.html" target="_blank">u32</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.u64.html" target="_blank">u64</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.isize.html" target="_blank">isize</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.usize.html" target="_blank">usize</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.f32.html" target="_blank">f32</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.f64.html" target="_blank">f64</a></li>
 </ul>
-<p>Wir testen Rust ausf&#xFC;hrlich auf diesen Plattformen und ebenfalls auf ein paar
-anderen, wie z.B. Android. Aber diese sind jene, die am ehesten funktionieren,
-da sie besser getestet sind.</p>
-<p>Zuletzt ein Kommentar &#xFC;ber Windows. Rust sieht, seit seinem Release, Windows
-als eine first class Plattform an, aber wenn wir ehrlich sind, ist das Windows
-Erlebnis nicht so integriert wie das Linux/OS X Erlebnis ist. Wir arbeiten
-daran! Falls etwas nicht funktioniert ist es ein Bug. Lass es uns bitte wissen,
-wenn das passiert. Jeder einzelne Commit wird mit Windows getestet, genau wie
-bei jeder anderen Plattform.</p>
-<h2 id="nach-der-installation"><a name="nach-der-installation" class="plugin-anchor" href="#nach-der-installation"><span class="fa fa-link"></span></a>Nach der Installation</h2>
-<p>Wenn du Rust installiert hast, dann kannst du eine Shell/Eingabeaufforderung
-&#xF6;ffnen und dies eingeben:</p>
-<pre><code class="lang-bash">$ rustc --version
+<p>Lass sie uns nach Kategorie durchgehen:</p>
+<h2 id="vorzeichenbehaftet-und-vorzeichenlos"><a name="vorzeichenbehaftet-und-vorzeichenlos" class="plugin-anchor" href="#vorzeichenbehaftet-und-vorzeichenlos"><span class="fa fa-link"></span></a>Vorzeichenbehaftet und Vorzeichenlos</h2>
+<p>Ganzzahlige Typen kommen in zwei Ausf&#xFC;hrungen daher:
+Vorzeichenbehaftet und Vorzeichenlos. Lass uns eine 4-bit Zahl betrachten
+um den Unterschied zu verstehen. Eine Vorzeichenbehaftete 4-bit Zahl w&#xFC;rde
+dir erlauben Zahlen von <code>-8</code> bis <code>+7</code> zu speichern. Vorzeichenbehaftete Zahlen
+verwenden die Zweierkomplementdarstellung. Eine vorzeichenlose 4-bit Zahl
+braucht keine negativen Zahlen speichern und kann deswegen Werte von
+<code>0</code> bis <code>+15</code> annehmen.</p>
+<p>Vorzeichenlose Typen nutzen ein <code>u</code> f&#xFC;r ihre Kategorie,
+und vorzeichenbehaftete Typen nutzen ein <code>i</code>.
+Das <code>i</code> steht f&#xFC;r &quot;integer&quot; (Ganzzahl).
+Also ist <code>u8</code> eine vorzeichenlose 8-bit Ganzzahl und
+<code>i8</code> ist eine vorzeichenbehaftete 8-bit Ganzzahl.</p>
+<h2 id="typen-fester-gr%C3%B6%C3%9Fe"><a name="typen-fester-gr%C3%B6%C3%9Fe" class="plugin-anchor" href="#typen-fester-gr%C3%B6%C3%9Fe"><span class="fa fa-link"></span></a>Typen fester Gr&#xF6;&#xDF;e</h2>
+<p>Typen fester Gr&#xF6;&#xDF;e enthalten eine speziefische Anzahl an Bits in
+ihrer Darstellung. G&#xFC;ltige Bitgr&#xF6;&#xDF;en sind <code>8</code>, <code>16</code>, <code>32 und</code>64<code>.
+Also ist</code>u32<code>eine vorzeichenlose Ganzzahl mit 32 Bits und</code>i64` eine vorzeichenbehaftete Ganzzahl mit 64 Bits.</p>
+<h2 id="flie%C3%9Fkommatypen"><a name="flie%C3%9Fkommatypen" class="plugin-anchor" href="#flie%C3%9Fkommatypen"><span class="fa fa-link"></span></a>Flie&#xDF;kommatypen</h2>
+<p>Rust besitzt auch zwei Flie&#xDF;kommatypen: <code>f32</code> und <code>f64</code>.
+Diese entsprechen dem IEEE-754 Standard f&#xFC;r Flie&#xDF;kommazahlen
+einfacher und doppelter Genauigkeit.</p>
+<h1 id="arrays"><a name="arrays" class="plugin-anchor" href="#arrays"><span class="fa fa-link"></span></a>Arrays</h1>
+<p>Wie die meisten Programmiersprachen hat Rust Listentypen
+um Sequenzen von Dingen darzustellen.
+Die grundlegenste ist das <em>Array</em>, eine Liste fester Gr&#xF6;&#xDF;e von Elementen
+des selben Typs. Standardm&#xE4;&#xDF;ig sind Arrays <em>immutable</em>.</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; <span class="hljs-comment">// a: [i32; 3]</span>
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> m = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; <span class="hljs-comment">// m: [i32; 3]</span>
 </code></pre>
-<p>Du solltest eine Versionsnummer, einen Commit Hash und ein Commit Datum sehen.
-Wenn du gerade die Version 1.3.0 installiert hast, dann solltest du folgendes
-sehen:</p>
-<pre><code class="lang-text">rustc 1.3.0 (9a92aaf19 2015-09-15)
+<p>Arrays haben den Typ <code>[T; N]</code>. Wir werden &#xFC;ber diese <code>T</code> Notation
+<a href="book/Generics.md">im Generics Abschnitt</a> rede. Das <code>N</code> ist eine Konstante zur
+Kompilierzeit um die L&#xE4;nge des Arrays anzuzeigen.</p>
+<p>Es gibt eine abk&#xFC;rzende Schreibweise um jedes Element des Arrays mit dem
+selben Wert zu initialisieren. In diesem Beispiel wird jedes Element von
+<code>a</code> mit <code>0</code> initialisiert:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">0</span>; <span class="hljs-number">20</span>]; <span class="hljs-comment">// a: [i32; 20]</span>
 </code></pre>
-<p>Falls ja, dann hast du Rust erfolgreich installiert! Gratuliere!</p>
-<p>Falls nicht, und du Windows nutzt, dann Pr&#xFC;fe, dass Rust in deiner <code>%PATH%</code>
-Systemvariable ist. Wenn nicht, dann starte den Installer nochmal und w&#xE4;hle
-&quot;Change&quot; auf der &quot;Change, repair, or remove installation&quot; Seite und stelle
-sicher, dass &quot;Add to PATH&quot; auf die Festplatte installiert wird.</p>
-<p>Dieser Installer installiert auch eine lokale Kopie der Dokumentation, sodass
-du sie offline lesen kannst. Auf UNIX Systemen findet man sie in
-<code>/usr/local/share/doc/rust</code>. Auf Windows ist sie in dem <code>share/doc</code> Ordner, wo
-auch immer du Rust hin installiert hast.</p>
-<p>Falls nicht gibt es eine Reihe von Orten wo du Hilfe bekommen kannst.
-Der beste ist
-<a href="irc://irc.mozilla.org/#rust" target="_blank">der englischsprachige #rust IRC Channel auf irc.mozilla.org</a>,
-welchen du mittels <a href="https://chat.mibbit.com/?server=irc.mozilla.org&amp;channel=%23rust" target="_blank">Mibbit</a> betreten kannst. Klick auf den Link und
-Chattest sofort mit anderen Rustlern. Falls du dich lieber auf deutsch
-unterhalten m&#xF6;chtest, dann kannst du auch <a href="https://chat.mibbit.com/?server=irc.mozilla.org&amp;channel=%23rust-de" target="_blank">#rust-de via Mibbit betreten</a>.
-Andere gro&#xDF;artige Ressourcen beinhalten das <a href="https://users.rust-lang.org/" target="_blank">Benutzerforum</a> und
-<a href="https://stackoverflow.com/questions/tagged/rust" target="_blank">Stack Overflow</a>.</p>
+<p>Du kannst die Anzahl der Elemente eines Array <code>a</code> via <code>a.len()</code> ermitteln:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;a hat {} Elemente&quot;</span>, a.len());
+</code></pre>
+<p>Du kannst auf ein bestimmtes Element des Arrays
+mithilfe eckiger Klammern (<code>[]</code>) zugreifen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> namen = [<span class="hljs-string">&quot;Graydon&quot;</span>, <span class="hljs-string">&quot;Brian&quot;</span>, <span class="hljs-string">&quot;Niko&quot;</span>]; <span class="hljs-comment">// namen: [&amp;str; 3]</span>
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Der zweite Name ist: {}&quot;</span>, namen[<span class="hljs-number">1</span>]);
+</code></pre>
+<p>Die Indizes beginnen bei 0, wie in den meisten Programmiersprachen.
+Somit ist der erste Name <code>namen[0]</code> und der zweite Name <code>namen[1]</code>.
+Das vorherige Beispiel gibt <code>Der zweite Name ist: Brian</code> aus.
+Wenn du versucht einen Index zu verwenden, der nicht im Array liegt,
+dann wirst du einen Fehler bekommen: Arrayzugriffe werden zur Laufzeit
+auf G&#xFC;ltigkeit gepr&#xFC;ft. Solch ein fehlerhafter Zugriff ist die Quelle
+vieler Bugs in anderen Systemsprachen.</p>
+<p>Du findest mehr Dokumentation &#xFC;ber <code>Arrays</code>s
+<a href="https://doc.rust-lang.org/std/primitive.array.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
+<h1 id="slices"><a name="slices" class="plugin-anchor" href="#slices"><span class="fa fa-link"></span></a>Slices</h1>
+<p>Ein <em>slice</em> [engl.: Scheibe/St&#xFC;ck] ist eine Referenz (oder eine &quot;Ansicht&quot;) auf
+eine andere Datenstruktur. Sie erlauben einen sicheren und effizienten Zugriff
+auf einen Teil eines Arrays ohne zu kopieren.
+Zum Beispiel m&#xF6;chtest du vielleicht einfach nur auf eine Zeile einer
+Datei im Speicher verweisen.
+Aufgrund seiner Natur l&#xE4;sst sich ein <em>slice</em> nicht einfach so direkt erzeugen,
+sondern nur aus einer existierenden Variable. Slices haben eine L&#xE4;nge,
+k&#xF6;nnen <em>mutable</em> oder <em>immutable</em> sein, und verhalten sich wie Arrays:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-keyword">let</span> middle = &amp;a[<span class="hljs-number">1</span>..<span class="hljs-number">4</span>]; <span class="hljs-comment">// Ein Slice von a: Nur die Elemente 1, 2, und 3</span>
+<span class="hljs-keyword">let</span> complete = &amp;a[..]; <span class="hljs-comment">// Ein Slice mit allen Elementen von a</span>
+</code></pre>
+<p>Slices haben den Typ <code>&amp;[T]</code>. Wir werden &#xFC;ber dieses <code>T</code> sprechen, wenn wir
+<a href="book/Generics.md">Generics</a> behandeln.</p>
+<p>Du findest mehr Dokumentation &#xFC;ber <code>Slice</code>s
+<a href="https://doc.rust-lang.org/std/primitive.slice.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
+<h1 id="-str"><a name="-str" class="plugin-anchor" href="#-str"><span class="fa fa-link"></span></a><code>str</code></h1>
+<p>Rusts <code>str</code> Typ ist der primitivste String Typ.
+Als ein <a href="book/Gr&#xF6;&#xDF;enlose_Typen.md">gr&#xF6;&#xDF;enloser Typ</a> ist er alleine nicht sehr n&#xFC;tzlich,
+aber er wird sehr n&#xFC;tzlich in Kombination mit einer Referenz, wie
+zum Beispiel <a href="book/Strings.md"><code>&amp;str</code></a>. Von daher belassen wir es dabei.</p>
+<p>Du findest mehr Dokumentation &#xFC;ber <code>str</code>s
+<a href="https://doc.rust-lang.org/std/primitive.str.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
+<h1 id="tupel"><a name="tupel" class="plugin-anchor" href="#tupel"><span class="fa fa-link"></span></a>Tupel</h1>
+<p>Ein Tupel ist eine geordnete Liste fester Gr&#xF6;&#xDF;e. Zum Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = (<span class="hljs-number">1</span>, <span class="hljs-string">&quot;hallo&quot;</span>);
+</code></pre>
+<p>Wie du sehen kannst sehen kannst, sieht der Typ eins Tupels genaus aus wie
+das jeweilige Tupel, aber mit den jeweiligen Typen anstatt Werten.
+Aufmerksame Leser werden auch feststellen, dass Tupel heterogen sind:
+Wir haben ein <code>i32</code> und ein <code>&amp;str</code> in diesem Tupel.
+(In Systemprogrammiersprachen sind Strings ein wenig Komplexer als in anderen
+Sprachen. F&#xFC;rs erste lies <code>&amp;str</code> als ein <em>string slice</em>.
+Wir werden bald noch mehr dar&#xFC;ber lernen.)</p>
+<p>Tupel k&#xF6;nnen einander zugewiesen werden, wenn die enthaltenen Typen und
+die <a href="book/Gloassar.md#stelligkeit">Stelligkeit</a> identisch sind. Tupel haben die gleiche Stelligkeit,
+wenn sie dieselbe L&#xE4;nge haben.</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> x = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// x: (i32, i32)</span>
+<span class="hljs-keyword">let</span> y = (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// y: (i32, i32)</span>
+
+x = y;
+</code></pre>
+<p>Du kannst auf die Felder eines Tupels durch <em>let Destrukturierung</em> zugreifen.
+Hier ist ein Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> (x, y, z) = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x ist {}&quot;</span>, x);
+</code></pre>
+<p>Erinnerst du dich an <a href="book/Variablenbindung.md">zuvor</a>, als wir sagten, dass die linke Seite
+etwas m&#xE4;chtiger ist als einfach nur eine Variablenbindung zuzuweisen?
+Dabei sind wir nun. Wir k&#xF6;nnen auf der linken Seite des <code>let</code> ein Muster
+verwenden und, wenn es zu der rechten Seite passt, mehrere Variablenbindungen
+gleichzeitig zuweisen. In diesem Fall &quot;destrukturiert&quot; <code>let</code> das Tupel bzw.
+&quot;nimmt es auseinander&quot; und bindet die Teilst&#xFC;cke an Variablen.</p>
+<p>Dieses Muster ist sehr m&#xE4;chtig und wir werden es sp&#xE4;ter noch &#xF6;fters sehen.</p>
+<p>Du kannst ein Tupel mit einem einzelnen Element von einem Wert in Klammern durch
+ein Komma unterscheiden:</p>
+<pre><code class="lang-rust">(<span class="hljs-number">0</span>,); <span class="hljs-comment">// Tupel mit einem Element</span>
+(<span class="hljs-number">0</span>); <span class="hljs-comment">// 0 in Klammern</span>
+</code></pre>
+<h2 id="tupel-indizierung"><a name="tupel-indizierung" class="plugin-anchor" href="#tupel-indizierung"><span class="fa fa-link"></span></a>Tupel Indizierung</h2>
+<p>Du kannst auf die Felder eines Tupel auch durch die &quot;Indizierungssyntax&quot;
+zugreifen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> tupel = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+
+<span class="hljs-keyword">let</span> x = tupel.<span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> y = tupel.<span class="hljs-number">1</span>;
+<span class="hljs-keyword">let</span> z = tupel.<span class="hljs-number">2</span>;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x ist {}&quot;</span>, x);
+</code></pre>
+<p>Wie auch bei der Array Indizierung wird bei 0 begonnen, aber anders als
+bei der Array Indizierung verwendet man ein <code>.</code> anstatt <code>[]</code>.</p>
+<p>Du findest mehr Dokumentation &#xFC;ber Tupel
+<a href="https://doc.rust-lang.org/std/primitive.tuple.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
+<h1 id="funktionen"><a name="funktionen" class="plugin-anchor" href="#funktionen"><span class="fa fa-link"></span></a>Funktionen</h1>
+<p>Funktionen haben auch einen Typ! Er sieht so aus:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> { x }
+
+<span class="hljs-keyword">let</span> x: <span class="hljs-function"><span class="hljs-keyword">fn</span></span>(<span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> = foo;
+</code></pre>
+<p>In diesem Fall ist <code>x</code> ein &#x2018;Funktionszeiger&#x2019; auf eine Funktion,
+welche ein <code>i32</code> akzeptiert und ein <code>i32</code> zur&#xFC;ckgibt.</p>
 
                     
                     </section>
@@ -853,10 +963,8 @@ Andere gro&#xDF;artige Ressourcen beinhalten das <a href="https://users.rust-lan
         </div>
 
         
-        <a href="../book/Erste_Schritte.html" class="navigation navigation-prev " aria-label="Previous page: Erste Schritte"><i class="fa fa-angle-left"></i></a>
+        <a href="../book/Ratespiel.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Ratespiel"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../book/Hallo_Welt.html" class="navigation navigation-next " aria-label="Next page: Hallo Welt"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
