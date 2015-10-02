@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Erste Schritte | Die Programmiersprache Rust</title>
+        <title>Variablenbindung | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -33,10 +33,10 @@
         
     
     
-    <link rel="next" href="../book/Rust_Installieren.html" />
+    <link rel="next" href="../book/Primitive_Typen.html" />
     
     
-    <link rel="prev" href="../index.html" />
+    <link rel="prev" href="../book/Syntax_Und_Semantik.html" />
     
 
         
@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="1" data-basepath=".." data-revision="Fri Oct 02 2015 02:20:07 GMT+0200 (CEST)">
+    <div class="book" data-level="4.1" data-basepath=".." data-revision="Fri Oct 02 2015 02:20:07 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -75,7 +75,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1" data-path="book/Erste_Schritte.html">
+        <li class="chapter " data-level="1" data-path="book/Erste_Schritte.html">
             
                 
                     <a href="../book/Erste_Schritte.html">
@@ -297,7 +297,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="book/Variablenbindung.html">
+        <li class="chapter active" data-level="4.1" data-path="book/Variablenbindung.html">
             
                 
                     <a href="../book/Variablenbindung.html">
@@ -773,11 +773,148 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="erste-schritte"><a name="erste-schritte" class="plugin-anchor" href="#erste-schritte"><span class="fa fa-link"></span></a>Erste Schritte</h1>
-<p>Dieser erste Abschnitt des Buches wird dich mit Rust und seinen Werkzeugen in
-Fahrt bringen. Zuerst werden wir Rust installieren. Dann kommt das klassische
-&#x2018;Hallo Welt&#x2019; Programm. Zum Schluss werden wir &#xFC;ber Cargo, dem Buildsystem und
-Paketmanager von Rust, reden.</p>
+                        <h1 id="variablenbindung"><a name="variablenbindung" class="plugin-anchor" href="#variablenbindung"><span class="fa fa-link"></span></a>Variablenbindung</h1>
+<p>Fast jedes nicht-triviales Rust Programm verwendet <em>Variablenbindungen</em>.
+Sie sehen so aus:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>;
+}
+</code></pre>
+<p><code>fn main() {</code> in jedes Beispiel zu schreiben ist ein wenig m&#xFC;hsam,
+also werden wir es in Zukunft weglassen. Falls du diese Beispiele ausprobierst,
+stelle sicher, dass du deinen Code in einer <code>main()</code> Methode schreibst
+(und nicht wie wir wegl&#xE4;sst). Ansonsten bekommst du einen Fehler.</p>
+<p>In vielen Sprachen wird das eine <em>Variable</em> genannt, aber Rusts
+Variablenbindungen haben ein paar Tricks im &#xC4;rmel.
+Zum Beispiel ist die linke Seite des <code>let</code> Anweisung ein &#x2018;<a href="book/Muster.md">Muster</a>&#x2019;
+und nicht einfach nur ein Variablenname. Das bedeutet,
+dass wir solche Sachen tun k&#xF6;nnen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> (x, y) = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+</code></pre>
+<p>Nach dem ausf&#xFC;hren dieser Anweisung ist <code>x</code> <code>1</code> und <code>y</code> wird <code>2</code> sein.
+Muster sind wirklich m&#xE4;chtig und haben <a href="book/Muster.md">ihren eigenen Abschnitt</a>
+im Buch. Wir brauchen diese Features f&#xFC;rs erste nicht, also behalten wir
+uns das hier erstmal im Hinterkopf w&#xE4;hrend wir weiter machen.</p>
+<p>Rust ist eine statisch typisierte Sprache, was bedeutet, dass wir unsere
+Typen im Voraus angeben m&#xFC;ssen und diese zur Kompilierzeit &#xFC;berpr&#xFC;ft werden.
+Aber warum kompiliert dann unser erstes Beispiel? Nun, kann etwas namens
+&#x2018;Typinferenz&#x2019;. Wenn Rust den Typ alleine herausfinden kann, dann m&#xFC;ssen
+wir den Typ nicht unbedingt angeben.</p>
+<p>Wir k&#xF6;nnen den Typ aber angeben, wenn wir wollen.
+Ein Typ kommt nach einem Doppelpunkt (<code>:</code>):</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x: <span class="hljs-keyword">i32</span> = <span class="hljs-number">5</span>;
+</code></pre>
+<!--
+Fehlende Übersetzung:
+"If I asked you to read this out loud to the rest of the class, you’d say “`x`
+is a binding with the type `i32` and the value `five`.”"
+
+Ich weis nicht genau wie das zu formulieren ist. ~~~ panicbit 02.10.15
+-->
+<p>In diesem Fall stellt <code>x</code> eine vorzeichenbehaftete 32-bit Ganzzahl dar.
+Rust hat viele verschiedene primitive Ganzzahl Typen.
+Sie beginnen mit <code>i</code> f&#xFC;r vorzeichenbehaftete Ganzzahlen und
+mit <code>u</code> f&#xFC;r vorzeichenlose Ganzzahlen. Die m&#xF6;glichen Ganzzahlgr&#xF6;&#xDF;en sind
+8, 16, 32 und 64 Bits.</p>
+<p>In zuk&#xFC;nftigen Beispielen werden wir manchmal den Typ in einem Kommentar
+angeben. Diese Beispiele werden so aussehen:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>; <span class="hljs-comment">// x: i32</span>
+}
+</code></pre>
+<p>Beachte die &#xC4;hnlichkeit zwischen dieser Anmerkung und der Syntax,
+die man mit <code>let</code> verwendet. Diese Art von Kommentar ist kein
+idiomatisches Rust, aber wir werden sie dennoch gelegentlich verwenden
+um klar zu machen, welche Typen Rust ableitet.</p>
+<p>Standardm&#xE4;&#xDF;ig sind Bindungen <em>immutable</em> [engl.: Unver&#xE4;nderbar].
+Dieser code wird nicht kompilieren:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>;
+x = <span class="hljs-number">10</span>;
+</code></pre>
+<p>Er wird dir diesen Fehler geben:</p>
+<pre><code class="lang-text">error: re-assignment of immutable variable `x`
+     x = 10;
+     ^~~~~~~
+</code></pre>
+<p>Wenn du eine Bindung <em>mutable</em> [engl.: ver&#xE4;nderbar] machen willst,
+dann geht das mit <code>mut</code>.</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> x = <span class="hljs-number">5</span>; <span class="hljs-comment">// mut x: i32</span>
+x = <span class="hljs-number">10</span>;
+</code></pre>
+<p>Es gibt verschiedene Gr&#xFC;nd, dass Bindungen standardm&#xE4;&#xDF;ig unver&#xE4;nderbar sind,
+aber betrachten wir es einfach mal aus Sicht eines der Hauptziele von Rust:
+Sicherheit. Wenn du vergisst <code>mut</code> zu schreiben, dann wird der Compiler
+das abfangen und dich wissen lassen, dass du etwas ver&#xE4;nderst,
+was du vielleicht garnicht ver&#xE4;ndern willst.
+W&#xE4;ren Bindungen standardm&#xE4;&#xDF;ig ver&#xE4;nderbar, dann k&#xF6;nnte dir
+der Compiler das nicht miteilen.
+Wenn die Ver&#xE4;nderung doch beabsichtigt ist,
+dann ist die L&#xF6;sung ziemlich einfach: F&#xFC;ge <code>mut</code> hinzu.</p>
+<p>Es gibt noch weitere gute Gr&#xFC;nde ver&#xE4;nderbaren Zustand so viel wie m&#xF6;glich
+zu vermeiden, aber das sprengt den Ramen dieses Guides.
+Im Allgemeinen kann man h&#xE4;ufig ausdr&#xFC;ckliche Ver&#xE4;nderungen vermeiden,
+somit ist diese in Rust bevorzugt. Dennoch ben&#xF6;tigt man manchmal
+Ver&#xE4;nderungen, also ist sie nicht verboten.</p>
+<p>Also zur&#xFC;ck zu Bindungen. Rusts Variablenbindungen haben noch einen weiteren
+Aspekt der von anderen Sprachen abweicht:
+Bindungen m&#xFC;ssen initialisiert werden, bevor man sie benutzen kann.</p>
+<p>Lass uns das ausprobieren.
+&#xC4;ndere deine <code>src/main.rs</code> damit sie so aussieht:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x: <span class="hljs-keyword">i32</span>;
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Hallo Welt!&quot;</span>);
+}
+</code></pre>
+<p>Du kannst <code>cargo build</code> in der Kommandozeile verwenden um es zu kompilieren.
+Du wirst zwar eine Warnung bekommen, aber das Programm wird trotzdem
+&quot;Hallo Welt!&quot; ausgeben:</p>
+<pre><code class="lang-text">   Compiling hallo_welt v0.0.1 (file:///home/du/projekte/hallo_welt)
+src/main.rs:2:9: 2:10 warning: unused variable: `x`, #[warn(unused_variable)]
+   on by default
+src/main.rs:2     let x: i32;
+                      ^
+</code></pre>
+<p>Rust warnt uns jedes mal, wenn eine Bindung nicht verwendet wird, ist
+aber ansonsten kein Fehler an sich.
+Die Sache &#xE4;ndert sich jedoch, wenn wir versuchen dieses <code>x</code> zu verwenden.
+Lass uns das mal ausprobieren. &#xC4;ndere dein Programm wie folgt:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x: <span class="hljs-keyword">i32</span>;
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Der Wert von x ist: {}&quot;</span>, x);
+}
+</code></pre>
+<p>Und, wenn wir versuchen zu kompilieren, bekommen wir diesen Fehler:</p>
+<pre><code class="lang-bash">$ cargo build
+   Compiling hallo_welt v0.<span class="hljs-number">0.1</span> (file:///home/du/projekte/hallo_welt)
+src/main.rs:<span class="hljs-number">4</span>:<span class="hljs-number">40</span>: <span class="hljs-number">4</span>:<span class="hljs-number">41</span> error: use of possibly uninitialized variable: `x`
+src/main.rs:<span class="hljs-number">4</span>     println!(<span class="hljs-string">&quot;Der Wert von x ist: {}&quot;</span>, x);
+                                                     ^
+note: <span class="hljs-keyword">in</span> expansion of format_args!
+&lt;std macros&gt;:<span class="hljs-number">2</span>:<span class="hljs-number">23</span>: <span class="hljs-number">2</span>:<span class="hljs-number">77</span> note: expansion site
+&lt;std macros&gt;:<span class="hljs-number">1</span>:<span class="hljs-number">1</span>: <span class="hljs-number">3</span>:<span class="hljs-number">2</span> note: <span class="hljs-keyword">in</span> expansion of println!
+src/main.rs:<span class="hljs-number">4</span>:<span class="hljs-number">5</span>: <span class="hljs-number">4</span>:<span class="hljs-number">42</span> note: expansion site
+error: aborting due to previous error
+Could not compile `hallo_welt`.
+</code></pre>
+<p>Rust l&#xE4;sst uns keinen uninitialisierten Wert verwenden.
+Lass uns als n&#xE4;chstes &#xFC;ber die Sachen reden die wir in <code>println!</code>
+verwendet haben.</p>
+<p>Wenn du die zwei geschweiften Klammern (<code>{}</code>, manche nennen sie Schnurrb&#xE4;rte..)
+in deinem auszugebenden String einf&#xFC;gst, dann interpretiert Rust sie als
+Anweisung an dieser Stelle irgendeinen Wert einzuf&#xFC;gen.
+Wir f&#xFC;gen ein Komma und dann <code>x</code> hinzu um anzuzeigen, dass wir den Wert von
+<code>x</code> an dieser Stelle stehen haben wollen. Das Komma wird benutzt um
+mehrere Funktions- oder Makroargumente voneinander zu trenen, falls es mehr
+als eines gibt.</p>
+<p>Wenn du einfach nur die geschweiften Klammern verwendest, dann versucht
+Rust den Wert, basierend auf dessen Typ, auf eine sinnvolle
+Art und Weise darzustellen.
+Wenn du das Format etwas genauer spezifizieren willst, stehen dir eine
+[breite Palette an Optionen zur Verf&#xFC;gung][format].
+F&#xFC;rs erste bleiben wir beim Standard:
+Es ist ja nicht so kompliziert eine Ganzzahl auszugeben.</p>
 
                     
                     </section>
@@ -788,10 +925,10 @@ Paketmanager von Rust, reden.</p>
         </div>
 
         
-        <a href="../index.html" class="navigation navigation-prev " aria-label="Previous page: Einführung"><i class="fa fa-angle-left"></i></a>
+        <a href="../book/Syntax_Und_Semantik.html" class="navigation navigation-prev " aria-label="Previous page: Syntax und Semantik"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../book/Rust_Installieren.html" class="navigation navigation-next " aria-label="Next page: Rust installieren"><i class="fa fa-angle-right"></i></a>
+        <a href="../book/Primitive_Typen.html" class="navigation navigation-next " aria-label="Next page: Primitive Typen"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
