@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Primitive Typen | Die Programmiersprache Rust</title>
+        <title>Kommentare | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -33,10 +33,8 @@
         
     
     
-    <link rel="next" href="../book/Kommentare.html" />
     
-    
-    <link rel="prev" href="../book/Funktionen.html" />
+    <link rel="prev" href="../book/Primitive_Typen.html" />
     
 
         
@@ -44,7 +42,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-basepath=".." data-revision="Sat Oct 03 2015 14:57:29 GMT+0200 (CEST)">
+    <div class="book" data-level="4.4" data-basepath=".." data-revision="Sat Oct 03 2015 14:57:29 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -351,7 +349,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3" data-path="book/Primitive_Typen.html">
+        <li class="chapter " data-level="4.3" data-path="book/Primitive_Typen.html">
             
                 
                     <a href="../book/Primitive_Typen.html">
@@ -366,7 +364,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="book/Kommentare.html">
+        <li class="chapter active" data-level="4.4" data-path="book/Kommentare.html">
             
                 
                     <a href="../book/Kommentare.html">
@@ -813,204 +811,64 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="primitive-typen"><a name="primitive-typen" class="plugin-anchor" href="#primitive-typen"><span class="fa fa-link"></span></a>Primitive Typen</h1>
-<p>Die Rust Programmiersprache hat eine Reihe von Typen die als &quot;primitiv&quot;
-angesehen werden. Das bedeutet, dass sie in die Sprache eingebaut sind.
-Rust ist so strukturiert, dass die Standardbibliothek auch eine Menge
-n&#xFC;tzlicher Typen zur Verf&#xFC;gung stellt,
-auch welche die auf primitiven Typen aufbauen, aber diese hier sind am
-&quot;primitivsten&quot;.</p>
-<h1 id="booleans"><a name="booleans" class="plugin-anchor" href="#booleans"><span class="fa fa-link"></span></a>Booleans</h1>
-<p>Rust hat einen boolschen Typ namens <code>bool</code>. Er hat zwei m&#xF6;gliche Werte,
-<code>true</code> und <code>false</code>:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-keyword">true</span>;
+                        <h1 id="kommentare"><a name="kommentare" class="plugin-anchor" href="#kommentare"><span class="fa fa-link"></span></a>Kommentare</h1>
+<p>Nun, da wir Funktionen kennen, ist es ein guter Zeitpunkt &#xFC;ber Kommentare
+zu lernen. Kommentare sind Notizen, die man anderen Programmierern hinterl&#xE4;sst
+um Dinge &#xFC;ber deinen Code zu erkl&#xE4;ren.
+Der Compiler ignoriert sie gr&#xF6;&#xDF;tenteils.</p>
+<p>Rust hat zwei wesentliche Arten von Kommentaren:
+<em>Zeilenkommentare</em> [<em>line comments</em>] und <em>Doku-Kommentare</em> [<em>doc comments</em>].</p>
+<p>Hier ein Beispiel mit 4 Zeilenkommentaren:</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// Line comments are anything after &#x2018;//&#x2019; and extend to the end of the line.</span>
 
-<span class="hljs-keyword">let</span> y: <span class="hljs-keyword">bool</span> = <span class="hljs-keyword">false</span>;
-</code></pre>
-<p>Eine &#xFC;bliche Nutzung ist in <a href="If.md"><code>if</code> Bedingungen</a>.</p>
-<p>Du findest mehr Dokumentation zu <code>bool</code>s
-<a href="https://doc.rust-lang.org/std/primitive.bool.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
-<h1 id="-char"><a name="-char" class="plugin-anchor" href="#-char"><span class="fa fa-link"></span></a><code>char</code></h1>
-<p>Der <code>char</code> Typ stellt einen einzelnen Unicode Skalarwert dar.
-Du kannst <code>char</code>s mit einzelnen Anf&#xFC;hrungsszeichen erzeugen: (<code>&apos;</code>)</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-string">&apos;x&apos;</span>;
-<span class="hljs-keyword">let</span> smiley = &apos;&#x1F600;&apos;;
-</code></pre>
-<p>Anders als in manch anderen Spachen bedeutet das, dass <code>char</code>s
-kein einzelnes byte, sondern vier bytes sind.</p>
-<p>Du findest mehr Dokumentation zu <code>char</code>s
-<a href="https://doc.rust-lang.org/std/primitive.char.html" target="_blank">in der Dokumentation der Standardbibliothk</a>.</p>
-<h1 id="numerische-type"><a name="numerische-type" class="plugin-anchor" href="#numerische-type"><span class="fa fa-link"></span></a>Numerische Type</h1>
-<p>Rust hat eine Vielzahl an numerischen Typen in ein paar Kategorien:
-Vorzeichenbehaftet und Vorzeichenlos, feste und variable Gr&#xF6;&#xDF;e,
-Flie&#xDF;komma- und Ganzzahl.</p>
-<p>Diese Typen bestehen aus zwei Teilen: Der Kategorie und ihrer Gr&#xF6;&#xDF;e.
-Zum Beispiel ist <code>u16</code> ein vorzeichenloser Typ, der 16 bit gro&#xDF; ist.
-Mehr bits erlauben gr&#xF6;&#xDF;ere Zahlen.</p>
-<p>Wenn ein Zahlenliteral keinen Typ durch etwas zugewiesen bekommt, dann
-sind das hier die Standards:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>; <span class="hljs-comment">// x hat den Typ i32</span>
+<span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>; <span class="hljs-comment">// this is also a line comment.</span>
 
-<span class="hljs-keyword">let</span> y = <span class="hljs-number">1.0</span>; <span class="hljs-comment">// y hat den Typ f64</span>
+<span class="hljs-comment">// If you have a long explanation for something, you can put line comments next</span>
+<span class="hljs-comment">// to each other. Put a space between the // and your comment so that it&#x2019;s</span>
+<span class="hljs-comment">// more readable.</span>
 </code></pre>
-<p>Hier ist eine Liste der verschiedenen numerischen Typen, inklusive Links
-zu ihrer jeweiligen Dokumentation in der Standardbibliothek:</p>
-<ul>
-<li><a href="https://doc.rust-lang.org/std/primitive.i8.html" target="_blank">i8</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.i16.html" target="_blank">i16</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.i32.html" target="_blank">i32</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.i64.html" target="_blank">i64</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.u8.html" target="_blank">u8</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.u16.html" target="_blank">u16</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.u32.html" target="_blank">u32</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.u64.html" target="_blank">u64</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.isize.html" target="_blank">isize</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.usize.html" target="_blank">usize</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.f32.html" target="_blank">f32</a></li>
-<li><a href="https://doc.rust-lang.org/std/primitive.f64.html" target="_blank">f64</a></li>
-</ul>
-<p>Lass sie uns nach Kategorie durchgehen:</p>
-<h2 id="vorzeichenbehaftet-und-vorzeichenlos"><a name="vorzeichenbehaftet-und-vorzeichenlos" class="plugin-anchor" href="#vorzeichenbehaftet-und-vorzeichenlos"><span class="fa fa-link"></span></a>Vorzeichenbehaftet und Vorzeichenlos</h2>
-<p>Ganzzahlige Typen kommen in zwei Ausf&#xFC;hrungen daher:
-Vorzeichenbehaftet und Vorzeichenlos. Lass uns eine 4-bit Zahl betrachten
-um den Unterschied zu verstehen. Eine Vorzeichenbehaftete 4-bit Zahl w&#xFC;rde
-dir erlauben Zahlen von <code>-8</code> bis <code>+7</code> zu speichern. Vorzeichenbehaftete Zahlen
-verwenden die Zweierkomplementdarstellung. Eine vorzeichenlose 4-bit Zahl
-braucht keine negativen Zahlen speichern und kann deswegen Werte von
-<code>0</code> bis <code>+15</code> annehmen.</p>
-<p>Vorzeichenlose Typen nutzen ein <code>u</code> f&#xFC;r ihre Kategorie,
-und vorzeichenbehaftete Typen nutzen ein <code>i</code>.
-Das <code>i</code> steht f&#xFC;r &quot;integer&quot; (Ganzzahl).
-Also ist <code>u8</code> eine vorzeichenlose 8-bit Ganzzahl und
-<code>i8</code> ist eine vorzeichenbehaftete 8-bit Ganzzahl.</p>
-<h2 id="typen-fester-gr%C3%B6%C3%9Fe"><a name="typen-fester-gr%C3%B6%C3%9Fe" class="plugin-anchor" href="#typen-fester-gr%C3%B6%C3%9Fe"><span class="fa fa-link"></span></a>Typen fester Gr&#xF6;&#xDF;e</h2>
-<p>Typen fester Gr&#xF6;&#xDF;e enthalten eine speziefische Anzahl an Bits in
-ihrer Darstellung. G&#xFC;ltige Bitgr&#xF6;&#xDF;en sind <code>8</code>, <code>16</code>, <code>32 und</code>64<code>.
-Also ist</code>u32<code>eine vorzeichenlose Ganzzahl mit 32 Bits und</code>i64` eine vorzeichenbehaftete Ganzzahl mit 64 Bits.</p>
-<h2 id="flie%C3%9Fkommatypen"><a name="flie%C3%9Fkommatypen" class="plugin-anchor" href="#flie%C3%9Fkommatypen"><span class="fa fa-link"></span></a>Flie&#xDF;kommatypen</h2>
-<p>Rust besitzt auch zwei Flie&#xDF;kommatypen: <code>f32</code> und <code>f64</code>.
-Diese entsprechen dem IEEE-754 Standard f&#xFC;r Flie&#xDF;kommazahlen
-einfacher und doppelter Genauigkeit.</p>
-<h1 id="arrays"><a name="arrays" class="plugin-anchor" href="#arrays"><span class="fa fa-link"></span></a>Arrays</h1>
-<p>Wie die meisten Programmiersprachen hat Rust Listentypen
-um Sequenzen von Dingen darzustellen.
-Die grundlegenste ist das <em>Array</em>, eine Liste fester Gr&#xF6;&#xDF;e von Elementen
-des selben Typs. Standardm&#xE4;&#xDF;ig sind Arrays <em>immutable</em>.</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; <span class="hljs-comment">// a: [i32; 3]</span>
-<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> m = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; <span class="hljs-comment">// m: [i32; 3]</span>
+<p>Die andere Art von Kommentar ist ein Doku-Kommentar.
+Doku-Kommentare werden mit <code>///</code> anstatt <code>//</code> eingeleitet und
+unterst&#xFC;tzen darin das Markdown Format:</p>
+<pre><code class="lang-rust">
+<span class="hljs-comment">/// Adds one to the number given.</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// # Examples</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// ```</span>
+<span class="hljs-comment">/// let five = 5;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// assert_eq!(6, add_one(5));</span>
+<span class="hljs-comment">/// # fn add_one(x: i32) -&gt; i32 {</span>
+<span class="hljs-comment">/// #     x + 1</span>
+<span class="hljs-comment">/// # }</span>
+<span class="hljs-comment">/// ```</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_one</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    x + <span class="hljs-number">1</span>
+}
 </code></pre>
-<p>Arrays haben den Typ <code>[T; N]</code>. Wir werden &#xFC;ber diese <code>T</code> Notation
-<a href="Generics.md">im Generics Abschnitt</a> rede. Das <code>N</code> ist eine Konstante zur
-Kompilierzeit um die L&#xE4;nge des Arrays anzuzeigen.</p>
-<p>Es gibt eine abk&#xFC;rzende Schreibweise um jedes Element des Arrays mit dem
-selben Wert zu initialisieren. In diesem Beispiel wird jedes Element von
-<code>a</code> mit <code>0</code> initialisiert:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">0</span>; <span class="hljs-number">20</span>]; <span class="hljs-comment">// a: [i32; 20]</span>
-</code></pre>
-<p>Du kannst die Anzahl der Elemente eines Array <code>a</code> via <code>a.len()</code> ermitteln:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 
-<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;a hat {} Elemente&quot;</span>, a.len());
+<p>Es gibt noch eine weitere Kommentarform, n&#xE4;mlich <code>//!</code>,
+um Dinge zu Dokumentieren in denen diese Kommentare enthalten sind
+(z.B. in Crates, Modulen oder Funktionen) ansttat das zu kommentieren,
+was auf ihnen folgt.
+&#xDC;blicherweise wird diese Form von Kommentar am Anfang einer
+Crate (lib.rs) oder eines Moduls (mod.rs) verwendet:</p>
+<pre><code class="lang-rust"><span class="hljs-comment">//! # The Rust Standard Library</span>
+<span class="hljs-comment">//!</span>
+<span class="hljs-comment">//! The Rust Standard Library provides the essential runtime</span>
+<span class="hljs-comment">//! functionality for building portable Rust software.</span>
 </code></pre>
-<p>Du kannst auf ein bestimmtes Element des Arrays
-mithilfe eckiger Klammern (<code>[]</code>) zugreifen:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> namen = [<span class="hljs-string">&quot;Graydon&quot;</span>, <span class="hljs-string">&quot;Brian&quot;</span>, <span class="hljs-string">&quot;Niko&quot;</span>]; <span class="hljs-comment">// namen: [&amp;str; 3]</span>
-
-<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Der zweite Name ist: {}&quot;</span>, namen[<span class="hljs-number">1</span>]);
-</code></pre>
-<p>Die Indizes beginnen bei 0, wie in den meisten Programmiersprachen.
-Somit ist der erste Name <code>namen[0]</code> und der zweite Name <code>namen[1]</code>.
-Das vorherige Beispiel gibt <code>Der zweite Name ist: Brian</code> aus.
-Wenn du versucht einen Index zu verwenden, der nicht im Array liegt,
-dann wirst du einen Fehler bekommen: Arrayzugriffe werden zur Laufzeit
-auf G&#xFC;ltigkeit gepr&#xFC;ft. Solch ein fehlerhafter Zugriff ist die Quelle
-vieler Bugs in anderen Systemsprachen.</p>
-<p>Du findest mehr Dokumentation &#xFC;ber <code>Arrays</code>s
-<a href="https://doc.rust-lang.org/std/primitive.array.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
-<h1 id="slices"><a name="slices" class="plugin-anchor" href="#slices"><span class="fa fa-link"></span></a>Slices</h1>
-<p>Ein <em>slice</em> [engl.: Scheibe/St&#xFC;ck] ist eine Referenz (oder eine &quot;Ansicht&quot;) auf
-eine andere Datenstruktur. Sie erlauben einen sicheren und effizienten Zugriff
-auf einen Teil eines Arrays ohne zu kopieren.
-Zum Beispiel m&#xF6;chtest du vielleicht einfach nur auf eine Zeile einer
-Datei im Speicher verweisen.
-Aufgrund seiner Natur l&#xE4;sst sich ein <em>slice</em> nicht einfach so direkt erzeugen,
-sondern nur aus einer existierenden Variable. Slices haben eine L&#xE4;nge,
-k&#xF6;nnen <em>mutable</em> oder <em>immutable</em> sein, und verhalten sich wie Arrays:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
-<span class="hljs-keyword">let</span> middle = &amp;a[<span class="hljs-number">1</span>..<span class="hljs-number">4</span>]; <span class="hljs-comment">// Ein Slice von a: Nur die Elemente 1, 2, und 3</span>
-<span class="hljs-keyword">let</span> complete = &amp;a[..]; <span class="hljs-comment">// Ein Slice mit allen Elementen von a</span>
-</code></pre>
-<p>Slices haben den Typ <code>&amp;[T]</code>. Wir werden &#xFC;ber dieses <code>T</code> sprechen, wenn wir
-<a href="Generics.md">Generics</a> behandeln.</p>
-<p>Du findest mehr Dokumentation &#xFC;ber <code>Slice</code>s
-<a href="https://doc.rust-lang.org/std/primitive.slice.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
-<h1 id="-str"><a name="-str" class="plugin-anchor" href="#-str"><span class="fa fa-link"></span></a><code>str</code></h1>
-<p>Rusts <code>str</code> Typ ist der primitivste String Typ.
-Als ein <a href="Gr&#xF6;&#xDF;enlose_Typen.md">gr&#xF6;&#xDF;enloser Typ</a> ist er alleine nicht sehr n&#xFC;tzlich,
-aber er wird sehr n&#xFC;tzlich in Kombination mit einer Referenz, wie
-zum Beispiel <a href="Strings.md"><code>&amp;str</code></a>. Von daher belassen wir es dabei.</p>
-<p>Du findest mehr Dokumentation &#xFC;ber <code>str</code>s
-<a href="https://doc.rust-lang.org/std/primitive.str.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
-<h1 id="tupel"><a name="tupel" class="plugin-anchor" href="#tupel"><span class="fa fa-link"></span></a>Tupel</h1>
-<p>Ein Tupel ist eine geordnete Liste fester Gr&#xF6;&#xDF;e. Zum Beispiel:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x = (<span class="hljs-number">1</span>, <span class="hljs-string">&quot;hallo&quot;</span>);
-</code></pre>
-<p>Wie du sehen kannst sehen kannst, sieht der Typ eins Tupels genaus aus wie
-das jeweilige Tupel, aber mit den jeweiligen Typen anstatt Werten.
-Aufmerksame Leser werden auch feststellen, dass Tupel heterogen sind:
-Wir haben ein <code>i32</code> und ein <code>&amp;str</code> in diesem Tupel.
-(In Systemprogrammiersprachen sind Strings ein wenig Komplexer als in anderen
-Sprachen. F&#xFC;rs erste lies <code>&amp;str</code> als ein <em>string slice</em>.
-Wir werden bald noch mehr dar&#xFC;ber lernen.)</p>
-<p>Tupel k&#xF6;nnen einander zugewiesen werden, wenn die enthaltenen Typen und
-die <a href="Gloassar.md#stelligkeit">Stelligkeit</a> identisch sind. Tupel haben die gleiche Stelligkeit,
-wenn sie dieselbe L&#xE4;nge haben.</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> x = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// x: (i32, i32)</span>
-<span class="hljs-keyword">let</span> y = (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// y: (i32, i32)</span>
-
-x = y;
-</code></pre>
-<p>Du kannst auf die Felder eines Tupels durch <em>let Destrukturierung</em> zugreifen.
-Hier ist ein Beispiel:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> (x, y, z) = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
-
-<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x ist {}&quot;</span>, x);
-</code></pre>
-<p>Erinnerst du dich an <a href="Variablenbindung.html">zuvor</a>, als wir sagten, dass die linke Seite
-etwas m&#xE4;chtiger ist als einfach nur eine Variablenbindung zuzuweisen?
-Dabei sind wir nun. Wir k&#xF6;nnen auf der linken Seite des <code>let</code> ein Muster
-verwenden und, wenn es zu der rechten Seite passt, mehrere Variablenbindungen
-gleichzeitig zuweisen. In diesem Fall &quot;destrukturiert&quot; <code>let</code> das Tupel bzw.
-&quot;nimmt es auseinander&quot; und bindet die Teilst&#xFC;cke an Variablen.</p>
-<p>Dieses Muster ist sehr m&#xE4;chtig und wir werden es sp&#xE4;ter noch &#xF6;fters sehen.</p>
-<p>Du kannst ein Tupel mit einem einzelnen Element von einem Wert in Klammern durch
-ein Komma unterscheiden:</p>
-<pre><code class="lang-rust">(<span class="hljs-number">0</span>,); <span class="hljs-comment">// Tupel mit einem Element</span>
-(<span class="hljs-number">0</span>); <span class="hljs-comment">// 0 in Klammern</span>
-</code></pre>
-<h2 id="tupel-indizierung"><a name="tupel-indizierung" class="plugin-anchor" href="#tupel-indizierung"><span class="fa fa-link"></span></a>Tupel Indizierung</h2>
-<p>Du kannst auf die Felder eines Tupel auch durch die &quot;Indizierungssyntax&quot;
-zugreifen:</p>
-<pre><code class="lang-rust"><span class="hljs-keyword">let</span> tupel = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
-
-<span class="hljs-keyword">let</span> x = tupel.<span class="hljs-number">0</span>;
-<span class="hljs-keyword">let</span> y = tupel.<span class="hljs-number">1</span>;
-<span class="hljs-keyword">let</span> z = tupel.<span class="hljs-number">2</span>;
-
-<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x ist {}&quot;</span>, x);
-</code></pre>
-<p>Wie auch bei der Array Indizierung wird bei 0 begonnen, aber anders als
-bei der Array Indizierung verwendet man ein <code>.</code> anstatt <code>[]</code>.</p>
-<p>Du findest mehr Dokumentation &#xFC;ber Tupel
-<a href="https://doc.rust-lang.org/std/primitive.tuple.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
-<h1 id="funktionen"><a name="funktionen" class="plugin-anchor" href="#funktionen"><span class="fa fa-link"></span></a>Funktionen</h1>
-<p>Funktionen haben auch einen Typ! Er sieht so aus:</p>
-<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> { x }
-
-<span class="hljs-keyword">let</span> x: <span class="hljs-function"><span class="hljs-keyword">fn</span></span>(<span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> = foo;
-</code></pre>
-<p>In diesem Fall ist <code>x</code> ein &#x2018;Funktionszeiger&#x2019; auf eine Funktion,
-welche ein <code>i32</code> akzeptiert und ein <code>i32</code> zur&#xFC;ckgibt.</p>
+<p>Wenn du Doku-Kommentare schreibst, dann ist es sehr hilfreich, wenn du
+Beispiele angibst.
+Du wirst feststellen, dass wir hier ein neues Makro verwendet haben:
+<code>assert_eq!</code>. Dies vergleicht zwei Werte und <code>panic!</code>t wenn sie nicht
+gleich sind. Das ist sehr hilfreich in der Dokumentation.
+Es gibt ein weiteres Makro, n&#xE4;mlich <code>assert!</code>, welches <code>panic!</code>t,
+wenn der &#xFC;bergebene Wert <code>false</code> ist.</p>
+<p>Du kannst das <a href="Dokumentation.md"><code>rustdoc</code></a> Tool verwenden um eine HTML
+Dokumentation aus diesen Doku-Kommentaren zu erstellen und au&#xDF;erdem
+den Beispielcode als Tests laufen lassen!</p>
 
                     
                     </section>
@@ -1021,10 +879,8 @@ welche ein <code>i32</code> akzeptiert und ein <code>i32</code> zur&#xFC;ckgibt.
         </div>
 
         
-        <a href="../book/Funktionen.html" class="navigation navigation-prev " aria-label="Previous page: Funktionen"><i class="fa fa-angle-left"></i></a>
+        <a href="../book/Primitive_Typen.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Primitive Typen"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../book/Kommentare.html" class="navigation navigation-next " aria-label="Next page: Kommentare"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
