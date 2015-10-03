@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sat Oct 03 2015 03:16:37 GMT+0200 (CEST)">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sat Oct 03 2015 04:00:42 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -338,7 +338,15 @@
     
         <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
             
-            <span><b>4.2.</b> Funktionen</span>
+                
+                    <a href="../book/Funktionen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Funktionen
+                    </a>
             
             
         </li>
@@ -806,13 +814,13 @@ Das wichtigste ist, wie Speicher funktioniert, mit Stack und Heap.
 Wenn dir Speicherallokation in C-artigen Sprachen bereits vertraut ist,
 dann sieh dieses Kapitel als Auffrischung.
 Wenn nicht, dann lernst du hier Grundlagen, aus der Sicht von Rust.</p>
-<h1 id="speicher-verwaltung"><a name="speicher-verwaltung" class="plugin-anchor" href="#speicher-verwaltung"><span class="fa fa-link"></span></a>Speicher Verwaltung</h1>
+<h2 id="speicher-verwaltung"><a name="speicher-verwaltung" class="plugin-anchor" href="#speicher-verwaltung"><span class="fa fa-link"></span></a>Speicher Verwaltung</h2>
 <p>Die beiden Begriffe Stack und Heap beschreiben unterschiedliche Bereiche im Arbeitsspeicher und helfen uns dabei zu unterscheiden wann Speicher alloziert und dealloziert wird.</p>
 <p>Hier zum Vergleich:</p>
 <p>Der Stack ist sehr schnell und daher der Ort an dem Rust standardm&#xE4;&#xDF;ig Speicher alloziert.
 Der Speicher im Stack ist allerdings nur lokal innerhalb einer Funktion verf&#xFC;gbar.
 Der Heap, auf der anderen Seite, ist langsamer, wird explizit f&#xFC;r von deinem Programm alloziert aber ist daf&#xFC;r global erreichbar und hat prinzipiell keine Gr&#xF6;&#xDF;enbeschr&#xE4;nkung.</p>
-<h1 id="der-stack"><a name="der-stack" class="plugin-anchor" href="#der-stack"><span class="fa fa-link"></span></a>Der Stack</h1>
+<h2 id="der-stack"><a name="der-stack" class="plugin-anchor" href="#der-stack"><span class="fa fa-link"></span></a>Der Stack</h2>
 <p><em>(engl. stack = <strong>&quot;Der Stapel&quot;</strong> )</em></p>
 <p>Nehmen wir mal ein Beispiel:</p>
 <pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
@@ -1083,7 +1091,7 @@ im tats&#xE4;chlichen Speicher h&#xE4;tten diese Adressen andere werte und w&#xE
 Kriegst du ein Gef&#xFC;hl f&#xFC;r die Tellerstapel?
 Wir legen einen drauf und nehmen einen wieder runter,
 wir nehmen nie was aus der Mitte raus.</p>
-<h1 id="der-heap"><a name="der-heap" class="plugin-anchor" href="#der-heap"><span class="fa fa-link"></span></a>Der Heap</h1>
+<h2 id="der-heap"><a name="der-heap" class="plugin-anchor" href="#der-heap"><span class="fa fa-link"></span></a>Der Heap</h2>
 <p><em>(engl. heap = <strong>&quot;Der Haufen&quot;</strong> )</em></p>
 <p>Wie bereits erw&#xE4;hnt k&#xF6;nnen Funktionen nicht auf die lokalen variablen von anderen Funktionen Zugreifen.
 Manchmal m&#xF6;chte man jedoch etwas von einer Funktion an eine andere &#xFC;bergeben oder l&#xE4;nger als f&#xFC;r die Laufzeit einer Funktion im Speicher behalten.
@@ -1259,7 +1267,7 @@ Geil! Wenn also <code>x</code> verschwindet gibt es vorher seinen Speicher auf d
 </tbody>
 </table>
 <p>Sobald der Stackframe verschwindet, wird der gesamte verwendete Speicher freigegeben.</p>
-<h1 id="argumente-und-ausleihen"><a name="argumente-und-ausleihen" class="plugin-anchor" href="#argumente-und-ausleihen"><span class="fa fa-link"></span></a>Argumente und Ausleihen</h1>
+<h2 id="argumente-und-ausleihen"><a name="argumente-und-ausleihen" class="plugin-anchor" href="#argumente-und-ausleihen"><span class="fa fa-link"></span></a>Argumente und Ausleihen</h2>
 <p>Wir hatten bereits ein paar Grundlegende Beispiele f&#xFC;r Stack und Heap,
 aber was ist mit Funktionsargumenten und Ausleihen?</p>
 <pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(i: &amp;<span class="hljs-keyword">i32</span>) {
@@ -1334,7 +1342,7 @@ In diesem Fall also brauchen wir sowohl <code>i</code>, das Argument und <code>z
 <code>i</code> ist die Kopie des Arguments <code>y</code>, also auch <code>0</code>.</p>
 <p>Das ist der Grund daf&#xFC;r dass man ausgeliehenen Speicher nicht deallozieren kann. Wenn man wir nun <code>x</code> freigeben w&#xFC;rde, w&#xFC;rden <code>y</code> und <code>i</code> auf ung&#xFC;ltigen Speicher zeigen.
 Das ist in Sprachen wie C m&#xF6;glich, aber nicht in Rust.</p>
-<h1 id="ein-komplexes-beispiel"><a name="ein-komplexes-beispiel" class="plugin-anchor" href="#ein-komplexes-beispiel"><span class="fa fa-link"></span></a>Ein komplexes Beispiel</h1>
+<h2 id="ein-komplexes-beispiel"><a name="ein-komplexes-beispiel" class="plugin-anchor" href="#ein-komplexes-beispiel"><span class="fa fa-link"></span></a>Ein komplexes Beispiel</h2>
 <p>Gehen wir das hier mal Schritt f&#xFC;r Schritt durch:</p>
 <pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: &amp;<span class="hljs-keyword">i32</span>) {
     <span class="hljs-keyword">let</span> y = <span class="hljs-number">10</span>;
@@ -1925,14 +1933,14 @@ Gl&#xFC;ckwunsch, du bist bist jetzt noch dran geblieben.</p>
 <p>Und endlich auch <code>main()</code>.
 Hiernach wir der Rest aufger&#xE4;umt.
 Sobald <code>i</code> ge<code>Drop</code>pt wird, wird auch der Rest vom Heap geleert.</p>
-<h1 id="was-machen-andere-sprachen"><a name="was-machen-andere-sprachen" class="plugin-anchor" href="#was-machen-andere-sprachen"><span class="fa fa-link"></span></a>Was machen andere Sprachen?</h1>
+<h2 id="was-machen-andere-sprachen"><a name="was-machen-andere-sprachen" class="plugin-anchor" href="#was-machen-andere-sprachen"><span class="fa fa-link"></span></a>Was machen andere Sprachen?</h2>
 <p>Viele Sprachen verwenden heutzutage einen GarbageCollector.
 Das hat einige Vorteile, die Beschreibung welcher allerdings den Rahmen dieses Tutorials &#xFC;bersteigt.
 Dort hat meinen keinen manuellen Einflu&#xDF; darauf, ob Speicher auf dem Heap oder Stack verwendet wird.
 Stattdessen liegt fast alles auf dem Heap und der GarbageCollector h&#xE4;lt regelm&#xE4;&#xDF;ig das Programm kurz an und r&#xE4;umt auf.</p>
 <p>Bei Sprachen wie C/C++ kann man zwischen Stack und Heap unterscheiden, muss allerdings manuell seinen Speicher aufr&#xE4;umen.
 Hier gibt es bereits moderne Mechanismen, u.a. SmartPointer, die &#xE4;hnliche Charakteristika haben wie Rust <code>Box&lt;T&gt;</code> etc, Konzepte wie &quot;Besitz&quot; und &quot;Ausleihen&quot; sind allerdings noch kein Kernfeature der Sprache.</p>
-<h1 id="was-soll-ich-benutzen"><a name="was-soll-ich-benutzen" class="plugin-anchor" href="#was-soll-ich-benutzen"><span class="fa fa-link"></span></a>Was soll ich benutzen?</h1>
+<h2 id="was-soll-ich-benutzen"><a name="was-soll-ich-benutzen" class="plugin-anchor" href="#was-soll-ich-benutzen"><span class="fa fa-link"></span></a>Was soll ich benutzen?</h2>
 <p>Der Stack ist schneller und einfacher zu handhaben, wof&#xFC;r also den Heal=p?
 Ein wichtiger Grund ist dass Stack-allozieren alleine nur LIFO<sup><a href="#fn_2" id="reffn_2">2</a></sup> Verhalten bietet.
 Heapallokation ist vielseitiger und erlaubt schnelles &#xDC;bergeben von gro&#xDF;en Werten ohne Kopieren.</p>

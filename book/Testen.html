@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="Sat Oct 03 2015 03:16:37 GMT+0200 (CEST)">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Sat Oct 03 2015 04:00:42 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -338,7 +338,15 @@
     
         <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
             
-            <span><b>4.2.</b> Funktionen</span>
+                
+                    <a href="../book/Funktionen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Funktionen
+                    </a>
             
             
         </li>
@@ -805,7 +813,7 @@ it is hopelessly inadequate for showing their absence.</p>
 die Anwesenheit von Bugs zu zeigen, aber ist hoffnungslos unangemessen, deren Abwesenheit zu zeigen.</em></p>
 <p>Edsger W. Dijkstra, &quot;The Humble Programmer&quot; (1972)</p>
 </blockquote>
-<h1 id="das-test-attribut"><a name="das-test-attribut" class="plugin-anchor" href="#das-test-attribut"><span class="fa fa-link"></span></a>Das <code>test</code> Attribut</h1>
+<h2 id="das-test-attribut"><a name="das-test-attribut" class="plugin-anchor" href="#das-test-attribut"><span class="fa fa-link"></span></a>Das <code>test</code> Attribut</h2>
 <p>In Rust ist ein Test ganz einfach eine Funktion die mit <code>test</code> annotiert ist.
 Beginnen wir also ein kleines Cargo Projekt namens <code>adder</code>:</p>
 <pre><code class="lang-bash">$ cargo new adder
@@ -965,7 +973,7 @@ Wir k&#xF6;nnen aber Bedingungen f&#xFC;r bestimmte Fehler hinzuf&#xFC;gen:</p>
 }
 </code></pre>
 <p>Das ist ein klassischer Fall f&#xFC;r <code>assert_eq!</code>: Wir rufen eine Funktion auf und vergleichen ihren R&#xFC;ckgabewert.</p>
-<h1 id="das-ignore-attribut"><a name="das-ignore-attribut" class="plugin-anchor" href="#das-ignore-attribut"><span class="fa fa-link"></span></a>Das <code>ignore</code> Attribut</h1>
+<h2 id="das-ignore-attribut"><a name="das-ignore-attribut" class="plugin-anchor" href="#das-ignore-attribut"><span class="fa fa-link"></span></a>Das <code>ignore</code> Attribut</h2>
 <p>In Manchen Situationen wollen wir bestimmte Tests nicht immer mit ausf&#xFC;hren, besonders, wenn sie teuer sind.
 Diese kann man dann mit <code>ignore</code> ausschalten:</p>
 <pre><code class="lang-rust"><span class="hljs-preprocessor">#[test]</span>
@@ -1013,7 +1021,7 @@ running <span class="hljs-number">0</span> tests
 </code></pre>
 <p>Wichtig: <code>--ignored</code> ist ein Argument, das von dem Testbinary interpretiert wird, nicht von Cargo selbst.
 Das wird mit den extra <code>--</code> vermittelt.</p>
-<h1 id="das-tests-modul"><a name="das-tests-modul" class="plugin-anchor" href="#das-tests-modul"><span class="fa fa-link"></span></a>Das <code>tests</code> Modul</h1>
+<h2 id="das-tests-modul"><a name="das-tests-modul" class="plugin-anchor" href="#das-tests-modul"><span class="fa fa-link"></span></a>Das <code>tests</code> Modul</h2>
 <p>Was ist allerdings, wenn wir noch Hilfsfunktionen f&#xFC;r unsere Tests brauchen,
 die selbst keine Tests sind, die wir aber auch nicht mit ausliefern wollen?
 Daf&#xFC;r kann man Tests innerhalb eines <code>tests</code> Moduls implementieren.
@@ -1073,7 +1081,7 @@ running <span class="hljs-number">0</span> tests
 <p>Die momentane Konvention ist, dass das <code>tests</code> Modul deine &quot;unit-style&quot; tests enth&#xE4;lt.
 Alles was nur kleine Funktionalit&#xE4;tstests umfasst.
 Integrationstest jedoch, verdienen etwas mehr platz, daf&#xFC;r haben wir das <code>tests</code> Verzeichnis.</p>
-<h1 id="das-tests-verzeichnis"><a name="das-tests-verzeichnis" class="plugin-anchor" href="#das-tests-verzeichnis"><span class="fa fa-link"></span></a>Das <code>tests</code> Verzeichnis</h1>
+<h2 id="das-tests-verzeichnis"><a name="das-tests-verzeichnis" class="plugin-anchor" href="#das-tests-verzeichnis"><span class="fa fa-link"></span></a>Das <code>tests</code> Verzeichnis</h2>
 <p>Um einen Integrationstest zu schreiben erzeugen wir erst einmal unser <code>tests</code> Verzeichnis und legen darin eine <code>.rs</code> Datei an: <code>tests/lib.rs</code>:</p>
 <pre><code class="lang-rust,ignore">extern crate adder;
 
@@ -1113,7 +1121,7 @@ running <span class="hljs-number">0</span> tests
 <p>Das ist alles zum <code>tests</code> Verzeichnis.
 Das <code>tests</code> Modul brauchen wir hier nicht, da alles mit Tests zu tun hat.</p>
 <p>Kommen wir nun zum dritten Teil: Dokumentation.</p>
-<h1 id="dokumentationstests"><a name="dokumentationstests" class="plugin-anchor" href="#dokumentationstests"><span class="fa fa-link"></span></a>Dokumentationstests</h1>
+<h2 id="dokumentationstests"><a name="dokumentationstests" class="plugin-anchor" href="#dokumentationstests"><span class="fa fa-link"></span></a>Dokumentationstests</h2>
 <p>Nichts ist besser als Dokumentation mit Beispielen.
 Nichts ist bl&#xF6;der als wenn die Beispiele in der Dokumentation nicht funktionieren, zum Beispiel, weil sich die API ver&#xE4;ndert hat, seitdem die Dokumentation geschrieben wurde.
 Rust macht damit Schluss, indem es automatisch den Code in der Dokumentation mit ausf&#xFC;hrt.

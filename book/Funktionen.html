@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-basepath=".." data-revision="Sat Oct 03 2015 02:47:37 GMT+0200 (CEST)">
+    <div class="book" data-level="4.2" data-basepath=".." data-revision="Sat Oct 03 2015 04:00:42 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -903,14 +903,139 @@ Die Anweisung <code>x + 1;</code> gibt keinen Wert zur&#xFC;ck.
 Es gibt zwei Arten von Anweisungen in Rust:
 <code>Deklarations-Anweisungen</code> und <code>Ausdrucks-Anweisungen</code>.
 Alles andere ist ein Ausdruck.
-Lass uns zuerst &#xFC;ber Deklarations-Anweisungen sprechen.</p>
+Lass uns zuerst &#xFC;ber <em>Deklarations-Anweisungen</em> sprechen.</p>
 <p>In manchen Sprachen k&#xF6;nnen Variablenbindungen auch als Ausdruck geschrieben
 werden. Wie z.B. in Ruby:</p>
 <pre><code class="lang-ruby">x = y = <span class="hljs-number">5</span>
 </code></pre>
 <p>In Rust jedoch ist die Variablenbindung mit <code>let</code> <em>kein</em> Ausdruck.
-Das folgende erzeugt einen Fehler beim Kompilieren:</p>
+Das Folgende erzeugt einen Fehler beim Kompilieren:</p>
 <pre><code class="lang-text">let x = (let y = 5); // expected identifier, found keyword `let`
+</code></pre>
+<p>Der Compiler sagt uns hier, dass er den Beginn eines Ausdrucks erwartet hat,
+denn ein <code>let</code> kann nur eine Anweisung einleiten, aber keinen Ausdruck.</p>
+<p>Beachte, dass eine Zuweisung an eine bereits gebundene Variable (z.B. <code>y = 5</code>)
+trotzdem ein Ausdruck ist, auch wenn dieser nicht besonders n&#xFC;tzlich ist.
+Anders als in anderen Sprachen, wo der zugewiesene Wert zur&#xFC;ckgegeben
+werden w&#xFC;rde, wird in Rust stattdessen das leere Tupel <code>()</code> zur&#xFC;ckgegeben.
+Der Grund daf&#xFC;r ist, dass der zugewiesene Wert <a href="Besitz.md">nur einen Besitzer</a>
+haben kann und einen anderen Wert zur&#xFC;ckzugeben w&#xE4;re zu &#xFC;berraschend:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> y = <span class="hljs-number">5</span>;
+
+<span class="hljs-keyword">let</span> x = (y = <span class="hljs-number">6</span>);  <span class="hljs-comment">// x has the value `()`, not `6`</span>
+</code></pre>
+<p>Die zweite Art von Anweisung in Rust ist die <em>Ausdrucks-Anweisung</em>.
+Ihr Zweck ist es jeden Ausdruck in eine Anweisung zu verwandeln.
+In praktischer Hinsicht erwartet Rusts Grammatik, dass Anweisungen
+aufeinander folgen. Das bedeutet, dass man Semikolons nutzt um
+Ausdr&#xFC;cke voneinander zu trennen. Das bedeutet auch,
+dass Rust anderen Sprachen, welche auch ein Semikolon am ende einer Zeile
+haben, sehr &#xE4;hnlich sieht und man in Rust fast an jedem Ende einer Zeile ein
+Semikolon sieht.</p>
+<p>Wegen welcher Ausnahme sagen wir &quot;fast&quot;?.
+Du hast sie bereits gesehen und zwar in diesem Code:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_one</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    x + <span class="hljs-number">1</span>
+}
+</code></pre>
+<p>Unsere Funktion gibt an ein <code>i32</code> zur&#xFC;ckzugeben, aber mit einem Semikolon
+w&#xFC;rden wir stattdessen <code>()</code> zur&#xFC;ckgeben.
+Rust versteht, dass wir das wahrscheinlich nicht wollten und schl&#xE4;gt uns in
+der Fehlermeldung, die wir sahen, vor das Semikolon zu entfernen.</p>
+<h2 id="fr%C3%BChzeitige-r%C3%BCckgabe"><a name="fr%C3%BChzeitige-r%C3%BCckgabe" class="plugin-anchor" href="#fr%C3%BChzeitige-r%C3%BCckgabe"><span class="fa fa-link"></span></a>Fr&#xFC;hzeitige R&#xFC;ckgabe</h2>
+<p>Was ist mit fr&#xFC;hzeitiger R&#xFC;ckgabe [early returns]?
+Rust hat daf&#xFC;r ein Schlpsselwort namens <code>return</code>:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    <span class="hljs-keyword">return</span> x;
+
+    <span class="hljs-comment">// we never run this code!</span>
+    x + <span class="hljs-number">1</span>
+}
+</code></pre>
+<p><code>return</code> in der letzten Zeile einer Funktion zu verwenden funktioniert zwar,
+aber wird als schlechten Stil angesehen:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    <span class="hljs-keyword">return</span> x + <span class="hljs-number">1</span>;
+}
+</code></pre>
+<p>Die vorherige Definition ohne <code>return</code> sieht vielleicht etwas komisch f&#xFC;r dich
+aus, falls du noch nicht mit Ausdrucksorientierten Sprachen gearbeitet hast,
+aber du wirst dich mit der Zeit daran gew&#xF6;hnen.</p>
+<h2 id="divergierende-funktionde"><a name="divergierende-funktionde" class="plugin-anchor" href="#divergierende-funktionde"><span class="fa fa-link"></span></a>Divergierende Funktionde</h2>
+<p>Rust hat eine spzielle Syntax f&#xFC;r sogennannte &#x2018;divergierende Funktionen&#x2019;
+[diverging functions], also Funktionen, die niemals zur&#xFC;ckkehren:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">diverges</span></span>() -&gt; ! {
+    <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;This function never returns!&quot;</span>);
+}
+</code></pre>
+<p><code>panic!()</code> ist ein Makro, &#xE4;hnlich wie <code>println!()</code>, was wir bereits kennen.
+Anders jedoch als <code>println!()</code> sorgt <code>panic!()</code> daf&#xFC;r, dass der aktuelle
+Thread mit einer Fehlermeldung abst&#xFC;rzt. Weil diese Funktion einen Crash hervorruft, kehrt sie niemals zur&#xFC;ck, deswegen hat sie den Typ &#x2018;<code>!</code>&#x2019;,
+was man als &#x2018;divergiert&#x2019; liest.</p>
+<p>Wenn du zu einer main Funktion einen <code>diverges()</code> Aufruf hinzuf&#xFC;gst
+und das Programm ausf&#xFC;hrst, dann sieht die Ausgabe in etwa so aus:</p>
+<pre><code class="lang-text">thread &#x2018;<main>&#x2019; panicked at &#x2018;This function never returns!&#x2019;, hello.rs:2
+</main></code></pre>
+<p>Wenn du mehr Informationen haben willst, dann kannst du einen Backtrace durch
+Setzen der <code>RUST_BACKTRACE</code> Umgebungsvariable erhalten:</p>
+<pre><code class="lang-text">$ RUST_BACKTRACE=1 ./diverges
+thread &apos;<main>&apos; panicked at &apos;This function never returns!&apos;, hello.rs:2
+stack backtrace:
+   1:     0x7f402773a829 - sys::backtrace::write::h0942de78b6c02817K8r
+   2:     0x7f402773d7fc - panicking::on_panic::h3f23f9d0b5f4c91bu9w
+   3:     0x7f402773960e - rt::unwind::begin_unwind_inner::h2844b8c5e81e79558Bw
+   4:     0x7f4027738893 - rt::unwind::begin_unwind::h4375279447423903650
+   5:     0x7f4027738809 - diverges::h2266b4c4b850236beaa
+   6:     0x7f40277389e5 - main::h19bb1149c2f00ecfBaa
+   7:     0x7f402773f514 - rt::unwind::try::try_fn::h13186883479104382231
+   8:     0x7f402773d1d8 - __rust_try
+   9:     0x7f402773f201 - rt::lang_start::ha172a3ce74bb453aK5w
+  10:     0x7f4027738a19 - main
+  11:     0x7f402694ab44 - __libc_start_main
+  12:     0x7f40277386c8 - <unknown>
+  13:                0x0 - <unknown>
+</unknown></unknown></main></code></pre>
+<p><code>RUST_BACKTRACE</code> funktioniert auch mit Cargos <code>run</code> Befehl:</p>
+<pre><code class="lang-text">$ RUST_BACKTRACE=1 cargo run
+     Running `target/debug/diverges`
+thread &apos;<main>&apos; panicked at &apos;This function never returns!&apos;, hello.rs:2
+stack backtrace:
+   1:     0x7f402773a829 - sys::backtrace::write::h0942de78b6c02817K8r
+   2:     0x7f402773d7fc - panicking::on_panic::h3f23f9d0b5f4c91bu9w
+   3:     0x7f402773960e - rt::unwind::begin_unwind_inner::h2844b8c5e81e79558Bw
+   4:     0x7f4027738893 - rt::unwind::begin_unwind::h4375279447423903650
+   5:     0x7f4027738809 - diverges::h2266b4c4b850236beaa
+   6:     0x7f40277389e5 - main::h19bb1149c2f00ecfBaa
+   7:     0x7f402773f514 - rt::unwind::try::try_fn::h13186883479104382231
+   8:     0x7f402773d1d8 - __rust_try
+   9:     0x7f402773f201 - rt::lang_start::ha172a3ce74bb453aK5w
+  10:     0x7f4027738a19 - main
+  11:     0x7f402694ab44 - __libc_start_main
+  12:     0x7f40277386c8 - <unknown>
+  13:                0x0 - <unknown>
+</unknown></unknown></main></code></pre>
+<p>Divergierende Funktionen passen mit jedem Typen zusammen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x: <span class="hljs-keyword">i32</span> = diverges();
+<span class="hljs-keyword">let</span> x: <span class="hljs-built_in">String</span> = diverges();
+</code></pre>
+<h2 id="funktionszeiger"><a name="funktionszeiger" class="plugin-anchor" href="#funktionszeiger"><span class="fa fa-link"></span></a>Funktionszeiger</h2>
+<p>Wir k&#xF6;nnen auch eine Variablenbindung erzeugen, die auf eine Funktion zeigt:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> f: <span class="hljs-function"><span class="hljs-keyword">fn</span></span>(<span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span>;
+</code></pre>
+<p><code>f</code> ist eine Variable, die auf eine Funktion zeigt, welche ein <code>i32</code> als
+Argument entgegennimmt und ein <code>i32</code> zur&#xFC;ckgibt. Zum Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">plus_one</span></span>(i: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    i + <span class="hljs-number">1</span>
+}
+
+<span class="hljs-comment">// without type inference</span>
+<span class="hljs-keyword">let</span> f: <span class="hljs-function"><span class="hljs-keyword">fn</span></span>(<span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> = plus_one;
+
+<span class="hljs-comment">// with type inference</span>
+<span class="hljs-keyword">let</span> f = plus_one;
+</code></pre>
+<p>Wir k&#xF6;nnen dann <code>f</code> benutzen um die Funktion aufzurufen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> six = f(<span class="hljs-number">5</span>);
 </code></pre>
 
                     
