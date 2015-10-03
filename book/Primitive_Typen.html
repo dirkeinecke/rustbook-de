@@ -34,7 +34,7 @@
     
     
     
-    <link rel="prev" href="../book/Funktionen.html" />
+    <link rel="prev" href="../book/Variablenbindung.html" />
     
 
         
@@ -42,7 +42,7 @@
     <body>
         
         
-    <div class="book" data-level="4.3" data-basepath=".." data-revision="Sat Oct 03 2015 02:47:37 GMT+0200 (CEST)">
+    <div class="book" data-level="4.3" data-basepath=".." data-revision="Sat Oct 03 2015 03:16:37 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -336,15 +336,7 @@
     
         <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
             
-                
-                    <a href="../book/Funktionen.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.2.</b>
-                        
-                        Funktionen
-                    </a>
+            <span><b>4.2.</b> Funktionen</span>
             
             
         </li>
@@ -817,7 +809,7 @@ auch welche die auf primitiven Typen aufbauen, aber diese hier sind am
 
 <span class="hljs-keyword">let</span> y: <span class="hljs-keyword">bool</span> = <span class="hljs-keyword">false</span>;
 </code></pre>
-<p>Eine &#xFC;bliche Nutzung ist in <a href="book/If.md"><code>if</code> Bedingungen</a>.</p>
+<p>Eine &#xFC;bliche Nutzung ist in <a href="If.md"><code>if</code> Bedingungen</a>.</p>
 <p>Du findest mehr Dokumentation zu <code>bool</code>s
 <a href="https://doc.rust-lang.org/std/primitive.bool.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
 <h1 id="-char"><a name="-char" class="plugin-anchor" href="#-char"><span class="fa fa-link"></span></a><code>char</code></h1>
@@ -890,7 +882,7 @@ des selben Typs. Standardm&#xE4;&#xDF;ig sind Arrays <em>immutable</em>.</p>
 <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> m = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]; <span class="hljs-comment">// m: [i32; 3]</span>
 </code></pre>
 <p>Arrays haben den Typ <code>[T; N]</code>. Wir werden &#xFC;ber diese <code>T</code> Notation
-<a href="book/Generics.md">im Generics Abschnitt</a> rede. Das <code>N</code> ist eine Konstante zur
+<a href="Generics.md">im Generics Abschnitt</a> rede. Das <code>N</code> ist eine Konstante zur
 Kompilierzeit um die L&#xE4;nge des Arrays anzuzeigen.</p>
 <p>Es gibt eine abk&#xFC;rzende Schreibweise um jedes Element des Arrays mit dem
 selben Wert zu initialisieren. In diesem Beispiel wird jedes Element von
@@ -931,14 +923,14 @@ k&#xF6;nnen <em>mutable</em> oder <em>immutable</em> sein, und verhalten sich wi
 <span class="hljs-keyword">let</span> complete = &amp;a[..]; <span class="hljs-comment">// Ein Slice mit allen Elementen von a</span>
 </code></pre>
 <p>Slices haben den Typ <code>&amp;[T]</code>. Wir werden &#xFC;ber dieses <code>T</code> sprechen, wenn wir
-<a href="book/Generics.md">Generics</a> behandeln.</p>
+<a href="Generics.md">Generics</a> behandeln.</p>
 <p>Du findest mehr Dokumentation &#xFC;ber <code>Slice</code>s
 <a href="https://doc.rust-lang.org/std/primitive.slice.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
 <h1 id="-str"><a name="-str" class="plugin-anchor" href="#-str"><span class="fa fa-link"></span></a><code>str</code></h1>
 <p>Rusts <code>str</code> Typ ist der primitivste String Typ.
-Als ein <a href="book/Gr&#xF6;&#xDF;enlose_Typen.md">gr&#xF6;&#xDF;enloser Typ</a> ist er alleine nicht sehr n&#xFC;tzlich,
+Als ein <a href="Gr&#xF6;&#xDF;enlose_Typen.md">gr&#xF6;&#xDF;enloser Typ</a> ist er alleine nicht sehr n&#xFC;tzlich,
 aber er wird sehr n&#xFC;tzlich in Kombination mit einer Referenz, wie
-zum Beispiel <a href="book/Strings.md"><code>&amp;str</code></a>. Von daher belassen wir es dabei.</p>
+zum Beispiel <a href="Strings.md"><code>&amp;str</code></a>. Von daher belassen wir es dabei.</p>
 <p>Du findest mehr Dokumentation &#xFC;ber <code>str</code>s
 <a href="https://doc.rust-lang.org/std/primitive.str.html" target="_blank">in der Dokumentation der Standardbibliothek</a>.</p>
 <h1 id="tupel"><a name="tupel" class="plugin-anchor" href="#tupel"><span class="fa fa-link"></span></a>Tupel</h1>
@@ -953,7 +945,7 @@ Wir haben ein <code>i32</code> und ein <code>&amp;str</code> in diesem Tupel.
 Sprachen. F&#xFC;rs erste lies <code>&amp;str</code> als ein <em>string slice</em>.
 Wir werden bald noch mehr dar&#xFC;ber lernen.)</p>
 <p>Tupel k&#xF6;nnen einander zugewiesen werden, wenn die enthaltenen Typen und
-die <a href="book/Gloassar.md#stelligkeit">Stelligkeit</a> identisch sind. Tupel haben die gleiche Stelligkeit,
+die <a href="Gloassar.md#stelligkeit">Stelligkeit</a> identisch sind. Tupel haben die gleiche Stelligkeit,
 wenn sie dieselbe L&#xE4;nge haben.</p>
 <pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> x = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// x: (i32, i32)</span>
 <span class="hljs-keyword">let</span> y = (<span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// y: (i32, i32)</span>
@@ -966,7 +958,7 @@ Hier ist ein Beispiel:</p>
 
 <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x ist {}&quot;</span>, x);
 </code></pre>
-<p>Erinnerst du dich an <a href="book/Variablenbindung.md">zuvor</a>, als wir sagten, dass die linke Seite
+<p>Erinnerst du dich an <a href="Variablenbindung.html">zuvor</a>, als wir sagten, dass die linke Seite
 etwas m&#xE4;chtiger ist als einfach nur eine Variablenbindung zuzuweisen?
 Dabei sind wir nun. Wir k&#xF6;nnen auf der linken Seite des <code>let</code> ein Muster
 verwenden und, wenn es zu der rechten Seite passt, mehrere Variablenbindungen
@@ -1011,7 +1003,7 @@ welche ein <code>i32</code> akzeptiert und ein <code>i32</code> zur&#xFC;ckgibt.
         </div>
 
         
-        <a href="../book/Funktionen.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Funktionen"><i class="fa fa-angle-left"></i></a>
+        <a href="../book/Variablenbindung.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Variablenbindung"><i class="fa fa-angle-left"></i></a>
         
         
     </div>

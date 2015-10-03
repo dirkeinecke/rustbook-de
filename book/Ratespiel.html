@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="2.1" data-basepath=".." data-revision="Sat Oct 03 2015 02:47:37 GMT+0200 (CEST)">
+    <div class="book" data-level="2.1" data-basepath=".." data-revision="Sat Oct 03 2015 03:16:37 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -338,15 +338,7 @@
     
         <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
             
-                
-                    <a href="../book/Funktionen.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.2.</b>
-                        
-                        Funktionen
-                    </a>
+            <span><b>4.2.</b> Funktionen</span>
             
             
         </li>
@@ -890,17 +882,17 @@ du es mittels <code>use</code> importieren.</p>
 in deinem Programm. Die <code>fn</code> Syntax deklariert eine neue Funktion, die <code>()</code>
 zeigen an, dass es keine Argumente gibt und <code>{</code> beginnt den
 K&#xF6;rper der Funktion. Weil wir keinen R&#xFC;ckgabewert angegeben haben, wird
-automatisch angenommn, dass dieser <code>()</code>, ein leeres <a href="book/Primitive_Typen.md#Tupel">Tupel</a> ist.</p>
+automatisch angenommn, dass dieser <code>()</code>, ein leeres <a href="Primitive_Typen.html#Tupel">Tupel</a> ist.</p>
 <pre><code class="lang-rust">    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Rate die Zahl!&quot;</span>);
 
     <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Bitte gib deine Vermutung ein.&quot;</span>);
 </code></pre>
-<p>Wir haben zuvor gelernt, dass <code>println!()</code> ein <a href="book/Makros.md">Makro</a> ist, dass
-einen <a href="book/Strings.md">String</a> auf dem Bildschirm ausgibt.</p>
+<p>Wir haben zuvor gelernt, dass <code>println!()</code> ein <a href="Makros.md">Makro</a> ist, dass
+einen <a href="Strings.md">String</a> auf dem Bildschirm ausgibt.</p>
 <pre><code class="lang-rust">    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> vermutung = String::new();
 </code></pre>
 <p>Nun wird es interessant! In dieser kleinen Zeile ist eine Menge los.
-Das erste, was man bemerken sollte, ist eine <a href="book/Variablenbindung.md">let Anweisung</a>,
+Das erste, was man bemerken sollte, ist eine <a href="Variablenbindung.html">let Anweisung</a>,
 welche verwendet wird um &#x2018;Variablenbindungen&#x2019; zu erzeugen.
 Sie nehmen diese Form an:</p>
 <pre><code class="lang-rust"><span class="hljs-keyword">let</span> foo = bar;
@@ -911,7 +903,7 @@ genannt, aber Rusts Variablenbindungen haben ein paar Tricks in ihren &#xC4;rmel
 <p>Zum Beispiel sind sie standardm&#xE4;&#xDF;ig <em>immutable</em> [unver&#xE4;nderbar]. Deswegen
 benutzt unser Beispiel <code>mut</code>: Es macht eine Bindung <em>mutable</em> [ver&#xE4;nderbar]
 anstatt <em>immutable</em>. Auf der linken Seite der Zuweisung akzeptiert <code>let</code>
-nicht einfach nur einen Namen, es akzeptiert sogar &#x2018;<a href="book/Muster.md">Muster</a>&#x2019;.
+nicht einfach nur einen Namen, es akzeptiert sogar &#x2018;<a href="Muster.md">Muster</a>&#x2019;.
 Wir werden Muster sp&#xE4;ter noch verwenden. Es ist f&#xFC;rs erste leicht genug
 zu benutzen:</p>
 <pre><code class="lang-rust"><span class="hljs-keyword">let</span> foo = <span class="hljs-number">5</span>; <span class="hljs-comment">// immutable (unver&#xE4;nderbar)</span>
@@ -952,13 +944,13 @@ zu gelangen:</p>
 <pre><code class="lang-rust">.read_line(&amp;<span class="hljs-keyword">mut</span> vermutung)
 </code></pre>
 <p>Here rufen wir die <a href="https://doc.rust-lang.org/std/io/struct.Stdin.html#method.read_line" target="_blank"><code>read_line()</code></a> Methode unseres Handle auf.
-<a href="book/Methodensyntax.md">Methoden</a> sind wie assoziierte Funktionen, aber sind nur f&#xFC;r eine
+<a href="Methodensyntax.md">Methoden</a> sind wie assoziierte Funktionen, aber sind nur f&#xFC;r eine
 jeweilige Instanz eines Types verf&#xFC;gbar, anstatt f&#xFC;r den Typ selbst. Wir
 &#xFC;bergeben au&#xDF;erdem ein Argument an <code>read_line()</code>: <code>&amp;mut vermutung</code>.</p>
 <p>Erinnerst du dich wir oben <code>vermutung</code> gebunden haben? Wir hatten gesagt, dass
 es <em>mutable</em> ist. Jedoch nimmt <code>read_line</code> keinen <code>String</code> als Argument: Es
 nimmt einen <code>&amp;mut String</code>. Rust hat ein Feature namens
-&#x2018;<a href="book/Referenzen_Und_Ausleihen.md">Referenzen</a>&#x2019;, welches einem erlaubt mehrere Referenzen auf ein
+&#x2018;<a href="Referenzen_Und_Ausleihen.md">Referenzen</a>&#x2019;, welches einem erlaubt mehrere Referenzen auf ein
 St&#xFC;ck Daten zu haben, was kopieren reduzieren kann. Referenzen sind ein
 komplexes Feature, da eines von Rusts haupt Verkaufsargumenten ist wie sicher
 und einfach es ist Referenzen zu benutzen. Wir m&#xFC;ssen jedoch nicht viele dieser
@@ -1000,7 +992,7 @@ ausgeben, da im Grunde jeder Fehler bedeutet, dass wir nicht
 fortfahren k&#xF6;nnen. Die <a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.ok" target="_blank"><code>ok()</code> Methode</a> gibt einen Wert zur&#xFC;ck, welcher
 eine weitere Methode besitzt: <code>expect()</code>. Die <a href="https://doc.rust-lang.org/std/option/enum.Option.html#method.expect" target="_blank"><code>expect()</code> Methode</a>
 nimmt einen Wert auf dem sie aufgerufen wird und, falls dieser kein
-erfolgreicher ist, wird eine <a href="book/Fehlerbehandlung.md"><code>panic</code></a> mit der Nachricht, die man
+erfolgreicher ist, wird eine <a href="Fehlerbehandlung.md"><code>panic</code></a> mit der Nachricht, die man
 &#xDC;bergeben hat, erzeugt. Eine <code>panic</code> wie diese sorgt daf&#xFC;r, dass unser Programm
 abst&#xFC;rzt und die Nachricht anzeigt.</p>
 <p>Falls wir diese beiden Methodenaufrufe weglassen wird unser Programm zwar
@@ -1172,7 +1164,7 @@ Wir werden gleich eine Methode verwenden, welche erfordert, dass <code>Rng</code
 im Scope ist. Die grundlegende Idee ist folgende: Methoden k&#xF6;nnen auf
 sogenannten <code>Traits</code> definiert werden und, damit diese Methoden funktionieren,
 m&#xFC;ssen sie im aktuellen Scope sein. F&#xFC;r weitere Details lies den
-<a href="book/Traits.md">Traits</a> Abschnitt.</p>
+<a href="Traits.md">Traits</a> Abschnitt.</p>
 <p>Es gibt zwei weitere Zeilen, die wir in der Mitte hinzugef&#xFC;gt haben:</p>
 <pre><code class="lang-rust">    <span class="hljs-keyword">let</span> geheime_zahl = rand::thread_rng().gen_range(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>);
 
@@ -1255,9 +1247,9 @@ Dann benutzen wir ihn ein paar Zeilen sp&#xE4;ter:</p>
 <p>Die <code>cmp()</code> Methode kann auf allem aufgerufen werden,
 was verglichen werden kann und nimmt eine Referenz auf die Sache, mit der wir
 vergleichen es wollen. Es gibt den Typ <code>Ordering</code> zur&#xFC;ck, den wir zuvor
-mit <code>use</code> importiert haben. Wir benutzen eine <a href="book/Match.md"><code>Match</code></a> Anweisung um
+mit <code>use</code> importiert haben. Wir benutzen eine <a href="Match.md"><code>Match</code></a> Anweisung um
 festzustellen welche <code>Ordering</code> genau vorliegt. <code>Ordering</code> ist ein
-<a href="book/Enums.md"><code>Enum</code></a>, kurz f&#xFC;r &#x2018;enumeration&#x2019; [engl.: Aufz&#xE4;hlung], was so aussieht:</p>
+<a href="Enums.md"><code>Enum</code></a>, kurz f&#xFC;r &#x2018;enumeration&#x2019; [engl.: Aufz&#xE4;hlung], was so aussieht:</p>
 <pre><code class="lang-rust"><span class="hljs-keyword">enum</span> <span class="hljs-title">Foo</span> {
     Bar,
     Baz,
@@ -1373,7 +1365,7 @@ Deswegen <code>let vermutung: u32</code>.
 Der Doppelpunkt (<code>:</code>) nach <code>vermutung</code> sagt Rust,
 dass wir dessen Typ anmerken wollen.
 <code>u32</code> ist eine vorzeichenlose 32-bit Ganzzahl.
-Rust hat <a href="book/Primitive_Typen#numerische-typen">eine Reihe eingebauter Zahlentypen</a>,
+Rust hat <a href="Primitive_Typen#numerische-typen">eine Reihe eingebauter Zahlentypen</a>,
 aber wir haben <code>u32</code> gew&#xE4;hlt.
 Es ist eine gute Standardwahl f&#xFC;r eine kleine positive Zahl.</p>
 <p>Genauso wie <code>read_line()</code>, kann unser Aufruf von <code>parse()</code> einen Fehler

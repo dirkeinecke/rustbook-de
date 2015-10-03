@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sat Oct 03 2015 02:47:37 GMT+0200 (CEST)">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="Sat Oct 03 2015 03:16:37 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -338,15 +338,7 @@
     
         <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
             
-                
-                    <a href="../book/Funktionen.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.2.</b>
-                        
-                        Funktionen
-                    </a>
+            <span><b>4.2.</b> Funktionen</span>
             
             
         </li>
@@ -1242,7 +1234,7 @@ Rust Programme verwenden <a href="http://www.canonware.com/jemalloc/" target="_b
 Da sich diese Werte auf dem Heap befinden, k&#xF6;nnen sich l&#xE4;nger existieren als die Funktion die die Box erzeugt hat.
 In diesem Fall jedoch nicht.<sup><a href="#fn_1" id="reffn_1">1</a></sup>
 Wenn eine Funktion endet wird ihr Stackframe freigegeben.
-<code>Box&lt;T&gt;</code> hat einen Trick: <a href="drop.html">Drop</a>.
+<code>Box&lt;T&gt;</code> hat einen Trick: <a href="Drop.md">Drop</a>.
 Es implementiert <code>Drop</code> und gibt sobald die ihr Wert auf dem Stack freigegeben wird ebenfalls den Speicher auf dem Heap frei.
 Geil! Wenn also <code>x</code> verschwindet gibt es vorher seinen Speicher auf dem Heap frei:</p>
 <table>
