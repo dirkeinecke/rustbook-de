@@ -13,7 +13,7 @@
     * [Der Stack und der Heap](book/Der_Stack_Und_Der_Heap.md)
     * [Testen](book/Testen.md)
     * [Bedingte Kompilierung](book/Bedingte_Kompilierung.md)
-    * [Dokumentation](book/Dokumentation.md)
+    * [Dokumentation](book/Dokumentation.adoc)
     * [Iteratoren](book/Iteratoren.md)
     * [Nebenläufigkeit](book/Nebenläufigkeit.md)
     * [Fehlerbehandlung](book/Fehlerbehandlung.md)
