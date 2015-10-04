@@ -1,4 +1,4 @@
-% Dokumentation
+# Dokumentation
 
 Dokumentation ist ein wichtiger Teil eines jeden Software Projekts.
 In Rust ist sie ein Sprachbestandteil.
@@ -61,15 +61,15 @@ enum Option<T> {
     None, /// No value
     Some(T), /// Some value `T`
 }
-</pre></code>
+</code></pre>
 
 Dafür gibt es sogar eine Fehlermeldung:
 
-```text
+<pre><code class="lang-text">
 hello.rs:4:1: 4:2 error: expected ident, found `}`
 hello.rs:4 }
            ^
-```
+</code></pre>
 
 Dieser [Fehler](https://github.com/rust-lang/rust/issues/22547) ist leider richtig so denn Dokumentationskommentare beziehen sich immer auf was direkt auf sie folgt.
 
@@ -180,38 +180,38 @@ Bei uns ist Rust Standard, wenn du etwas anderes angeben willst dann sieht das z
 /// ```
 </code></pre>
 
-Wenn du Plaintext ausgeben willst nimm ` ```text `
+Wenn du Plaintext ausgeben willst nimm <code>```text</code>
 
 Es ist wichtig die richtige Codeblockannotation zu wählen, da `rustdoc` diese nicht nur für Highlighting verwendet.
 Denn die Beispiele in deinem Crate können tatsächlich getestet werden.
 Somit wird sichergestellt, dass sie nicht veraltet sind.
-Wenn du allerdings C Code nicht mit ` ```c ` annotierst, denkt `rustdoc` es muss ihn als Rust kompilieren und meldet dann Fehler, weil das natürlich nicht geht.
+Wenn du allerdings C Code nicht mit <code>```c</code> annotierst, denkt `rustdoc` es muss ihn als Rust kompilieren und meldet dann Fehler, weil das natürlich nicht geht.
 
 ## Dokumentation und Tests
 
 Reden wir einmal über unsere Beispiele:
 
 
-```rust
+<pre><code class="lang-rust">
 /// ```
 /// println!("Hello, world");
 /// ```
 # fn foo() {}
-```
+</code></pre>
 
 Dir ist vielleicht aufgefallen, dass du kein `fn main()` gebraucht hast.
 `rustdoc` generiert hier automatisch einen Wrapper dafür.
 Zum Beispiel:
 
 
-```rust
+<pre><code class="lang-rust">
 /// ```
 /// use std::rc::Rc;
 ///
 /// let five = Rc::new(5);
 /// ```
 # fn foo() {}
-```
+</code></pre>
 
 Das testet dann eigentlich diesen Code:
 
@@ -227,7 +227,7 @@ Hier ist der gesamte Algorithmus den `rustdoc` verwendet um Beispiele nachzubear
 
 1. Jedes `#![foo]` Attribut am Anfang bleibt als Crate Attribut intakt.
 2. Einige gebräuchliche `allow` Attribute werden eingefügt um die Linter zu beschwichtigen und die Regeln etwas weniger streng zu machen, u.a. `unused_variables`, `unused_assignments`, `unused_mut`, `unused_attributes`, und `dead_code`.
-3. Wenn ein Beispiel keine `extern crate` enthält wird `extern crate <mein crate>; hinzugefügt.
+3. Wenn ein Beispiel keine `extern crate` enthält wird `extern crate <mein crate>;` hinzugefügt.
 4. Zum Schluss wird der Code noch in ein `fn main() {...}` eingepackt, wenn das noch nicht so ist.
 
 Manchmal reicht das aber nicht, zum Beispiel wenn 
