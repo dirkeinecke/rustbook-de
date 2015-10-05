@@ -1,118 +1,890 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="de" >
+    
     <head>
+        
         <meta charset="UTF-8">
-        <title></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Funktionen | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="{% block description %}{% endblock %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.4.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+    
 
-        <base href="../">
+        
+    
+    
+    <link rel="next" href="../book/Primitive_Typen.html" />
+    
+    
+    <link rel="prev" href="../book/Variablenbindung.html" />
+    
 
-        <link rel="stylesheet" href="book.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-
-        <!-- MathJax -->
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
+        
     </head>
     <body>
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = localStorage.getItem('theme');
-            if (theme == null) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
-        </script>
+        
+        
+    <div class="book" data-level="4.2" data-basepath=".." data-revision="Mon Oct 05 2015 14:50:22 GMT+0200 (CEST)">
+    
 
-        <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = localStorage.getItem('sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
-        </script>
+<div class="book-summary">
+    <div class="book-search" role="search">
+        <input type="text" placeholder="Suchbegriff eingeben" class="form-control" />
+    </div>
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li><a href="Einführung.html"><strong>1.</strong> Einführung</a></li><li><a href="book/Erste_Schritte.html"><strong>2.</strong> Erste Schritte</a></li><li><ul class="section"><li><a href="book/Rust_Installieren.html"><strong>2.1.</strong> Rust installieren</a></li><li><a href="book/Hallo_Welt.html"><strong>2.2.</strong> Hallo Welt</a></li><li><a href="book/Hallo_Cargo.html"><strong>2.3.</strong> Hallo Cargo</a></li></ul></li><li><a href="book/Lerne_Rust.html"><strong>3.</strong> Lerne Rust</a></li><li><ul class="section"><li><a href="book/Ratespiel.html"><strong>3.1.</strong> Ratespiel</a></li><li><a href="book/Speisende_Philosophen.html"><strong>3.2.</strong> Speisende Philosophen</a></li><li><a href="book/Rust_In_Anderen_Sprachen.html"><strong>3.3.</strong> Rust in anderen Sprachen</a></li></ul></li><li><a href="book/Effektives_Rust.html"><strong>4.</strong> Effektives Rust</a></li><li><ul class="section"><li><a href="book/Der_Stack_Und_Der_Heap.html"><strong>4.1.</strong> Der Stack und der Heap</a></li><li><a href="book/Testen.html"><strong>4.2.</strong> Testen</a></li><li><a href="book/Bedingte_Kompilierung.html"><strong>4.3.</strong> Bedingte Kompilierung</a></li><li><a href="book/Dokumentation.html"><strong>4.4.</strong> Dokumentation</a></li><li><a href="book/Iteratoren.html"><strong>4.5.</strong> Iteratoren</a></li><li><a href="book/Nebenläufigkeit.html"><strong>4.6.</strong> Nebenläufigkeit</a></li><li><a href="book/Fehlerbehandlung.html"><strong>4.7.</strong> Fehlerbehandlung</a></li><li><a href="book/Garantien_Wählen.html"><strong>4.8.</strong> Garantien Wählen</a></li><li><a href="book/FFI.html"><strong>4.9.</strong> FFI</a></li><li><a href="book/Borrow_Und_AsRef.html"><strong>4.10.</strong> Borrow und AsRef</a></li><li><a href="book/Release_Kanäle.html"><strong>4.11.</strong> Release Kanäle</a></li></ul></li><li><a href="book/Syntax_Und_Semantik.html"><strong>5.</strong> Syntax und Semantik</a></li><li><ul class="section"><li><a href="book/Variablenbindung.html"><strong>5.1.</strong> Variablenbindung</a></li><li><a href="book/Funktionen.html" class="active"><strong>5.2.</strong> Funktionen</a></li><li><a href="book/Primitive_Typen.html"><strong>5.3.</strong> Primitive Typen</a></li><li><a href="book/Kommentare.html"><strong>5.4.</strong> Kommentare</a></li><li><a href="book/If.html"><strong>5.5.</strong> if</a></li><li><a href="book/Schleifen.html"><strong>5.6.</strong> Schleifen</a></li><li><a href="book/Besitz.html"><strong>5.7.</strong> Besitz</a></li><li><a href="book/Referenzen_Und_Ausleihen.html"><strong>5.8.</strong> Referenzen und Ausleihen</a></li><li><a href="book/Lebzeiten.html"><strong>5.9.</strong> Lebzeiten</a></li><li><a href="book/Veränderbarkeit.html"><strong>5.10.</strong> Veränderbarkeit</a></li><li><a href="book/Structs.html"><strong>5.11.</strong> Structs</a></li><li><a href="book/Enums.html"><strong>5.12.</strong> Enums</a></li><li><a href="book/Match.html"><strong>5.13.</strong> Match</a></li><li><a href="book/Muster.html"><strong>5.14.</strong> Muster</a></li><li><a href="book/Methodensyntax.html"><strong>5.15.</strong> Methodensyntax</a></li><li><a href="book/Vektoren.html"><strong>5.16.</strong> Vektoren</a></li><li><a href="book/Strings.html"><strong>5.17.</strong> Strings</a></li><li><a href="book/Generics.html"><strong>5.18.</strong> Generics</a></li><li><a href="book/Traits.html"><strong>5.19.</strong> Traits</a></li><li><a href="book/Drop.html"><strong>5.20.</strong> Drop</a></li><li><a href="book/If_Let.html"><strong>5.21.</strong> if let</a></li><li><a href="book/Trait_Objekte.html"><strong>5.22.</strong> Trait Objekte</a></li><li><a href="book/Closures.html"><strong>5.23.</strong> Closures</a></li><li><a href="book/UFCS.html"><strong>5.24.</strong> Universal Function Call Syntax</a></li><li><a href="book/Crates_Und_Module.html"><strong>5.25.</strong> Crates und Module</a></li><li><a href="book/Const_Und_Static.html"><strong>5.26.</strong> `const` und `static`</a></li><li><a href="book/Attribute.html"><strong>5.27.</strong> Attribute</a></li><li><a href="book/Type_Aliase.html"><strong>5.28.</strong> `type` Aliase</a></li><li><a href="book/Zwischen_Typen_Umwandeln.html"><strong>5.29.</strong> Zwischen typen umwandeln</a></li><li><a href="book/Assoziierte_Typen.html"><strong>5.30.</strong> Assoziierte Typen</a></li><li><a href="book/Größenlose_Typen.html"><strong>5.31.</strong> Größenlose Typen</a></li><li><a href="book/Operatoren_Und_Überladen.html"><strong>5.32.</strong> Operatoren und Überladen</a></li><li><a href="book/Deref_Umwandlung.html"><strong>5.33.</strong> Deref Umwandlung</a></li><li><a href="book/Makros.html"><strong>5.34.</strong> Makros</a></li><li><a href="book/Raw_Zeiger.html"><strong>5.35.</strong> Raw Zeiger</a></li><li><a href="book/Unsafe.html"><strong>5.36.</strong> `unsafe`</a></li></ul></li><li><a href="book/Nightly_Rust.html"><strong>6.</strong> Nightly Rust</a></li><li><ul class="section"><li><a href="book/Compiler_Plugins.html"><strong>6.1.</strong> Compiler Plugins</a></li><li><a href="book/Inline_Assembly.html"><strong>6.2.</strong> Inline Assembly</a></li><li><a href="book/No_Stdlib.html"><strong>6.3.</strong> `no_stdlib`</a></li><li><a href="book/Intrinsics.html"><strong>6.4.</strong> Intrinsics</a></li><li><a href="book/Lang_Items.html"><strong>6.5.</strong> Lang items</a></li><li><a href="book/Fortgeschrittenes_Linken.html"><strong>6.6.</strong> Fortgeschrittenes Linken</a></li><li><a href="book/Benchmark_Tests.html"><strong>6.7.</strong> Benchmark Tests</a></li><li><a href="book/Box_Syntax_Und_Muster.html"><strong>6.8.</strong> Box Syntax und Muster</a></li><li><a href="book/Slice_Muster.html"><strong>6.9.</strong> Slice Muster</a></li><li><a href="book/Assoziierte_Konstanten.html"><strong>6.10.</strong> Assoziierte Konstanten</a></li></ul></li><li><a href="book/Glossar.html"><strong>7.</strong> Glossar</a></li><li><a href="book/Akademische_Forschung.html"><strong>8.</strong> Akademische Forschung</a></li></ul>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Einführung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="book/Erste_Schritte.html">
+            
+                
+                    <a href="../book/Erste_Schritte.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Erste Schritte
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="book/Rust_Installieren.html">
+            
+                
+                    <a href="../book/Rust_Installieren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Rust installieren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="book/Hallo_Welt.html">
+            
+                
+                    <a href="../book/Hallo_Welt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Hallo Welt
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="book/Hallo_Cargo.html">
+            
+                
+                    <a href="../book/Hallo_Cargo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Hallo Cargo
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="book/Lerne_Rust.html">
+            
+                
+                    <a href="../book/Lerne_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Lerne Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="book/Ratespiel.html">
+            
+                
+                    <a href="../book/Ratespiel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Ratespiel
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="book/Speisende_Philosophen.html">
+            
+            <span><b>2.2.</b> Speisende Philosophen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="book/Rust_In_Anderen_Sprachen.html">
+            
+            <span><b>2.3.</b> Rust in anderen Sprachen</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="book/Effektives_Rust.html">
+            
+                
+                    <a href="../book/Effektives_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Effektives Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="book/Der_Stack_Und_Der_Heap.html">
+            
+                
+                    <a href="../book/Der_Stack_Und_Der_Heap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Der Stack und der Heap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="book/Testen.html">
+            
+                
+                    <a href="../book/Testen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Testen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="book/Bedingte_Kompilierung.html">
+            
+                
+                    <a href="../book/Bedingte_Kompilierung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Bedingte Kompilierung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="book/Dokumentation.html">
+            
+                
+                    <a href="../book/Dokumentation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Dokumentation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="book/Iteratoren.html">
+            
+                
+                    <a href="../book/Iteratoren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Iteratoren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="book/Nebenläufigkeit.html">
+            
+            <span><b>3.6.</b> Nebenläufigkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="book/Fehlerbehandlung.html">
+            
+            <span><b>3.7.</b> Fehlerbehandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="book/Garantien_Wählen.html">
+            
+            <span><b>3.8.</b> Garantien Wählen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="book/FFI.html">
+            
+            <span><b>3.9.</b> FFI</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="book/Borrow_Und_AsRef.html">
+            
+            <span><b>3.10.</b> Borrow und AsRef</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="book/Release_Kanäle.html">
+            
+            <span><b>3.11.</b> Release Kanäle</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="book/Syntax_Und_Semantik.html">
+            
+                
+                    <a href="../book/Syntax_Und_Semantik.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Syntax und Semantik
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="book/Variablenbindung.html">
+            
+                
+                    <a href="../book/Variablenbindung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Variablenbindung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.2" data-path="book/Funktionen.html">
+            
+                
+                    <a href="../book/Funktionen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Funktionen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="book/Primitive_Typen.html">
+            
+                
+                    <a href="../book/Primitive_Typen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Primitive Typen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="book/Kommentare.html">
+            
+                
+                    <a href="../book/Kommentare.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Kommentare
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="book/If.html">
+            
+            <span><b>4.5.</b> if</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="book/Schleifen.html">
+            
+            <span><b>4.6.</b> Schleifen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="book/Besitz.html">
+            
+            <span><b>4.7.</b> Besitz</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="book/Referenzen_Und_Ausleihen.html">
+            
+            <span><b>4.8.</b> Referenzen und Ausleihen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="book/Lebzeiten.html">
+            
+            <span><b>4.9.</b> Lebzeiten</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="book/Veränderbarkeit.html">
+            
+            <span><b>4.10.</b> Veränderbarkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="book/Structs.html">
+            
+            <span><b>4.11.</b> Structs</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="book/Enums.html">
+            
+            <span><b>4.12.</b> Enums</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="book/Match.html">
+            
+            <span><b>4.13.</b> Match</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="book/Muster.html">
+            
+            <span><b>4.14.</b> Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="book/Methodensyntax.html">
+            
+            <span><b>4.15.</b> Methodensyntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="book/Vektoren.html">
+            
+            <span><b>4.16.</b> Vektoren</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="book/Strings.html">
+            
+            <span><b>4.17.</b> Strings</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="book/Generics.html">
+            
+            <span><b>4.18.</b> Generics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="book/Traits.html">
+            
+            <span><b>4.19.</b> Traits</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.20" data-path="book/Drop.html">
+            
+            <span><b>4.20.</b> Drop</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.21" data-path="book/If_Let.html">
+            
+            <span><b>4.21.</b> if let</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.22" data-path="book/Trait_Objekte.html">
+            
+            <span><b>4.22.</b> Trait Objekte</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.23" data-path="book/Closures.html">
+            
+            <span><b>4.23.</b> Closures</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.24" data-path="book/UFCS.html">
+            
+            <span><b>4.24.</b> Universal Function Call Syntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.25" data-path="book/Crates_Und_Module.html">
+            
+            <span><b>4.25.</b> Crates und Module</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.26" data-path="book/Const_Und_Static.html">
+            
+            <span><b>4.26.</b> `const` und `static`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.27" data-path="book/Attribute.html">
+            
+            <span><b>4.27.</b> Attribute</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.28" data-path="book/Type_Aliase.html">
+            
+            <span><b>4.28.</b> `type` Aliase</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.29" data-path="book/Zwischen_Typen_Umwandeln.html">
+            
+            <span><b>4.29.</b> Zwischen typen umwandeln</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.30" data-path="book/Assoziierte_Typen.html">
+            
+            <span><b>4.30.</b> Assoziierte Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.31" data-path="book/Größenlose_Typen.html">
+            
+            <span><b>4.31.</b> Größenlose Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.32" data-path="book/Operatoren_Und_Überladen.html">
+            
+            <span><b>4.32.</b> Operatoren und Überladen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.33" data-path="book/Deref_Umwandlung.html">
+            
+            <span><b>4.33.</b> Deref Umwandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.34" data-path="book/Makros.html">
+            
+            <span><b>4.34.</b> Makros</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.35" data-path="book/Raw_Zeiger.html">
+            
+            <span><b>4.35.</b> Raw Zeiger</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.36" data-path="book/Unsafe.html">
+            
+            <span><b>4.36.</b> `unsafe`</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="book/Nightly_Rust.html">
+            
+            <span><b>5.</b> Nightly Rust</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="book/Compiler_Plugins.html">
+            
+            <span><b>5.1.</b> Compiler Plugins</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="book/Inline_Assembly.html">
+            
+            <span><b>5.2.</b> Inline Assembly</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="book/No_Stdlib.html">
+            
+            <span><b>5.3.</b> `no_stdlib`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="book/Intrinsics.html">
+            
+            <span><b>5.4.</b> Intrinsics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="book/Lang_Items.html">
+            
+            <span><b>5.5.</b> Lang items</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="book/Fortgeschrittenes_Linken.html">
+            
+            <span><b>5.6.</b> Fortgeschrittenes Linken</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="book/Benchmark_Tests.html">
+            
+            <span><b>5.7.</b> Benchmark Tests</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="book/Box_Syntax_Und_Muster.html">
+            
+            <span><b>5.8.</b> Box Syntax und Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="book/Slice_Muster.html">
+            
+            <span><b>5.9.</b> Slice Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="book/Assoziierte_Konstanten.html">
+            
+            <span><b>5.10.</b> Assoziierte Konstanten</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="book/Glossar.html">
+            
+            <span><b>6.</b> Glossar</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="book/Akademische_Forschung.html">
+            
+            <span><b>7.</b> Akademische Forschung</span>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Veröffentlicht mit GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Inhaltsverzeichnis"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Suche"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Schrifteinstellungen"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">Hell</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Nacht</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Teilen"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Auf Twitter teilen
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Auf Google teilen
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Auf Facebook teilen
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Auf Weibo teilen
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Auf Instapaper teilen
+                </button>
+            </div>
         </div>
+    </div>
+    
 
-        <div id="page-wrapper" class="page-wrapper">
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
 
-            <div class="page">
-                <div id="menu-bar" class="menu-bar">
-                    <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
-                    </div>
 
-                    <h1 class="menu-title"></h1>
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Die Programmiersprache Rust</a>
+    </h1>
+</div>
 
-                    <div class="right-buttons">
-                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
-                    </div>
-                </div>
-
-                <div id="content" class="content">
-                    <h1>Funktionen</h1>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="funktionen"><a name="funktionen" class="plugin-anchor" href="#funktionen"><span class="fa fa-link"></span></a>Funktionen</h1>
 <p>Jedes Rust Programm hat mindestens eine Funktion,
 die <code>main</code>:</p>
-<pre><code class="language-rust">fn main() {
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
 }
 </code></pre>
-<p>Das ist die simpelste Funktionsdeklaration. Wie wir zuvor schon erwähnt haben,
+<p>Das ist die simpelste Funktionsdeklaration. Wie wir zuvor schon erw&#xE4;hnt haben,
 leitet <code>fn</code> eine Funktion ein. Darauf folgt der Name und
 ein leeres paar Klammern, da diese Funktion keine Argumente hat,
-und ein Paar geschweifte Klammern, die den Funktionskörper repräsentieren.
+und ein Paar geschweifte Klammern, die den Funktionsk&#xF6;rper repr&#xE4;sentieren.
 Hier ist eine Funktion namens <code>foo</code>:</p>
-<pre><code class="language-rust">fn foo() {
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>() {
 }
 </code></pre>
 <p>Ok, wie funktioniert das nun mit Argumenten? Hier eine Funktion,
 die eine Zahl ausgibt:</p>
-<pre><code class="language-rust">fn print_number(x: i32) {
-    println!(&quot;x is: {}&quot;, x);
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print_number</span></span>(x: <span class="hljs-keyword">i32</span>) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x is: {}&quot;</span>, x);
 }
 </code></pre>
-<p>Hier ist ein vollständiges Programm, welches <code>print_number</code> verwendet:</p>
-<pre><code class="language-rust">fn main() {
-    print_number(5);
+<p>Hier ist ein vollst&#xE4;ndiges Programm, welches <code>print_number</code> verwendet:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    print_number(<span class="hljs-number">5</span>);
 }
 
-fn print_number(x: i32) {
-    println!(&quot;x is: {}&quot;, x);
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print_number</span></span>(x: <span class="hljs-keyword">i32</span>) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x is: {}&quot;</span>, x);
 }
 </code></pre>
 <p>Wie du sehen kannst funktionieren Funktionsargumente
-ähnlich wie <code>let</code> Deklarationen:
-Man fügt dem Namen einen Typ durch ein Doppelpunkt hinzu.</p>
-<p>Hier ist ein vollständiges Programm,
+&#xE4;hnlich wie <code>let</code> Deklarationen:
+Man f&#xFC;gt dem Namen einen Typ durch ein Doppelpunkt hinzu.</p>
+<p>Hier ist ein vollst&#xE4;ndiges Programm,
 welches zwei Zahlen addiert und dann ausgibt:</p>
-<pre><code class="language-rust">fn main() {
-    print_sum(5, 6);
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    print_sum(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>);
 }
 
-fn print_sum(x: i32, y: i32) {
-    println!(&quot;sum is: {}&quot;, x + y);
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print_sum</span></span>(x: <span class="hljs-keyword">i32</span>, y: <span class="hljs-keyword">i32</span>) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;sum is: {}&quot;</span>, x + y);
 }
 </code></pre>
 <p>Wie du siehst werden Argumente durch ein Komma getrennt.
-Das gilt sowohl für den Aufruf als auch für die Deklaration von Funktionen.</p>
+Das gilt sowohl f&#xFC;r den Aufruf als auch f&#xFC;r die Deklaration von Funktionen.</p>
 <p>Anders als bei <code>let</code>, <strong>musst</strong> du die Typen von Funktionsargumenten angeben.
 Das hier funktioniert nicht:</p>
-<pre><code class="language-rust">fn print_sum(x, y) {
-    println!(&quot;sum is: {}&quot;, x + y);
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print_sum</span></span>(x, y) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;sum is: {}&quot;</span>, x + y);
 }
 </code></pre>
 <pre><code>
@@ -121,31 +893,30 @@ Man bekommt diesen Fehler:
 ```text
 expected one of `!`, `:`, or `@`, found `)`
 fn print_number(x, y) {
-</code></pre>
-<p>Das ist eine bewusste Designentscheidung.
-Obwohl das herleiten der Typen eines kompletten Programmes möglich ist,
-wie zum Beispiel in Sprachen wie Haskell, wird dennoch häufig dazu geraten
-die Typen ausdrücklich zu dokumentieren.
-Wir stimmen zu, dass ausdrückliche Typvermerke in Funktionssignaturen
-und Typherleitung innerhalb von Funktionskörpern
+</code></pre><p>Das ist eine bewusste Designentscheidung.
+Obwohl das herleiten der Typen eines kompletten Programmes m&#xF6;glich ist,
+wie zum Beispiel in Sprachen wie Haskell, wird dennoch h&#xE4;ufig dazu geraten
+die Typen ausdr&#xFC;cklich zu dokumentieren.
+Wir stimmen zu, dass ausdr&#xFC;ckliche Typvermerke in Funktionssignaturen
+und Typherleitung innerhalb von Funktionsk&#xF6;rpern
 wundervoller Mittelweg ist.</p>
-<p>Wie gibt man einen Wert zurück?
+<p>Wie gibt man einen Wert zur&#xFC;ck?
 Hier ist eine Funktion, die einen Wert inkrementiert.</p>
-<pre><code class="language-rust">fn add_one(x: i32) -&gt; i32 {
-    x + 1
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_one</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    x + <span class="hljs-number">1</span>
 }
 </code></pre>
-<p>Rust Funktionen geben genau einen Wert zurück. Diesen gibt man nach einem
+<p>Rust Funktionen geben genau einen Wert zur&#xFC;ck. Diesen gibt man nach einem
 &quot;Pfeil&quot; an, welcher aus einem Bindestrich (<code>-</code>), gefolgt von einem
-Größer-Gleich Zeichen (<code>&gt;</code>) besteht.
-Die letzte Zeile der Funktion ist automatisch der Rückgabewert der Funktion.
-Du wirst das hier das Semikolon fehlt. Wenn wir es hinzufügen:</p>
-<pre><code class="language-rust">fn add_one(x: i32) -&gt; i32 {
-    x + 1;
+Gr&#xF6;&#xDF;er-Gleich Zeichen (<code>&gt;</code>) besteht.
+Die letzte Zeile der Funktion ist automatisch der R&#xFC;ckgabewert der Funktion.
+Du wirst das hier das Semikolon fehlt. Wenn wir es hinzuf&#xFC;gen:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_one</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    x + <span class="hljs-number">1</span>;
 }
 </code></pre>
-<p>Würden wir einen Fehler bekommen:</p>
-<pre><code class="language-text">error: not all control paths return a value
+<p>W&#xFC;rden wir einen Fehler bekommen:</p>
+<pre><code class="lang-text">error: not all control paths return a value
 fn add_one(x: i32) -&gt; i32 {
      x + 1;
 }
@@ -157,90 +928,90 @@ help: consider removing this semicolon:
 <p>Dies offenbart zwei interessante Aspekte von Rust:
 Rust ist eine ausdrucksorientierte Sprache [expression-based language].
 Es gibt nur zwei Arten von Anweisungen, alles andere ist ein Ausdruck.</p>
-<p>Also worin liegt der Unterschied? Ausdrücke geben einen Wert zurück,
+<p>Also worin liegt der Unterschied? Ausdr&#xFC;cke geben einen Wert zur&#xFC;ck,
 Anweisungen nicht. Deswegen bekommen wir hier eine
-‘not all control paths return a value’ Meldung:
-Die Anweisung <code>x + 1;</code> gibt keinen Wert zurück.
+&#x2018;not all control paths return a value&#x2019; Meldung:
+Die Anweisung <code>x + 1;</code> gibt keinen Wert zur&#xFC;ck.
 Es gibt zwei Arten von Anweisungen in Rust:
 <code>Deklarations-Anweisungen</code> und <code>Ausdrucks-Anweisungen</code>.
 Alles andere ist ein Ausdruck.
-Lass uns zuerst über <em>Deklarations-Anweisungen</em> sprechen.</p>
-<p>In manchen Sprachen können Variablenbindungen auch als Ausdruck geschrieben
+Lass uns zuerst &#xFC;ber <em>Deklarations-Anweisungen</em> sprechen.</p>
+<p>In manchen Sprachen k&#xF6;nnen Variablenbindungen auch als Ausdruck geschrieben
 werden. Wie z.B. in Ruby:</p>
-<pre><code class="language-ruby">x = y = 5
+<pre><code class="lang-ruby">x = y = <span class="hljs-number">5</span>
 </code></pre>
 <p>In Rust jedoch ist die Variablenbindung mit <code>let</code> <em>kein</em> Ausdruck.
 Das Folgende erzeugt einen Fehler beim Kompilieren:</p>
-<pre><code class="language-text">let x = (let y = 5); // expected identifier, found keyword `let`
+<pre><code class="lang-text">let x = (let y = 5); // expected identifier, found keyword `let`
 </code></pre>
 <p>Der Compiler sagt uns hier, dass er den Beginn eines Ausdrucks erwartet hat,
 denn ein <code>let</code> kann nur eine Anweisung einleiten, aber keinen Ausdruck.</p>
 <p>Beachte, dass eine Zuweisung an eine bereits gebundene Variable (z.B. <code>y = 5</code>)
-trotzdem ein Ausdruck ist, auch wenn dieser nicht besonders nützlich ist.
-Anders als in anderen Sprachen, wo der zugewiesene Wert zurückgegeben
-werden würde, wird in Rust stattdessen das leere Tupel <code>()</code> zurückgegeben.
-Der Grund dafür ist, dass der zugewiesene Wert <a href="Besitz.md">nur einen Besitzer</a>
-haben kann und einen anderen Wert zurückzugeben wäre zu überraschend:</p>
-<pre><code class="language-rust">let mut y = 5;
+trotzdem ein Ausdruck ist, auch wenn dieser nicht besonders n&#xFC;tzlich ist.
+Anders als in anderen Sprachen, wo der zugewiesene Wert zur&#xFC;ckgegeben
+werden w&#xFC;rde, wird in Rust stattdessen das leere Tupel <code>()</code> zur&#xFC;ckgegeben.
+Der Grund daf&#xFC;r ist, dass der zugewiesene Wert <a href="Besitz.md">nur einen Besitzer</a>
+haben kann und einen anderen Wert zur&#xFC;ckzugeben w&#xE4;re zu &#xFC;berraschend:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> y = <span class="hljs-number">5</span>;
 
-let x = (y = 6);  // x has the value `()`, not `6`
+<span class="hljs-keyword">let</span> x = (y = <span class="hljs-number">6</span>);  <span class="hljs-comment">// x has the value `()`, not `6`</span>
 </code></pre>
 <p>Die zweite Art von Anweisung in Rust ist die <em>Ausdrucks-Anweisung</em>.
 Ihr Zweck ist es jeden Ausdruck in eine Anweisung zu verwandeln.
 In praktischer Hinsicht erwartet Rusts Grammatik, dass Anweisungen
 aufeinander folgen. Das bedeutet, dass man Semikolons nutzt um
-Ausdrücke voneinander zu trennen. Das bedeutet auch,
+Ausdr&#xFC;cke voneinander zu trennen. Das bedeutet auch,
 dass Rust anderen Sprachen, welche auch ein Semikolon am ende einer Zeile
-haben, sehr ähnlich sieht und man in Rust fast an jedem Ende einer Zeile ein
+haben, sehr &#xE4;hnlich sieht und man in Rust fast an jedem Ende einer Zeile ein
 Semikolon sieht.</p>
 <p>Wegen welcher Ausnahme sagen wir &quot;fast&quot;?.
 Du hast sie bereits gesehen und zwar in diesem Code:</p>
-<pre><code class="language-rust">fn add_one(x: i32) -&gt; i32 {
-    x + 1
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_one</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    x + <span class="hljs-number">1</span>
 }
 </code></pre>
-<p>Unsere Funktion gibt an ein <code>i32</code> zurückzugeben, aber mit einem Semikolon
-würden wir stattdessen <code>()</code> zurückgeben.
-Rust versteht, dass wir das wahrscheinlich nicht wollten und schlägt uns in
+<p>Unsere Funktion gibt an ein <code>i32</code> zur&#xFC;ckzugeben, aber mit einem Semikolon
+w&#xFC;rden wir stattdessen <code>()</code> zur&#xFC;ckgeben.
+Rust versteht, dass wir das wahrscheinlich nicht wollten und schl&#xE4;gt uns in
 der Fehlermeldung, die wir sahen, vor das Semikolon zu entfernen.</p>
-<h2>Frühzeitige Rückgabe</h2>
-<p>Was ist mit frühzeitiger Rückgabe [early returns]?
-Rust hat dafür ein Schlpsselwort namens <code>return</code>:</p>
-<pre><code class="language-rust">fn foo(x: i32) -&gt; i32 {
-    return x;
+<h2 id="fr%C3%BChzeitige-r%C3%BCckgabe"><a name="fr%C3%BChzeitige-r%C3%BCckgabe" class="plugin-anchor" href="#fr%C3%BChzeitige-r%C3%BCckgabe"><span class="fa fa-link"></span></a>Fr&#xFC;hzeitige R&#xFC;ckgabe</h2>
+<p>Was ist mit fr&#xFC;hzeitiger R&#xFC;ckgabe [early returns]?
+Rust hat daf&#xFC;r ein Schlpsselwort namens <code>return</code>:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    <span class="hljs-keyword">return</span> x;
 
-    // we never run this code!
-    x + 1
+    <span class="hljs-comment">// we never run this code!</span>
+    x + <span class="hljs-number">1</span>
 }
 </code></pre>
 <p><code>return</code> in der letzten Zeile einer Funktion zu verwenden funktioniert zwar,
 aber wird als schlechten Stil angesehen:</p>
-<pre><code class="language-rust">fn foo(x: i32) -&gt; i32 {
-    return x + 1;
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    <span class="hljs-keyword">return</span> x + <span class="hljs-number">1</span>;
 }
 </code></pre>
-<p>Die vorherige Definition ohne <code>return</code> sieht vielleicht etwas komisch für dich
+<p>Die vorherige Definition ohne <code>return</code> sieht vielleicht etwas komisch f&#xFC;r dich
 aus, falls du noch nicht mit Ausdrucksorientierten Sprachen gearbeitet hast,
-aber du wirst dich mit der Zeit daran gewöhnen.</p>
-<h2>Divergierende Funktionde</h2>
-<p>Rust hat eine spzielle Syntax für sogennannte ‘divergierende Funktionen’
-[diverging functions], also Funktionen, die niemals zurückkehren:</p>
-<pre><code class="language-rust">fn diverges() -&gt; ! {
-    panic!(&quot;This function never returns!&quot;);
+aber du wirst dich mit der Zeit daran gew&#xF6;hnen.</p>
+<h2 id="divergierende-funktionde"><a name="divergierende-funktionde" class="plugin-anchor" href="#divergierende-funktionde"><span class="fa fa-link"></span></a>Divergierende Funktionde</h2>
+<p>Rust hat eine spzielle Syntax f&#xFC;r sogennannte &#x2018;divergierende Funktionen&#x2019;
+[diverging functions], also Funktionen, die niemals zur&#xFC;ckkehren:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">diverges</span></span>() -&gt; ! {
+    <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;This function never returns!&quot;</span>);
 }
 </code></pre>
-<p><code>panic!()</code> ist ein Makro, ähnlich wie <code>println!()</code>, was wir bereits kennen.
-Anders jedoch als <code>println!()</code> sorgt <code>panic!()</code> dafür, dass der aktuelle
-Thread mit einer Fehlermeldung abstürzt. Weil diese Funktion einen Crash hervorruft, kehrt sie niemals zurück, deswegen hat sie den Typ ‘<code>!</code>’,
-was man als ‘divergiert’ liest.</p>
-<p>Wenn du zu einer main Funktion einen <code>diverges()</code> Aufruf hinzufügst
-und das Programm ausführst, dann sieht die Ausgabe in etwa so aus:</p>
-<pre><code class="language-text">thread ‘&lt;main&gt;’ panicked at ‘This function never returns!’, hello.rs:2
-</code></pre>
+<p><code>panic!()</code> ist ein Makro, &#xE4;hnlich wie <code>println!()</code>, was wir bereits kennen.
+Anders jedoch als <code>println!()</code> sorgt <code>panic!()</code> daf&#xFC;r, dass der aktuelle
+Thread mit einer Fehlermeldung abst&#xFC;rzt. Weil diese Funktion einen Crash hervorruft, kehrt sie niemals zur&#xFC;ck, deswegen hat sie den Typ &#x2018;<code>!</code>&#x2019;,
+was man als &#x2018;divergiert&#x2019; liest.</p>
+<p>Wenn du zu einer main Funktion einen <code>diverges()</code> Aufruf hinzuf&#xFC;gst
+und das Programm ausf&#xFC;hrst, dann sieht die Ausgabe in etwa so aus:</p>
+<pre><code class="lang-text">thread &#x2018;<main>&#x2019; panicked at &#x2018;This function never returns!&#x2019;, hello.rs:2
+</main></code></pre>
 <p>Wenn du mehr Informationen haben willst, dann kannst du einen Backtrace durch
 Setzen der <code>RUST_BACKTRACE</code> Umgebungsvariable erhalten:</p>
-<pre><code class="language-text">$ RUST_BACKTRACE=1 ./diverges
-thread '&lt;main&gt;' panicked at 'This function never returns!', hello.rs:2
+<pre><code class="lang-text">$ RUST_BACKTRACE=1 ./diverges
+thread &apos;<main>&apos; panicked at &apos;This function never returns!&apos;, hello.rs:2
 stack backtrace:
    1:     0x7f402773a829 - sys::backtrace::write::h0942de78b6c02817K8r
    2:     0x7f402773d7fc - panicking::on_panic::h3f23f9d0b5f4c91bu9w
@@ -253,13 +1024,13 @@ stack backtrace:
    9:     0x7f402773f201 - rt::lang_start::ha172a3ce74bb453aK5w
   10:     0x7f4027738a19 - main
   11:     0x7f402694ab44 - __libc_start_main
-  12:     0x7f40277386c8 - &lt;unknown&gt;
-  13:                0x0 - &lt;unknown&gt;
-</code></pre>
+  12:     0x7f40277386c8 - <unknown>
+  13:                0x0 - <unknown>
+</unknown></unknown></main></code></pre>
 <p><code>RUST_BACKTRACE</code> funktioniert auch mit Cargos <code>run</code> Befehl:</p>
-<pre><code class="language-text">$ RUST_BACKTRACE=1 cargo run
+<pre><code class="lang-text">$ RUST_BACKTRACE=1 cargo run
      Running `target/debug/diverges`
-thread '&lt;main&gt;' panicked at 'This function never returns!', hello.rs:2
+thread &apos;<main>&apos; panicked at &apos;This function never returns!&apos;, hello.rs:2
 stack backtrace:
    1:     0x7f402773a829 - sys::backtrace::write::h0942de78b6c02817K8r
    2:     0x7f402773d7fc - panicking::on_panic::h3f23f9d0b5f4c91bu9w
@@ -272,73 +1043,61 @@ stack backtrace:
    9:     0x7f402773f201 - rt::lang_start::ha172a3ce74bb453aK5w
   10:     0x7f4027738a19 - main
   11:     0x7f402694ab44 - __libc_start_main
-  12:     0x7f40277386c8 - &lt;unknown&gt;
-  13:                0x0 - &lt;unknown&gt;
-</code></pre>
+  12:     0x7f40277386c8 - <unknown>
+  13:                0x0 - <unknown>
+</unknown></unknown></main></code></pre>
 <p>Divergierende Funktionen passen mit jedem Typen zusammen:</p>
-<pre><code class="language-rust">let x: i32 = diverges();
-let x: String = diverges();
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x: <span class="hljs-keyword">i32</span> = diverges();
+<span class="hljs-keyword">let</span> x: <span class="hljs-built_in">String</span> = diverges();
 </code></pre>
-<h2>Funktionszeiger</h2>
-<p>Wir können auch eine Variablenbindung erzeugen, die auf eine Funktion zeigt:</p>
-<pre><code class="language-rust">let f: fn(i32) -&gt; i32;
+<h2 id="funktionszeiger"><a name="funktionszeiger" class="plugin-anchor" href="#funktionszeiger"><span class="fa fa-link"></span></a>Funktionszeiger</h2>
+<p>Wir k&#xF6;nnen auch eine Variablenbindung erzeugen, die auf eine Funktion zeigt:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> f: <span class="hljs-function"><span class="hljs-keyword">fn</span></span>(<span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span>;
 </code></pre>
 <p><code>f</code> ist eine Variable, die auf eine Funktion zeigt, welche ein <code>i32</code> als
-Argument entgegennimmt und ein <code>i32</code> zurückgibt. Zum Beispiel:</p>
-<pre><code class="language-rust">fn plus_one(i: i32) -&gt; i32 {
-    i + 1
+Argument entgegennimmt und ein <code>i32</code> zur&#xFC;ckgibt. Zum Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">plus_one</span></span>(i: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    i + <span class="hljs-number">1</span>
 }
 
-// without type inference
-let f: fn(i32) -&gt; i32 = plus_one;
+<span class="hljs-comment">// without type inference</span>
+<span class="hljs-keyword">let</span> f: <span class="hljs-function"><span class="hljs-keyword">fn</span></span>(<span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> = plus_one;
 
-// with type inference
-let f = plus_one;
+<span class="hljs-comment">// with type inference</span>
+<span class="hljs-keyword">let</span> f = plus_one;
 </code></pre>
-<p>Wir können dann <code>f</code> benutzen um die Funktion aufzurufen:</p>
-<pre><code class="language-rust">let six = f(5);
+<p>Wir k&#xF6;nnen dann <code>f</code> benutzen um die Funktion aufzurufen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> six = f(<span class="hljs-number">5</span>);
 </code></pre>
 
+                    
+                    </section>
+                
+                
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a href="book/Variablenbindung.html" class="mobile-nav-chapters previous">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a href="book/Primitive_Typen.html" class="mobile-nav-chapters next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
-
-            
-                <a href="book/Variablenbindung.html" class="nav-chapters previous">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
-
-            
-                <a href="book/Primitive_Typen.html" class="nav-chapters next">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
-
         </div>
 
+        
+        <a href="../book/Variablenbindung.html" class="navigation navigation-prev " aria-label="Previous page: Variablenbindung"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../book/Primitive_Typen.html" class="navigation navigation-next " aria-label="Next page: Primitive Typen"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
-        </script>
+        
+<script src="../gitbook/app.js"></script>
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
     </body>
+    
 </html>

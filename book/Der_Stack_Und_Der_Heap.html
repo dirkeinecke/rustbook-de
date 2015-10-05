@@ -1,71 +1,843 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="de" >
+    
     <head>
+        
         <meta charset="UTF-8">
-        <title></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Der Stack und der Heap | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="{% block description %}{% endblock %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.4.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+    
 
-        <base href="../">
+        
+    
+    
+    <link rel="next" href="../book/Testen.html" />
+    
+    
+    <link rel="prev" href="../book/Effektives_Rust.html" />
+    
 
-        <link rel="stylesheet" href="book.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-
-        <!-- MathJax -->
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
+        
     </head>
     <body>
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = localStorage.getItem('theme');
-            if (theme == null) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
-        </script>
+        
+        
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="Mon Oct 05 2015 14:50:22 GMT+0200 (CEST)">
+    
 
-        <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = localStorage.getItem('sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
-        </script>
+<div class="book-summary">
+    <div class="book-search" role="search">
+        <input type="text" placeholder="Suchbegriff eingeben" class="form-control" />
+    </div>
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li><a href="Einführung.html"><strong>1.</strong> Einführung</a></li><li><a href="book/Erste_Schritte.html"><strong>2.</strong> Erste Schritte</a></li><li><ul class="section"><li><a href="book/Rust_Installieren.html"><strong>2.1.</strong> Rust installieren</a></li><li><a href="book/Hallo_Welt.html"><strong>2.2.</strong> Hallo Welt</a></li><li><a href="book/Hallo_Cargo.html"><strong>2.3.</strong> Hallo Cargo</a></li></ul></li><li><a href="book/Lerne_Rust.html"><strong>3.</strong> Lerne Rust</a></li><li><ul class="section"><li><a href="book/Ratespiel.html"><strong>3.1.</strong> Ratespiel</a></li><li><a href="book/Speisende_Philosophen.html"><strong>3.2.</strong> Speisende Philosophen</a></li><li><a href="book/Rust_In_Anderen_Sprachen.html"><strong>3.3.</strong> Rust in anderen Sprachen</a></li></ul></li><li><a href="book/Effektives_Rust.html"><strong>4.</strong> Effektives Rust</a></li><li><ul class="section"><li><a href="book/Der_Stack_Und_Der_Heap.html" class="active"><strong>4.1.</strong> Der Stack und der Heap</a></li><li><a href="book/Testen.html"><strong>4.2.</strong> Testen</a></li><li><a href="book/Bedingte_Kompilierung.html"><strong>4.3.</strong> Bedingte Kompilierung</a></li><li><a href="book/Dokumentation.html"><strong>4.4.</strong> Dokumentation</a></li><li><a href="book/Iteratoren.html"><strong>4.5.</strong> Iteratoren</a></li><li><a href="book/Nebenläufigkeit.html"><strong>4.6.</strong> Nebenläufigkeit</a></li><li><a href="book/Fehlerbehandlung.html"><strong>4.7.</strong> Fehlerbehandlung</a></li><li><a href="book/Garantien_Wählen.html"><strong>4.8.</strong> Garantien Wählen</a></li><li><a href="book/FFI.html"><strong>4.9.</strong> FFI</a></li><li><a href="book/Borrow_Und_AsRef.html"><strong>4.10.</strong> Borrow und AsRef</a></li><li><a href="book/Release_Kanäle.html"><strong>4.11.</strong> Release Kanäle</a></li></ul></li><li><a href="book/Syntax_Und_Semantik.html"><strong>5.</strong> Syntax und Semantik</a></li><li><ul class="section"><li><a href="book/Variablenbindung.html"><strong>5.1.</strong> Variablenbindung</a></li><li><a href="book/Funktionen.html"><strong>5.2.</strong> Funktionen</a></li><li><a href="book/Primitive_Typen.html"><strong>5.3.</strong> Primitive Typen</a></li><li><a href="book/Kommentare.html"><strong>5.4.</strong> Kommentare</a></li><li><a href="book/If.html"><strong>5.5.</strong> if</a></li><li><a href="book/Schleifen.html"><strong>5.6.</strong> Schleifen</a></li><li><a href="book/Besitz.html"><strong>5.7.</strong> Besitz</a></li><li><a href="book/Referenzen_Und_Ausleihen.html"><strong>5.8.</strong> Referenzen und Ausleihen</a></li><li><a href="book/Lebzeiten.html"><strong>5.9.</strong> Lebzeiten</a></li><li><a href="book/Veränderbarkeit.html"><strong>5.10.</strong> Veränderbarkeit</a></li><li><a href="book/Structs.html"><strong>5.11.</strong> Structs</a></li><li><a href="book/Enums.html"><strong>5.12.</strong> Enums</a></li><li><a href="book/Match.html"><strong>5.13.</strong> Match</a></li><li><a href="book/Muster.html"><strong>5.14.</strong> Muster</a></li><li><a href="book/Methodensyntax.html"><strong>5.15.</strong> Methodensyntax</a></li><li><a href="book/Vektoren.html"><strong>5.16.</strong> Vektoren</a></li><li><a href="book/Strings.html"><strong>5.17.</strong> Strings</a></li><li><a href="book/Generics.html"><strong>5.18.</strong> Generics</a></li><li><a href="book/Traits.html"><strong>5.19.</strong> Traits</a></li><li><a href="book/Drop.html"><strong>5.20.</strong> Drop</a></li><li><a href="book/If_Let.html"><strong>5.21.</strong> if let</a></li><li><a href="book/Trait_Objekte.html"><strong>5.22.</strong> Trait Objekte</a></li><li><a href="book/Closures.html"><strong>5.23.</strong> Closures</a></li><li><a href="book/UFCS.html"><strong>5.24.</strong> Universal Function Call Syntax</a></li><li><a href="book/Crates_Und_Module.html"><strong>5.25.</strong> Crates und Module</a></li><li><a href="book/Const_Und_Static.html"><strong>5.26.</strong> `const` und `static`</a></li><li><a href="book/Attribute.html"><strong>5.27.</strong> Attribute</a></li><li><a href="book/Type_Aliase.html"><strong>5.28.</strong> `type` Aliase</a></li><li><a href="book/Zwischen_Typen_Umwandeln.html"><strong>5.29.</strong> Zwischen typen umwandeln</a></li><li><a href="book/Assoziierte_Typen.html"><strong>5.30.</strong> Assoziierte Typen</a></li><li><a href="book/Größenlose_Typen.html"><strong>5.31.</strong> Größenlose Typen</a></li><li><a href="book/Operatoren_Und_Überladen.html"><strong>5.32.</strong> Operatoren und Überladen</a></li><li><a href="book/Deref_Umwandlung.html"><strong>5.33.</strong> Deref Umwandlung</a></li><li><a href="book/Makros.html"><strong>5.34.</strong> Makros</a></li><li><a href="book/Raw_Zeiger.html"><strong>5.35.</strong> Raw Zeiger</a></li><li><a href="book/Unsafe.html"><strong>5.36.</strong> `unsafe`</a></li></ul></li><li><a href="book/Nightly_Rust.html"><strong>6.</strong> Nightly Rust</a></li><li><ul class="section"><li><a href="book/Compiler_Plugins.html"><strong>6.1.</strong> Compiler Plugins</a></li><li><a href="book/Inline_Assembly.html"><strong>6.2.</strong> Inline Assembly</a></li><li><a href="book/No_Stdlib.html"><strong>6.3.</strong> `no_stdlib`</a></li><li><a href="book/Intrinsics.html"><strong>6.4.</strong> Intrinsics</a></li><li><a href="book/Lang_Items.html"><strong>6.5.</strong> Lang items</a></li><li><a href="book/Fortgeschrittenes_Linken.html"><strong>6.6.</strong> Fortgeschrittenes Linken</a></li><li><a href="book/Benchmark_Tests.html"><strong>6.7.</strong> Benchmark Tests</a></li><li><a href="book/Box_Syntax_Und_Muster.html"><strong>6.8.</strong> Box Syntax und Muster</a></li><li><a href="book/Slice_Muster.html"><strong>6.9.</strong> Slice Muster</a></li><li><a href="book/Assoziierte_Konstanten.html"><strong>6.10.</strong> Assoziierte Konstanten</a></li></ul></li><li><a href="book/Glossar.html"><strong>7.</strong> Glossar</a></li><li><a href="book/Akademische_Forschung.html"><strong>8.</strong> Akademische Forschung</a></li></ul>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Einführung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="book/Erste_Schritte.html">
+            
+                
+                    <a href="../book/Erste_Schritte.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Erste Schritte
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="book/Rust_Installieren.html">
+            
+                
+                    <a href="../book/Rust_Installieren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Rust installieren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="book/Hallo_Welt.html">
+            
+                
+                    <a href="../book/Hallo_Welt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Hallo Welt
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="book/Hallo_Cargo.html">
+            
+                
+                    <a href="../book/Hallo_Cargo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Hallo Cargo
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="book/Lerne_Rust.html">
+            
+                
+                    <a href="../book/Lerne_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Lerne Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="book/Ratespiel.html">
+            
+                
+                    <a href="../book/Ratespiel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Ratespiel
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="book/Speisende_Philosophen.html">
+            
+            <span><b>2.2.</b> Speisende Philosophen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="book/Rust_In_Anderen_Sprachen.html">
+            
+            <span><b>2.3.</b> Rust in anderen Sprachen</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="book/Effektives_Rust.html">
+            
+                
+                    <a href="../book/Effektives_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Effektives Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.1" data-path="book/Der_Stack_Und_Der_Heap.html">
+            
+                
+                    <a href="../book/Der_Stack_Und_Der_Heap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Der Stack und der Heap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="book/Testen.html">
+            
+                
+                    <a href="../book/Testen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Testen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="book/Bedingte_Kompilierung.html">
+            
+                
+                    <a href="../book/Bedingte_Kompilierung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Bedingte Kompilierung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="book/Dokumentation.html">
+            
+                
+                    <a href="../book/Dokumentation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Dokumentation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="book/Iteratoren.html">
+            
+                
+                    <a href="../book/Iteratoren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Iteratoren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="book/Nebenläufigkeit.html">
+            
+            <span><b>3.6.</b> Nebenläufigkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="book/Fehlerbehandlung.html">
+            
+            <span><b>3.7.</b> Fehlerbehandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="book/Garantien_Wählen.html">
+            
+            <span><b>3.8.</b> Garantien Wählen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="book/FFI.html">
+            
+            <span><b>3.9.</b> FFI</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="book/Borrow_Und_AsRef.html">
+            
+            <span><b>3.10.</b> Borrow und AsRef</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="book/Release_Kanäle.html">
+            
+            <span><b>3.11.</b> Release Kanäle</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="book/Syntax_Und_Semantik.html">
+            
+                
+                    <a href="../book/Syntax_Und_Semantik.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Syntax und Semantik
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="book/Variablenbindung.html">
+            
+                
+                    <a href="../book/Variablenbindung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Variablenbindung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
+            
+                
+                    <a href="../book/Funktionen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Funktionen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="book/Primitive_Typen.html">
+            
+                
+                    <a href="../book/Primitive_Typen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Primitive Typen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="book/Kommentare.html">
+            
+                
+                    <a href="../book/Kommentare.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Kommentare
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="book/If.html">
+            
+            <span><b>4.5.</b> if</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="book/Schleifen.html">
+            
+            <span><b>4.6.</b> Schleifen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="book/Besitz.html">
+            
+            <span><b>4.7.</b> Besitz</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="book/Referenzen_Und_Ausleihen.html">
+            
+            <span><b>4.8.</b> Referenzen und Ausleihen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="book/Lebzeiten.html">
+            
+            <span><b>4.9.</b> Lebzeiten</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="book/Veränderbarkeit.html">
+            
+            <span><b>4.10.</b> Veränderbarkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="book/Structs.html">
+            
+            <span><b>4.11.</b> Structs</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="book/Enums.html">
+            
+            <span><b>4.12.</b> Enums</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="book/Match.html">
+            
+            <span><b>4.13.</b> Match</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="book/Muster.html">
+            
+            <span><b>4.14.</b> Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="book/Methodensyntax.html">
+            
+            <span><b>4.15.</b> Methodensyntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="book/Vektoren.html">
+            
+            <span><b>4.16.</b> Vektoren</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="book/Strings.html">
+            
+            <span><b>4.17.</b> Strings</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="book/Generics.html">
+            
+            <span><b>4.18.</b> Generics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="book/Traits.html">
+            
+            <span><b>4.19.</b> Traits</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.20" data-path="book/Drop.html">
+            
+            <span><b>4.20.</b> Drop</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.21" data-path="book/If_Let.html">
+            
+            <span><b>4.21.</b> if let</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.22" data-path="book/Trait_Objekte.html">
+            
+            <span><b>4.22.</b> Trait Objekte</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.23" data-path="book/Closures.html">
+            
+            <span><b>4.23.</b> Closures</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.24" data-path="book/UFCS.html">
+            
+            <span><b>4.24.</b> Universal Function Call Syntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.25" data-path="book/Crates_Und_Module.html">
+            
+            <span><b>4.25.</b> Crates und Module</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.26" data-path="book/Const_Und_Static.html">
+            
+            <span><b>4.26.</b> `const` und `static`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.27" data-path="book/Attribute.html">
+            
+            <span><b>4.27.</b> Attribute</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.28" data-path="book/Type_Aliase.html">
+            
+            <span><b>4.28.</b> `type` Aliase</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.29" data-path="book/Zwischen_Typen_Umwandeln.html">
+            
+            <span><b>4.29.</b> Zwischen typen umwandeln</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.30" data-path="book/Assoziierte_Typen.html">
+            
+            <span><b>4.30.</b> Assoziierte Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.31" data-path="book/Größenlose_Typen.html">
+            
+            <span><b>4.31.</b> Größenlose Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.32" data-path="book/Operatoren_Und_Überladen.html">
+            
+            <span><b>4.32.</b> Operatoren und Überladen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.33" data-path="book/Deref_Umwandlung.html">
+            
+            <span><b>4.33.</b> Deref Umwandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.34" data-path="book/Makros.html">
+            
+            <span><b>4.34.</b> Makros</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.35" data-path="book/Raw_Zeiger.html">
+            
+            <span><b>4.35.</b> Raw Zeiger</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.36" data-path="book/Unsafe.html">
+            
+            <span><b>4.36.</b> `unsafe`</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="book/Nightly_Rust.html">
+            
+            <span><b>5.</b> Nightly Rust</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="book/Compiler_Plugins.html">
+            
+            <span><b>5.1.</b> Compiler Plugins</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="book/Inline_Assembly.html">
+            
+            <span><b>5.2.</b> Inline Assembly</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="book/No_Stdlib.html">
+            
+            <span><b>5.3.</b> `no_stdlib`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="book/Intrinsics.html">
+            
+            <span><b>5.4.</b> Intrinsics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="book/Lang_Items.html">
+            
+            <span><b>5.5.</b> Lang items</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="book/Fortgeschrittenes_Linken.html">
+            
+            <span><b>5.6.</b> Fortgeschrittenes Linken</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="book/Benchmark_Tests.html">
+            
+            <span><b>5.7.</b> Benchmark Tests</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="book/Box_Syntax_Und_Muster.html">
+            
+            <span><b>5.8.</b> Box Syntax und Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="book/Slice_Muster.html">
+            
+            <span><b>5.9.</b> Slice Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="book/Assoziierte_Konstanten.html">
+            
+            <span><b>5.10.</b> Assoziierte Konstanten</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="book/Glossar.html">
+            
+            <span><b>6.</b> Glossar</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="book/Akademische_Forschung.html">
+            
+            <span><b>7.</b> Akademische Forschung</span>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Veröffentlicht mit GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Inhaltsverzeichnis"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Suche"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Schrifteinstellungen"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">Hell</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Nacht</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Teilen"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Auf Twitter teilen
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Auf Google teilen
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Auf Facebook teilen
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Auf Weibo teilen
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Auf Instapaper teilen
+                </button>
+            </div>
         </div>
+    </div>
+    
 
-        <div id="page-wrapper" class="page-wrapper">
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
 
-            <div class="page">
-                <div id="menu-bar" class="menu-bar">
-                    <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
-                    </div>
 
-                    <h1 class="menu-title"></h1>
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Die Programmiersprache Rust</a>
+    </h1>
+</div>
 
-                    <div class="right-buttons">
-                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
-                    </div>
-                </div>
-
-                <div id="content" class="content">
-                    <h1>Der Stack und der Heap</h1>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="der-stack-und-der-heap"><a name="der-stack-und-der-heap" class="plugin-anchor" href="#der-stack-und-der-heap"><span class="fa fa-link"></span></a>Der Stack und der Heap</h1>
 <p>Rust operiert auf einer sehr niedrigen Ebene im System.
 Wenn du bereits Erfahrung mit Programmiersprachen hast,
 bei denen Speicherverwaltung automatisiert wird,
@@ -74,43 +846,43 @@ Das wichtigste ist, wie Speicher funktioniert, mit Stack und Heap.
 Wenn dir Speicherallokation in C-artigen Sprachen bereits vertraut ist,
 dann sieh dieses Kapitel als Auffrischung.
 Wenn nicht, dann lernst du hier Grundlagen, aus der Sicht von Rust.</p>
-<h2>Speicher Verwaltung</h2>
+<h2 id="speicher-verwaltung"><a name="speicher-verwaltung" class="plugin-anchor" href="#speicher-verwaltung"><span class="fa fa-link"></span></a>Speicher Verwaltung</h2>
 <p>Die beiden Begriffe Stack und Heap beschreiben unterschiedliche Bereiche im Arbeitsspeicher und helfen uns dabei zu unterscheiden wann Speicher alloziert und dealloziert wird.</p>
 <p>Hier zum Vergleich:</p>
-<p>Der Stack ist sehr schnell und daher der Ort an dem Rust standardmäßig Speicher alloziert.
-Der Speicher im Stack ist allerdings nur lokal innerhalb einer Funktion verfügbar.
-Der Heap, auf der anderen Seite, ist langsamer, wird explizit für von deinem Programm alloziert aber ist dafür global erreichbar und hat prinzipiell keine Größenbeschränkung.</p>
-<h2>Der Stack</h2>
+<p>Der Stack ist sehr schnell und daher der Ort an dem Rust standardm&#xE4;&#xDF;ig Speicher alloziert.
+Der Speicher im Stack ist allerdings nur lokal innerhalb einer Funktion verf&#xFC;gbar.
+Der Heap, auf der anderen Seite, ist langsamer, wird explizit f&#xFC;r von deinem Programm alloziert aber ist daf&#xFC;r global erreichbar und hat prinzipiell keine Gr&#xF6;&#xDF;enbeschr&#xE4;nkung.</p>
+<h2 id="der-stack"><a name="der-stack" class="plugin-anchor" href="#der-stack"><span class="fa fa-link"></span></a>Der Stack</h2>
 <p><em>(engl. stack = <strong>&quot;Der Stapel&quot;</strong> )</em></p>
 <p>Nehmen wir mal ein Beispiel:</p>
-<pre><code class="language-rust">fn main() {
-    let x = 42;
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
 }
 </code></pre>
 <p>Dieses Programm besteht nur aus einer Variablenzuweisung, <code>x</code>.
-Der Speicher für <code>x</code> muss irgendwo alloziert werden.
-Rust ‘Stack-Alloziert‘ standardmäßig, das heißt Werte landen auf dem Stack.
-Was heißt das?</p>
-<p>Wenn eine Funktion aufgerufen wird, dann wird für jede ihrer lokalen Variablen, und etwas extra Information, Speicher auf ihrem Stack, dem Stackframe,  reserviert.
-Für diese Tutorial ignorieren wir die extra Informationen erstmal.
-Wenn <code>main()</code> also ausgeführt wird, dann allozieren wir einen einzelnen 32-bit Integer auf dem Stackframe, das passiert hier ganz automatisch.
+Der Speicher f&#xFC;r <code>x</code> muss irgendwo alloziert werden.
+Rust &#x2018;Stack-Alloziert&#x2018; standardm&#xE4;&#xDF;ig, das hei&#xDF;t Werte landen auf dem Stack.
+Was hei&#xDF;t das?</p>
+<p>Wenn eine Funktion aufgerufen wird, dann wird f&#xFC;r jede ihrer lokalen Variablen, und etwas extra Information, Speicher auf ihrem Stack, dem Stackframe,  reserviert.
+F&#xFC;r diese Tutorial ignorieren wir die extra Informationen erstmal.
+Wenn <code>main()</code> also ausgef&#xFC;hrt wird, dann allozieren wir einen einzelnen 32-bit Integer auf dem Stackframe, das passiert hier ganz automatisch.
 Wenn die Funktion terminiert wird der Stackframe freigegeben.
 Auch vollautomatisch.</p>
-<p>Das ist alles, für diese kleine Beispiel.
+<p>Das ist alles, f&#xFC;r diese kleine Beispiel.
 Der Kernpunkt an dieser Lektion ist, dass Stackallokation sehr sehr schnell ist,
-da wir bereits vor dem Start des Programms die lokalen Variablen kennen und daher den Speicher für sie auch schon ganz am Anfang auf einmal reservieren können.
-Da alle lokalen Variablen nach Ende der Funktion nicht mehr benötigt werden, können wir sie auch alle auf einmal wieder freigeben.</p>
-<p>Der Nachteil hier ist jedoch, dass wir die Werte der Variablen nicht länger als für die Dauer einer einzelnen Funktion vorhalten können.
-Dafür gibt es dann den Heap.</p>
-<p>Doch was heißt Stack eigentlich.
-Dafür hier ein etwas umfangreicheres Beispiel:</p>
-<pre><code class="language-rust">fn foo() {
-    let y = 5;
-    let z = 100;
+da wir bereits vor dem Start des Programms die lokalen Variablen kennen und daher den Speicher f&#xFC;r sie auch schon ganz am Anfang auf einmal reservieren k&#xF6;nnen.
+Da alle lokalen Variablen nach Ende der Funktion nicht mehr ben&#xF6;tigt werden, k&#xF6;nnen wir sie auch alle auf einmal wieder freigeben.</p>
+<p>Der Nachteil hier ist jedoch, dass wir die Werte der Variablen nicht l&#xE4;nger als f&#xFC;r die Dauer einer einzelnen Funktion vorhalten k&#xF6;nnen.
+Daf&#xFC;r gibt es dann den Heap.</p>
+<p>Doch was hei&#xDF;t Stack eigentlich.
+Daf&#xFC;r hier ein etwas umfangreicheres Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>() {
+    <span class="hljs-keyword">let</span> y = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">let</span> z = <span class="hljs-number">100</span>;
 }
 
-fn main() {
-    let x = 42;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
 
     foo();
 }
@@ -118,420 +890,1143 @@ fn main() {
 <p>Dieses Programm hat insgesamt drei Variablen: zwei in <code>foo()</code> und eine in <code>main()</code>.
 Just vor dem Aufruf von <code>main()</code> wird ein Integer auf deren Stack alloziert.
 Die Sicht deines Betriebssystem auf den Speicher entspricht im Prinzip einer langen Liste von Adressen, von 0 bis <code>n</code>.
-Wobei <code>n</code> von der Größe des Arbeitsspeichers abhängt.
+Wobei <code>n</code> von der Gr&#xF6;&#xDF;e des Arbeitsspeichers abh&#xE4;ngt.
 Wenn du zum Beispiel nur 1 Gigabyte RAM haben solltest, ist <code>n</code> <code>1,073,741,823</code> (2<sup>30</sup>-1).</p>
 <p>Hier eine Darstellung des Stackframes:</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 0       | x    | 42    |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
 <p>Wir haben <code>x</code> auf Adresse <code>0</code>, mit dem Wert <code>42</code>.</p>
 <p>Wenn nun <code>foo()</code> aufgerufen wird, wird ein weiter Stackframe alloziert:</p>
 <p>Daher auch der Begriff &quot;Stack&quot; = &quot;Stapel&quot;,
-es wird immer etwas oben drauf gelegt und auch ausschließlich von oben wieder herunter genommen.
+es wird immer etwas oben drauf gelegt und auch ausschlie&#xDF;lich von oben wieder herunter genommen.
 Wie bei einem Stapel Teller.
-Solange <code>foo()</code> läuft, ist auch <code>main()</code> noch nicht beendet und der Speicher beider Funktionen ist noch vergeben.
+Solange <code>foo()</code> l&#xE4;uft, ist auch <code>main()</code> noch nicht beendet und der Speicher beider Funktionen ist noch vergeben.
 Der Speicher von <code>main()</code> kann noch nicht freigegeben werden bevor <code>foo()</code> noch nicht beendet ist.
 Jedoch kann <code>foo()</code> auch nicht direkt auf den Speicher von <code>main()</code> zugreifen.</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 2       | z    | 100   |
-| 1       | y    | 5     |
-| 0       | x    | 42    |</p>
-<p>Da <code>0</code> bereits im erst Stackframe vergeben war, verwendet <code>foo()</code> nun Adressen <code>1</code> und <code>2</code>. Der Stapel wächst sprichwörtlich nach oben mit jedem Funktionsaufruf.</p>
-<p>Die Adressen <code>0</code> bis <code>2</code> sind allerdings rein zur Illustration gewählt,
-im tatsächlichen Speicher hätten diese Adressen andere werte und wären auch nicht direkt aufeinander folgend.</p>
-<p>Nachdem <code>foo()</code> beendet ist wird sein frame wieder vom Stapel genommen und wird sind wieder zurück bei:</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 0       | x    | 42    |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>z</td>
+<td>100</td>
+</tr>
+<tr>
+<td>1</td>
+<td>y</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
+<p>Da <code>0</code> bereits im erst Stackframe vergeben war, verwendet <code>foo()</code> nun Adressen <code>1</code> und <code>2</code>. Der Stapel w&#xE4;chst sprichw&#xF6;rtlich nach oben mit jedem Funktionsaufruf.</p>
+<p>Die Adressen <code>0</code> bis <code>2</code> sind allerdings rein zur Illustration gew&#xE4;hlt,
+im tats&#xE4;chlichen Speicher h&#xE4;tten diese Adressen andere werte und w&#xE4;ren auch nicht direkt aufeinander folgend.</p>
+<p>Nachdem <code>foo()</code> beendet ist wird sein frame wieder vom Stapel genommen und wird sind wieder zur&#xFC;ck bei:</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
 <p>Und dann, nachdem <code>main()</code> ebenfalls fertig ist wird auch diese Adresse wieder freigegeben. Ganz einfach!</p>
 <p>Ein drittes Beispiel:</p>
-<pre><code class="language-rust">fn bar() {
-    let i = 6;
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bar</span></span>() {
+    <span class="hljs-keyword">let</span> i = <span class="hljs-number">6</span>;
 }
 
-fn foo() {
-    let a = 5;
-    let b = 100;
-    let c = 1;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>() {
+    <span class="hljs-keyword">let</span> a = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">let</span> b = <span class="hljs-number">100</span>;
+    <span class="hljs-keyword">let</span> c = <span class="hljs-number">1</span>;
 
     bar();
 }
 
-fn main() {
-    let x = 42;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
 
     foo();
 }
 </code></pre>
 <p>Als erstes <code>main()</code>:</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 0       | x    | 42    |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
 <p><code>main()</code> ruft <code>foo()</code> auf:</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 3       | c    | 1     |
-| 2       | b    | 100   |
-| 1       | a    | 5     |
-| 0       | x    | 42    |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>b</td>
+<td>100</td>
+</tr>
+<tr>
+<td>1</td>
+<td>a</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
 <p>Dann ruft <code>foo()</code> <code>bar()</code> auf:</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 4       | i    | 6     |
-| 3       | c    | 1     |
-| 2       | b    | 100   |
-| 1       | a    | 5     |
-| 0       | x    | 42    |</p>
-<p>Puh! Unser Stapel wächst in die Höhe.</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>i</td>
+<td>6</td>
+</tr>
+<tr>
+<td>3</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>b</td>
+<td>100</td>
+</tr>
+<tr>
+<td>1</td>
+<td>a</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
+<p>Puh! Unser Stapel w&#xE4;chst in die H&#xF6;he.</p>
 <p>Nach dem <code>bar()</code> fertig ist, wird sein Stackframe dealloziert und es bleiben nur der von <code>foo()</code> und <code>main()</code>:</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 3       | c    | 1     |
-| 2       | b    | 100   |
-| 1       | a    | 5     |
-| 0       | x    | 42    |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>c</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>b</td>
+<td>100</td>
+</tr>
+<tr>
+<td>1</td>
+<td>a</td>
+<td>5</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
 <p>Und dann wird <code>foo()</code> auch noch fertig und wir haben nur noch <code>main()</code>:</p>
-<p>| Adresse | Name | Wert  |
-|---------|------|-------|
-| 0       | x    | 42    |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
 <p>Wir sind fertig.
-Kriegst du ein Gefühl für die Tellerstapel?
+Kriegst du ein Gef&#xFC;hl f&#xFC;r die Tellerstapel?
 Wir legen einen drauf und nehmen einen wieder runter,
 wir nehmen nie was aus der Mitte raus.</p>
-<h2>Der Heap</h2>
+<h2 id="der-heap"><a name="der-heap" class="plugin-anchor" href="#der-heap"><span class="fa fa-link"></span></a>Der Heap</h2>
 <p><em>(engl. heap = <strong>&quot;Der Haufen&quot;</strong> )</em></p>
-<p>Wie bereits erwähnt können Funktionen nicht auf die lokalen variablen von anderen Funktionen Zugreifen.
-Manchmal möchte man jedoch etwas von einer Funktion an eine andere übergeben oder länger als für die Laufzeit einer Funktion im Speicher behalten.
-Dafür haben wir den Heap.</p>
-<p>In Rust allozieren wir Speicher auf dem Heap mit einer [<code>Box&lt;T&gt;</code>]<a href="http://doc.rust-lang.org/stable/std/boxed/">box</a>.
+<p>Wie bereits erw&#xE4;hnt k&#xF6;nnen Funktionen nicht auf die lokalen variablen von anderen Funktionen Zugreifen.
+Manchmal m&#xF6;chte man jedoch etwas von einer Funktion an eine andere &#xFC;bergeben oder l&#xE4;nger als f&#xFC;r die Laufzeit einer Funktion im Speicher behalten.
+Daf&#xFC;r haben wir den Heap.</p>
+<p>In Rust allozieren wir Speicher auf dem Heap mit einer <a href="http://doc.rust-lang.org/stable/std/boxed/" target="_blank"><code>Box&lt;T&gt;</code></a>.
 Hier ein Beispiel:</p>
-<pre><code class="language-rust">fn main() {
-    let x = Box::new(5);
-    let y = 42;
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x = Box::new(<span class="hljs-number">5</span>);
+    <span class="hljs-keyword">let</span> y = <span class="hljs-number">42</span>;
 }
 </code></pre>
 <p>Was also diesmal in <code>main()</code> passiert ist folgendes:</p>
-<p>| Adresse | Name | Wert   |
-|---------|------|--------|
-| 1       | y    | 42     |
-| 0       | x    | ?????? |</p>
-<p>Wir allozieren Speicher für zwei Variablen auf dem Stack, wie gehabt.
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>y</td>
+<td>42</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>??????</td>
+</tr>
+</tbody>
+</table>
+<p>Wir allozieren Speicher f&#xFC;r zwei Variablen auf dem Stack, wie gehabt.
 <code>y</code> ist <code>42</code>, aber was ist <code>x</code>?
 Nun, <code>x</code> ist ein <code>Box&lt;i32&gt;</code>, und <code>Box</code>en allozieren ihren Speicher auf dem Heap.
-Der eigentliche Wert dieser Box ist ein <code>struct</code> das eine Adresse zu einem Stück Speicher (genug für einen <code>i32</code>) auf dem Heap beinhaltet.
-Wenn wir nun die Funktion ausführen und <code>Box::new()</code> aufrufen,
+Der eigentliche Wert dieser Box ist ein <code>struct</code> das eine Adresse zu einem St&#xFC;ck Speicher (genug f&#xFC;r einen <code>i32</code>) auf dem Heap beinhaltet.
+Wenn wir nun die Funktion ausf&#xFC;hren und <code>Box::new()</code> aufrufen,
 wird der Speicher auf dem Heap alloziert und <code>5</code> dorthin geschrieben.
 Der Speicher sieht also eigentlich etwa so aus:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 5                      |
-| ...                  | ...  | ...                    |
-| 1                    | y    | 42                     |
-| 0                    | x    | → (2<sup>30</sup>) - 1 |</p>
-<p>Wir haben (2<sup>30</sup>) - 1 Adressen in unserem imaginären 1GB RAM.
-Da der Stack von 0 nach oben wächst ist es am einfachsten die Adressen von Oben nach unten für den Heap zu verwenden.
-Der erste Wert steht also an der höchsten Stelle im Speicher.
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>5</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>1</td>
+<td>y</td>
+<td>42</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+</tbody>
+</table>
+<p>Wir haben (2<sup>30</sup>) - 1 Adressen in unserem imagin&#xE4;ren 1GB RAM.
+Da der Stack von 0 nach oben w&#xE4;chst ist es am einfachsten die Adressen von Oben nach unten f&#xFC;r den Heap zu verwenden.
+Der erste Wert steht also an der h&#xF6;chsten Stelle im Speicher.
 Das <code>struct</code> auf <code>x</code> hat einen <a href="Raw_Zeiger.md">raw Zeiger</a> auf die Stelle an der wir den Speicher auf dem Heap alloziert haben,</p>
 <p>also den Wert (2<sup>30</sup>) - 1.</p>
-<p>Wir habe noch nicht wirklich viel darüber gesprochen, was es eigentlich bedeutet in diesen Kontexten Speicher zu allozieren und zu deallozieren.
-Das zu vertiefen würde den Rahmen dieses Tutorials sprengen,
+<p>Wir habe noch nicht wirklich viel dar&#xFC;ber gesprochen, was es eigentlich bedeutet in diesen Kontexten Speicher zu allozieren und zu deallozieren.
+Das zu vertiefen w&#xFC;rde den Rahmen dieses Tutorials sprengen,
 aber was wichtig ist mitzunehmen, ist dass der Heap nicht einfach nur ein von oben nach unten wachsender Stack ist.
 Im Gegensatz um Stack muss der Heap nicht in einer festen Reihenfolge alloziert und freigegeben werden kann.
-Dadurch kann er allerdings Löcher haben.
-Dazu wird es später ein Beispiel.
+Dadurch kann er allerdings L&#xF6;cher haben.
+Dazu wird es sp&#xE4;ter ein Beispiel.
 Hier erst mal ein kleines Diagramm des Speicherlayouts eines Programms das schon ein Weilchen lief:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 5                      |
-| (2<sup>30</sup>) - 2 |      |                        |
-| (2<sup>30</sup>) - 3 |      |                        |
-| (2<sup>30</sup>) - 4 |      | 42                     |
-| ...                  | ...  | ...                    |
-| 3                    | y    | → (2<sup>30</sup>) - 4 |
-| 2                    | y    | 42                     |
-| 1                    | y    | 42                     |
-| 0                    | x    | → (2<sup>30</sup>) - 1 |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>5</td>
+</tr>
+<tr>
+<td>(2<sup>30</sup>) - 2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(2<sup>30</sup>) - 3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(2<sup>30</sup>) - 4</td>
+<td></td>
+<td>42</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>3</td>
+<td>y</td>
+<td>&#x2192; (2<sup>30</sup>) - 4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>y</td>
+<td>42</td>
+</tr>
+<tr>
+<td>1</td>
+<td>y</td>
+<td>42</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+</tbody>
+</table>
 <p>In diesem Fall haben wir 4 Werte auf dem Heap alloziert, aber deallozieren zwei davon.
-Es gibt eine Lücke zwischen (2<sup>30</sup>) - 1 und (2<sup>30</sup>) - 4,
+Es gibt eine L&#xFC;cke zwischen (2<sup>30</sup>) - 1 und (2<sup>30</sup>) - 4,
 die momentan nicht benutzt wird.
-Die genauen Details wie und warum das passiert hängen davon ab mit welcher Strategie man seinen Heap verwaltet.
-Verschiedene Programme können unterschiedliche Speicherallokatoren verwenden,
+Die genauen Details wie und warum das passiert h&#xE4;ngen davon ab mit welcher Strategie man seinen Heap verwaltet.
+Verschiedene Programme k&#xF6;nnen unterschiedliche Speicherallokatoren verwenden,
 also Bibliotheken, die einem das abnehmen.
-Rust Programme verwenden <a href="http://www.canonware.com/jemalloc/">jemalloc</a>.</p>
-<p>Zurück zu unserem Beispiel.
-Da sich diese Werte auf dem Heap befinden, können sich länger existieren als die Funktion die die Box erzeugt hat.
-In diesem Fall jedoch nicht.[^1]
+Rust Programme verwenden <a href="http://www.canonware.com/jemalloc/" target="_blank">jemalloc</a>.</p>
+<p>Zur&#xFC;ck zu unserem Beispiel.
+Da sich diese Werte auf dem Heap befinden, k&#xF6;nnen sich l&#xE4;nger existieren als die Funktion die die Box erzeugt hat.
+In diesem Fall jedoch nicht.<sup><a href="#fn_1" id="reffn_1">1</a></sup>
 Wenn eine Funktion endet wird ihr Stackframe freigegeben.
 <code>Box&lt;T&gt;</code> hat einen Trick: <a href="Drop.md">Drop</a>.
 Es implementiert <code>Drop</code> und gibt sobald die ihr Wert auf dem Stack freigegeben wird ebenfalls den Speicher auf dem Heap frei.
 Geil! Wenn also <code>x</code> verschwindet gibt es vorher seinen Speicher auf dem Heap frei:</p>
-<p>| Adresse | Name | Wert   |
-|---------|------|--------|
-| 1       | y    | 42     |
-| 0       | x    | ?????? |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>y</td>
+<td>42</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>??????</td>
+</tr>
+</tbody>
+</table>
 <p>Sobald der Stackframe verschwindet, wird der gesamte verwendete Speicher freigegeben.</p>
-<h2>Argumente und Ausleihen</h2>
-<p>Wir hatten bereits ein paar Grundlegende Beispiele für Stack und Heap,
+<h2 id="argumente-und-ausleihen"><a name="argumente-und-ausleihen" class="plugin-anchor" href="#argumente-und-ausleihen"><span class="fa fa-link"></span></a>Argumente und Ausleihen</h2>
+<p>Wir hatten bereits ein paar Grundlegende Beispiele f&#xFC;r Stack und Heap,
 aber was ist mit Funktionsargumenten und Ausleihen?</p>
-<pre><code class="language-rust">fn foo(i: &amp;i32) {
-    let z = 42;
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(i: &amp;<span class="hljs-keyword">i32</span>) {
+    <span class="hljs-keyword">let</span> z = <span class="hljs-number">42</span>;
 }
 
-fn main() {
-    let x = 5;
-    let y = &amp;x;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">let</span> y = &amp;x;
 
     foo(y);
 }
 </code></pre>
 <p>Wenn ihr <code>main()</code> betreten sieht der Speicher so aus:</p>
-<p>| Adresse | Name | Wert   |
-|---------|------|--------|
-| 1       | y    | → 0    |
-| 0       | x    | 5      |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>y</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
 <p><code>x</code> ist einfach wieder <code>5</code> und <code>y</code> ist eine Referenz auf <code>x</code>.
 Sein Wert ist also die Speicheradresse von <code>x</code>, in diesem Fall also <code>0</code>.</p>
-<p>Was passiert wenn wir nun <code>foo()</code> aufrufen und <code>y</code> übergeben?</p>
-<p>| Adresse | Name | Wert   |
-|---------|------|--------|
-| 3       | z    | 42     |
-| 2       | i    | → 0    |
-| 1       | y    | → 0    |
-| 0       | x    | 5      |</p>
-<p>Stackframes sind nicht nur für Lokale Zuweisungen, sie sind auch für Argumente gedacht.
+<p>Was passiert wenn wir nun <code>foo()</code> aufrufen und <code>y</code> &#xFC;bergeben?</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>z</td>
+<td>42</td>
+</tr>
+<tr>
+<td>2</td>
+<td>i</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>y</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>x</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>Stackframes sind nicht nur f&#xFC;r Lokale Zuweisungen, sie sind auch f&#xFC;r Argumente gedacht.
 In diesem Fall also brauchen wir sowohl <code>i</code>, das Argument und <code>z</code>, die lokale Variable.
 <code>i</code> ist die Kopie des Arguments <code>y</code>, also auch <code>0</code>.</p>
-<p>Das ist der Grund dafür dass man ausgeliehenen Speicher nicht deallozieren kann. Wenn man wir nun <code>x</code> freigeben würde, würden <code>y</code> und <code>i</code> auf ungültigen Speicher zeigen.
-Das ist in Sprachen wie C möglich, aber nicht in Rust.</p>
-<h2>Ein komplexes Beispiel</h2>
-<p>Gehen wir das hier mal Schritt für Schritt durch:</p>
-<pre><code class="language-rust">fn foo(x: &amp;i32) {
-    let y = 10;
-    let z = &amp;y;
+<p>Das ist der Grund daf&#xFC;r dass man ausgeliehenen Speicher nicht deallozieren kann. Wenn man wir nun <code>x</code> freigeben w&#xFC;rde, w&#xFC;rden <code>y</code> und <code>i</code> auf ung&#xFC;ltigen Speicher zeigen.
+Das ist in Sprachen wie C m&#xF6;glich, aber nicht in Rust.</p>
+<h2 id="ein-komplexes-beispiel"><a name="ein-komplexes-beispiel" class="plugin-anchor" href="#ein-komplexes-beispiel"><span class="fa fa-link"></span></a>Ein komplexes Beispiel</h2>
+<p>Gehen wir das hier mal Schritt f&#xFC;r Schritt durch:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: &amp;<span class="hljs-keyword">i32</span>) {
+    <span class="hljs-keyword">let</span> y = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">let</span> z = &amp;y;
 
     baz(z);
     bar(x, z);
 }
 
-fn bar(a: &amp;i32, b: &amp;i32) {
-    let c = 5;
-    let d = Box::new(5);
-    let e = &amp;d;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bar</span></span>(a: &amp;<span class="hljs-keyword">i32</span>, b: &amp;<span class="hljs-keyword">i32</span>) {
+    <span class="hljs-keyword">let</span> c = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">let</span> d = Box::new(<span class="hljs-number">5</span>);
+    <span class="hljs-keyword">let</span> e = &amp;d;
 
     baz(e);
 }
 
-fn baz(f: &amp;i32) {
-    let g = 100;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">baz</span></span>(f: &amp;<span class="hljs-keyword">i32</span>) {
+    <span class="hljs-keyword">let</span> g = <span class="hljs-number">100</span>;
 }
 
-fn main() {
-    let h = 3;
-    let i = Box::new(20);
-    let j = &amp;h;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> h = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">let</span> i = Box::new(<span class="hljs-number">20</span>);
+    <span class="hljs-keyword">let</span> j = &amp;h;
 
     foo(j);
 }
 </code></pre>
 <p>Als erstes rufen wir <code>main()</code> auf:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| ...                  | ...  | ...                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
-<p>Wir allozieren Speicher für <code>j</code>, <code>i</code> und <code>h</code>.
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Wir allozieren Speicher f&#xFC;r <code>j</code>, <code>i</code> und <code>h</code>.
 <code>i</code> liegt auf dem Heap, beinhaltet also einen Adresswert dort hin.</p>
-<p>Als nächstes wird am ende von <code>main()</code> <code>foo()</code> aufgerufen:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| ...                  | ...  | ...                    |
-| 5                    | z    | → 4                    |
-| 4                    | y    | 10                     |
-| 3                    | x    | → 0                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
-<p>Speicher wird für <code>x</code>, <code>y</code> und <code>z</code> belegt.
-Das Argument <code>x</code> hat den gleichen Wert wie <code>j</code>, da wird das ja übergeben haben, ein Zeiger auf die Adresse <code>0</code>, da <code>j</code> auf <code>h</code> zeigt.</p>
-<p>Danach ruft <code>foo()</code> <code>baz()</code> auf und übergibt <code>z</code>:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| ...                  | ...  | ...                    |
-| 7                    | g    | 100                    |
-| 6                    | f    | → 4                    |
-| 5                    | z    | → 4                    |
-| 4                    | y    | 10                     |
-| 3                    | x    | → 0                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
-<p>Wir haben Speicher für <code>f</code> und <code>g</code> alloziert.
+<p>Als n&#xE4;chstes wird am ende von <code>main()</code> <code>foo()</code> aufgerufen:</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>x</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Speicher wird f&#xFC;r <code>x</code>, <code>y</code> und <code>z</code> belegt.
+Das Argument <code>x</code> hat den gleichen Wert wie <code>j</code>, da wird das ja &#xFC;bergeben haben, ein Zeiger auf die Adresse <code>0</code>, da <code>j</code> auf <code>h</code> zeigt.</p>
+<p>Danach ruft <code>foo()</code> <code>baz()</code> auf und &#xFC;bergibt <code>z</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>7</td>
+<td>g</td>
+<td>100</td>
+</tr>
+<tr>
+<td>6</td>
+<td>f</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>x</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Wir haben Speicher f&#xFC;r <code>f</code> und <code>g</code> alloziert.
 <code>baz()</code> ist sehr kurz und wenn es vorbei ist wird sein Stackframe freigegeben:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| ...                  | ...  | ...                    |
-| 5                    | z    | → 4                    |
-| 4                    | y    | 10                     |
-| 3                    | x    | → 0                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>x</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 <p>Danach ruft <code>foo()</code> <code>bar()</code> mit <code>x</code> und <code>z</code> auf:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| (2<sup>30</sup>) - 2 |      | 5                      |
-| ...                  | ...  | ...                    |
-| 10                   | e    | → 9                    |
-| 9                    | d    | → (2<sup>30</sup>) - 2 |
-| 8                    | c    | 5                      |
-| 7                    | b    | → 4                    |
-| 6                    | a    | → 0                    |
-| 5                    | z    | → 4                    |
-| 4                    | y    | 10                     |
-| 3                    | x    | → 0                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
-<p>Wir allozieren also einen weiteren Wert auf dem Heap und müssen eins von (2<sup>30</sup>) - 1 abziehen.
-Das ist einfacher das zu schreiben als <code>1,073,741,822</code> ☺.
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>(2<sup>30</sup>) - 2</td>
+<td></td>
+<td>5</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>10</td>
+<td>e</td>
+<td>&#x2192; 9</td>
+</tr>
+<tr>
+<td>9</td>
+<td>d</td>
+<td>&#x2192; (2<sup>30</sup>) - 2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>c</td>
+<td>5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>b</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>x</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Wir allozieren also einen weiteren Wert auf dem Heap und m&#xFC;ssen eins von (2<sup>30</sup>) - 1 abziehen.
+Das ist einfacher das zu schreiben als <code>1,073,741,822</code> &#x263A;.
 Jedenfalls, hier die Variablen wie gewohnt.</p>
 <p>Am ende von <code>bar()</code> wird wieder <code>baz()</code> aufgerufen:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| (2<sup>30</sup>) - 2 |      | 5                      |
-| ...                  | ...  | ...                    |
-| 12                   | g    | 100                    |
-| 11                   | f    | → 9                    |
-| 10                   | e    | → 9                    |
-| 9                    | d    | → (2<sup>30</sup>) - 2 |
-| 8                    | c    | 5                      |
-| 7                    | b    | → 4                    |
-| 6                    | a    | → 0                    |
-| 5                    | z    | → 4                    |
-| 4                    | y    | 10                     |
-| 3                    | x    | → 0                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>(2<sup>30</sup>) - 2</td>
+<td></td>
+<td>5</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>12</td>
+<td>g</td>
+<td>100</td>
+</tr>
+<tr>
+<td>11</td>
+<td>f</td>
+<td>&#x2192; 9</td>
+</tr>
+<tr>
+<td>10</td>
+<td>e</td>
+<td>&#x2192; 9</td>
+</tr>
+<tr>
+<td>9</td>
+<td>d</td>
+<td>&#x2192; (2<sup>30</sup>) - 2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>c</td>
+<td>5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>b</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>x</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 <p>So, jetzt haben wir den tiefsten Punkt in unserer Schachtelung erreicht,
-Glückwunsch, du bist bist jetzt noch dran geblieben.</p>
-<p>Nachdem <code>baz()</code> nun zu ende ist können wir <code>f</code> und <code>g</code> wegwerfen:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| (2<sup>30</sup>) - 2 |      | 5                      |
-| ...                  | ...  | ...                    |
-| 10                   | e    | → 9                    |
-| 9                    | d    | → (2<sup>30</sup>) - 2 |
-| 8                    | c    | 5                      |
-| 7                    | b    | → 4                    |
-| 6                    | a    | → 0                    |
-| 5                    | z    | → 4                    |
-| 4                    | y    | 10                     |
-| 3                    | x    | → 0                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
+Gl&#xFC;ckwunsch, du bist bist jetzt noch dran geblieben.</p>
+<p>Nachdem <code>baz()</code> nun zu ende ist k&#xF6;nnen wir <code>f</code> und <code>g</code> wegwerfen:</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>(2<sup>30</sup>) - 2</td>
+<td></td>
+<td>5</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>10</td>
+<td>e</td>
+<td>&#x2192; 9</td>
+</tr>
+<tr>
+<td>9</td>
+<td>d</td>
+<td>&#x2192; (2<sup>30</sup>) - 2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>c</td>
+<td>5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>b</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>a</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>x</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 <p>Danach endet <code>bar()</code>. <code>d</code> ist hier ja eine <code>Box&lt;T&gt;</code>, also geben wir noch den Speicher an der Adresse frei, auf die sie zeigt:(2<sup>30</sup>) - 2.</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| ...                  | ...  | ...                    |
-| 5                    | z    | → 4                    |
-| 4                    | y    | 10                     |
-| 3                    | x    | → 0                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>5</td>
+<td>z</td>
+<td>&#x2192; 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>y</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>x</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 <p>Dann ist <code>foo()</code> fertig:</p>
-<p>| Adresse              | Name | Wert                   |
-|----------------------|------|------------------------|
-| (2<sup>30</sup>) - 1 |      | 20                     |
-| ...                  | ...  | ...                    |
-| 2                    | j    | → 0                    |
-| 1                    | i    | → (2<sup>30</sup>) - 1 |
-| 0                    | h    | 3                      |</p>
+<table>
+<thead>
+<tr>
+<th>Adresse</th>
+<th>Name</th>
+<th>Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(2<sup>30</sup>) - 1</td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>2</td>
+<td>j</td>
+<td>&#x2192; 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>i</td>
+<td>&#x2192; (2<sup>30</sup>) - 1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>h</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
 <p>Und endlich auch <code>main()</code>.
-Hiernach wir der Rest aufgeräumt.
+Hiernach wir der Rest aufger&#xE4;umt.
 Sobald <code>i</code> ge<code>Drop</code>pt wird, wird auch der Rest vom Heap geleert.</p>
-<h2>Was machen andere Sprachen?</h2>
+<h2 id="was-machen-andere-sprachen"><a name="was-machen-andere-sprachen" class="plugin-anchor" href="#was-machen-andere-sprachen"><span class="fa fa-link"></span></a>Was machen andere Sprachen?</h2>
 <p>Viele Sprachen verwenden heutzutage einen GarbageCollector.
-Das hat einige Vorteile, die Beschreibung welcher allerdings den Rahmen dieses Tutorials übersteigt.
-Dort hat meinen keinen manuellen Einfluß darauf, ob Speicher auf dem Heap oder Stack verwendet wird.
-Stattdessen liegt fast alles auf dem Heap und der GarbageCollector hält regelmäßig das Programm kurz an und räumt auf.</p>
-<p>Bei Sprachen wie C/C++ kann man zwischen Stack und Heap unterscheiden, muss allerdings manuell seinen Speicher aufräumen.
-Hier gibt es bereits moderne Mechanismen, u.a. SmartPointer, die ähnliche Charakteristika haben wie Rust <code>Box&lt;T&gt;</code> etc, Konzepte wie &quot;Besitz&quot; und &quot;Ausleihen&quot; sind allerdings noch kein Kernfeature der Sprache.</p>
-<h2>Was soll ich benutzen?</h2>
-<p>Der Stack ist schneller und einfacher zu handhaben, wofür also den Heal=p?
-Ein wichtiger Grund ist dass Stack-allozieren alleine nur LIFO[^2] Verhalten bietet.
-Heapallokation ist vielseitiger und erlaubt schnelles Übergeben von großen Werten ohne Kopieren.</p>
-<p>Allgemein ist Stackallokation zu bevorzugen, weshalb Rust standardmässig den Stack, das ist grundlegend einfacher und meistens effizienter.</p>
-<h2>Laufzeiteffizienz</h2>
+Das hat einige Vorteile, die Beschreibung welcher allerdings den Rahmen dieses Tutorials &#xFC;bersteigt.
+Dort hat meinen keinen manuellen Einflu&#xDF; darauf, ob Speicher auf dem Heap oder Stack verwendet wird.
+Stattdessen liegt fast alles auf dem Heap und der GarbageCollector h&#xE4;lt regelm&#xE4;&#xDF;ig das Programm kurz an und r&#xE4;umt auf.</p>
+<p>Bei Sprachen wie C/C++ kann man zwischen Stack und Heap unterscheiden, muss allerdings manuell seinen Speicher aufr&#xE4;umen.
+Hier gibt es bereits moderne Mechanismen, u.a. SmartPointer, die &#xE4;hnliche Charakteristika haben wie Rust <code>Box&lt;T&gt;</code> etc, Konzepte wie &quot;Besitz&quot; und &quot;Ausleihen&quot; sind allerdings noch kein Kernfeature der Sprache.</p>
+<h2 id="was-soll-ich-benutzen"><a name="was-soll-ich-benutzen" class="plugin-anchor" href="#was-soll-ich-benutzen"><span class="fa fa-link"></span></a>Was soll ich benutzen?</h2>
+<p>Der Stack ist schneller und einfacher zu handhaben, wof&#xFC;r also den Heal=p?
+Ein wichtiger Grund ist dass Stack-allozieren alleine nur LIFO<sup><a href="#fn_2" id="reffn_2">2</a></sup> Verhalten bietet.
+Heapallokation ist vielseitiger und erlaubt schnelles &#xDC;bergeben von gro&#xDF;en Werten ohne Kopieren.</p>
+<p>Allgemein ist Stackallokation zu bevorzugen, weshalb Rust standardm&#xE4;ssig den Stack, das ist grundlegend einfacher und meistens effizienter.</p>
+<h2 id="laufzeiteffizienz"><a name="laufzeiteffizienz" class="plugin-anchor" href="#laufzeiteffizienz"><span class="fa fa-link"></span></a>Laufzeiteffizienz</h2>
 <p>Speicher auf dem Stack verwalten ist trivial:
 Die Maschine inkrementiert und dekrementiert einfach den sogenannten <em>Stack-Pointer</em>.
 Speicher auf dem Heap verwalten ist nicht trivial:
-Speicher auf dem Heap kann beliebig freigegeben werden und jeder Block auf dem Heap kann eine beliebige Größe haben, es ist allgemein schwerer wiederverwendbare Bereiche zu identifizieren.</p>
-<p>Um hier noch tiefer einzusteigen kannst du <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.143.4688">diese Paper</a>(englisch) lesen oder Grundstudiums-&quot;Betriebssysteme&quot;-Vorlesungen der Uni deiner Wahl besuchen :D</p>
-<h2>Semantische Bedeutung</h2>
+Speicher auf dem Heap kann beliebig freigegeben werden und jeder Block auf dem Heap kann eine beliebige Gr&#xF6;&#xDF;e haben, es ist allgemein schwerer wiederverwendbare Bereiche zu identifizieren.</p>
+<p>Um hier noch tiefer einzusteigen kannst du <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.143.4688" target="_blank">diese Paper</a>(englisch) lesen oder Grundstudiums-&quot;Betriebssysteme&quot;-Vorlesungen der Uni deiner Wahl besuchen :D</p>
+<h2 id="semantische-bedeutung"><a name="semantische-bedeutung" class="plugin-anchor" href="#semantische-bedeutung"><span class="fa fa-link"></span></a>Semantische Bedeutung</h2>
 <p>Stackallokation beeinflusst nicht nur Rust selbst, sondern auch das mentale Modell des Entwicklers.
 LIFO-Semantik definiert Rusts automatische Speicherverwaltung.
 Selbst die Freigabe von Heap-allozierten Boxen mit einem einzelnen Besitzer wird von der LIFO-Semantik des Stacks bestimmt, wie bereits oben demonstriert.
-Nicht-LIFO-Semantik würde zwar mehr Flexibilität bieten,
-jedoch könnte ein nicht automatisch zur Compilezeit abgeleiten werden,
+Nicht-LIFO-Semantik w&#xFC;rde zwar mehr Flexibilit&#xE4;t bieten,
+jedoch k&#xF6;nnte ein nicht automatisch zur Compilezeit abgeleiten werden,
 wann Speicher freigegeben werden kann.
-Ein Compiler müsste sich auf dynamische Protokolle, potentiell außerhalb der Sprache selbst, verlassen (zum Beispiel <em>reference counting</em> wie in <code>Rc&lt;T&gt;</code> und <code>Arc&lt;T&gt;</code>).</p>
-<p>Wenn man es übertreibt kann man sagen, dass die erhöhte Freiheit durch Heapallokation mit signifikanten Kosten verbunden ist, entweder in Form von Laufzeit-Performance (z.B. durch einen GarbageCollector) oder durch erhöhten Aufwand für den Entwickler in Form von expliziten Mechanismen zur Speicherverwaltung (<code>new</code>, <code>delete</code>), welche Rust nicht vorsieht.</p>
-<p>[^1]: Wir können den Speicher länger leben lassen indem wir den Besitz übertragen das heißt manchmal ‘moving out of the box’. Komplexere Beispiele folgen später.</p>
-<p>[^2]: Last in first out.</p>
+Ein Compiler m&#xFC;sste sich auf dynamische Protokolle, potentiell au&#xDF;erhalb der Sprache selbst, verlassen (zum Beispiel <em>reference counting</em> wie in <code>Rc&lt;T&gt;</code> und <code>Arc&lt;T&gt;</code>).</p>
+<p>Wenn man es &#xFC;bertreibt kann man sagen, dass die erh&#xF6;hte Freiheit durch Heapallokation mit signifikanten Kosten verbunden ist, entweder in Form von Laufzeit-Performance (z.B. durch einen GarbageCollector) oder durch erh&#xF6;hten Aufwand f&#xFC;r den Entwickler in Form von expliziten Mechanismen zur Speicherverwaltung (<code>new</code>, <code>delete</code>), welche Rust nicht vorsieht.</p>
+<blockquote id="fn_1">
+<sup>1</sup>. Wir k&#xF6;nnen den Speicher l&#xE4;nger leben lassen indem wir den Besitz &#xFC;bertragen das hei&#xDF;t manchmal &#x2018;moving out of the box&#x2019;. Komplexere Beispiele folgen sp&#xE4;ter.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. Last in first out.<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#x21A9;</a>
+</blockquote>
 
+                    
+                    </section>
+                
+                
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a href="book/Effektives_Rust.html" class="mobile-nav-chapters previous">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a href="book/Testen.html" class="mobile-nav-chapters next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
-
-            
-                <a href="book/Effektives_Rust.html" class="nav-chapters previous">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
-
-            
-                <a href="book/Testen.html" class="nav-chapters next">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
-
         </div>
 
+        
+        <a href="../book/Effektives_Rust.html" class="navigation navigation-prev " aria-label="Previous page: Effektives Rust"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../book/Testen.html" class="navigation navigation-next " aria-label="Next page: Testen"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
-        </script>
+        
+<script src="../gitbook/app.js"></script>
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
     </body>
+    
 </html>

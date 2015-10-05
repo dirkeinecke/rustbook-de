@@ -1,312 +1,1084 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="de" >
+    
     <head>
+        
         <meta charset="UTF-8">
-        <title></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Testen | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="{% block description %}{% endblock %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.4.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+    
 
-        <base href="../">
+        
+    
+    
+    <link rel="next" href="../book/Bedingte_Kompilierung.html" />
+    
+    
+    <link rel="prev" href="../book/Der_Stack_Und_Der_Heap.html" />
+    
 
-        <link rel="stylesheet" href="book.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-
-        <!-- MathJax -->
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
+        
     </head>
     <body>
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = localStorage.getItem('theme');
-            if (theme == null) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
-        </script>
+        
+        
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="Mon Oct 05 2015 14:50:22 GMT+0200 (CEST)">
+    
 
-        <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = localStorage.getItem('sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
-        </script>
+<div class="book-summary">
+    <div class="book-search" role="search">
+        <input type="text" placeholder="Suchbegriff eingeben" class="form-control" />
+    </div>
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li><a href="Einführung.html"><strong>1.</strong> Einführung</a></li><li><a href="book/Erste_Schritte.html"><strong>2.</strong> Erste Schritte</a></li><li><ul class="section"><li><a href="book/Rust_Installieren.html"><strong>2.1.</strong> Rust installieren</a></li><li><a href="book/Hallo_Welt.html"><strong>2.2.</strong> Hallo Welt</a></li><li><a href="book/Hallo_Cargo.html"><strong>2.3.</strong> Hallo Cargo</a></li></ul></li><li><a href="book/Lerne_Rust.html"><strong>3.</strong> Lerne Rust</a></li><li><ul class="section"><li><a href="book/Ratespiel.html"><strong>3.1.</strong> Ratespiel</a></li><li><a href="book/Speisende_Philosophen.html"><strong>3.2.</strong> Speisende Philosophen</a></li><li><a href="book/Rust_In_Anderen_Sprachen.html"><strong>3.3.</strong> Rust in anderen Sprachen</a></li></ul></li><li><a href="book/Effektives_Rust.html"><strong>4.</strong> Effektives Rust</a></li><li><ul class="section"><li><a href="book/Der_Stack_Und_Der_Heap.html"><strong>4.1.</strong> Der Stack und der Heap</a></li><li><a href="book/Testen.html" class="active"><strong>4.2.</strong> Testen</a></li><li><a href="book/Bedingte_Kompilierung.html"><strong>4.3.</strong> Bedingte Kompilierung</a></li><li><a href="book/Dokumentation.html"><strong>4.4.</strong> Dokumentation</a></li><li><a href="book/Iteratoren.html"><strong>4.5.</strong> Iteratoren</a></li><li><a href="book/Nebenläufigkeit.html"><strong>4.6.</strong> Nebenläufigkeit</a></li><li><a href="book/Fehlerbehandlung.html"><strong>4.7.</strong> Fehlerbehandlung</a></li><li><a href="book/Garantien_Wählen.html"><strong>4.8.</strong> Garantien Wählen</a></li><li><a href="book/FFI.html"><strong>4.9.</strong> FFI</a></li><li><a href="book/Borrow_Und_AsRef.html"><strong>4.10.</strong> Borrow und AsRef</a></li><li><a href="book/Release_Kanäle.html"><strong>4.11.</strong> Release Kanäle</a></li></ul></li><li><a href="book/Syntax_Und_Semantik.html"><strong>5.</strong> Syntax und Semantik</a></li><li><ul class="section"><li><a href="book/Variablenbindung.html"><strong>5.1.</strong> Variablenbindung</a></li><li><a href="book/Funktionen.html"><strong>5.2.</strong> Funktionen</a></li><li><a href="book/Primitive_Typen.html"><strong>5.3.</strong> Primitive Typen</a></li><li><a href="book/Kommentare.html"><strong>5.4.</strong> Kommentare</a></li><li><a href="book/If.html"><strong>5.5.</strong> if</a></li><li><a href="book/Schleifen.html"><strong>5.6.</strong> Schleifen</a></li><li><a href="book/Besitz.html"><strong>5.7.</strong> Besitz</a></li><li><a href="book/Referenzen_Und_Ausleihen.html"><strong>5.8.</strong> Referenzen und Ausleihen</a></li><li><a href="book/Lebzeiten.html"><strong>5.9.</strong> Lebzeiten</a></li><li><a href="book/Veränderbarkeit.html"><strong>5.10.</strong> Veränderbarkeit</a></li><li><a href="book/Structs.html"><strong>5.11.</strong> Structs</a></li><li><a href="book/Enums.html"><strong>5.12.</strong> Enums</a></li><li><a href="book/Match.html"><strong>5.13.</strong> Match</a></li><li><a href="book/Muster.html"><strong>5.14.</strong> Muster</a></li><li><a href="book/Methodensyntax.html"><strong>5.15.</strong> Methodensyntax</a></li><li><a href="book/Vektoren.html"><strong>5.16.</strong> Vektoren</a></li><li><a href="book/Strings.html"><strong>5.17.</strong> Strings</a></li><li><a href="book/Generics.html"><strong>5.18.</strong> Generics</a></li><li><a href="book/Traits.html"><strong>5.19.</strong> Traits</a></li><li><a href="book/Drop.html"><strong>5.20.</strong> Drop</a></li><li><a href="book/If_Let.html"><strong>5.21.</strong> if let</a></li><li><a href="book/Trait_Objekte.html"><strong>5.22.</strong> Trait Objekte</a></li><li><a href="book/Closures.html"><strong>5.23.</strong> Closures</a></li><li><a href="book/UFCS.html"><strong>5.24.</strong> Universal Function Call Syntax</a></li><li><a href="book/Crates_Und_Module.html"><strong>5.25.</strong> Crates und Module</a></li><li><a href="book/Const_Und_Static.html"><strong>5.26.</strong> `const` und `static`</a></li><li><a href="book/Attribute.html"><strong>5.27.</strong> Attribute</a></li><li><a href="book/Type_Aliase.html"><strong>5.28.</strong> `type` Aliase</a></li><li><a href="book/Zwischen_Typen_Umwandeln.html"><strong>5.29.</strong> Zwischen typen umwandeln</a></li><li><a href="book/Assoziierte_Typen.html"><strong>5.30.</strong> Assoziierte Typen</a></li><li><a href="book/Größenlose_Typen.html"><strong>5.31.</strong> Größenlose Typen</a></li><li><a href="book/Operatoren_Und_Überladen.html"><strong>5.32.</strong> Operatoren und Überladen</a></li><li><a href="book/Deref_Umwandlung.html"><strong>5.33.</strong> Deref Umwandlung</a></li><li><a href="book/Makros.html"><strong>5.34.</strong> Makros</a></li><li><a href="book/Raw_Zeiger.html"><strong>5.35.</strong> Raw Zeiger</a></li><li><a href="book/Unsafe.html"><strong>5.36.</strong> `unsafe`</a></li></ul></li><li><a href="book/Nightly_Rust.html"><strong>6.</strong> Nightly Rust</a></li><li><ul class="section"><li><a href="book/Compiler_Plugins.html"><strong>6.1.</strong> Compiler Plugins</a></li><li><a href="book/Inline_Assembly.html"><strong>6.2.</strong> Inline Assembly</a></li><li><a href="book/No_Stdlib.html"><strong>6.3.</strong> `no_stdlib`</a></li><li><a href="book/Intrinsics.html"><strong>6.4.</strong> Intrinsics</a></li><li><a href="book/Lang_Items.html"><strong>6.5.</strong> Lang items</a></li><li><a href="book/Fortgeschrittenes_Linken.html"><strong>6.6.</strong> Fortgeschrittenes Linken</a></li><li><a href="book/Benchmark_Tests.html"><strong>6.7.</strong> Benchmark Tests</a></li><li><a href="book/Box_Syntax_Und_Muster.html"><strong>6.8.</strong> Box Syntax und Muster</a></li><li><a href="book/Slice_Muster.html"><strong>6.9.</strong> Slice Muster</a></li><li><a href="book/Assoziierte_Konstanten.html"><strong>6.10.</strong> Assoziierte Konstanten</a></li></ul></li><li><a href="book/Glossar.html"><strong>7.</strong> Glossar</a></li><li><a href="book/Akademische_Forschung.html"><strong>8.</strong> Akademische Forschung</a></li></ul>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Einführung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="book/Erste_Schritte.html">
+            
+                
+                    <a href="../book/Erste_Schritte.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Erste Schritte
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="book/Rust_Installieren.html">
+            
+                
+                    <a href="../book/Rust_Installieren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Rust installieren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="book/Hallo_Welt.html">
+            
+                
+                    <a href="../book/Hallo_Welt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Hallo Welt
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="book/Hallo_Cargo.html">
+            
+                
+                    <a href="../book/Hallo_Cargo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Hallo Cargo
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="book/Lerne_Rust.html">
+            
+                
+                    <a href="../book/Lerne_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Lerne Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="book/Ratespiel.html">
+            
+                
+                    <a href="../book/Ratespiel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Ratespiel
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="book/Speisende_Philosophen.html">
+            
+            <span><b>2.2.</b> Speisende Philosophen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="book/Rust_In_Anderen_Sprachen.html">
+            
+            <span><b>2.3.</b> Rust in anderen Sprachen</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="book/Effektives_Rust.html">
+            
+                
+                    <a href="../book/Effektives_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Effektives Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="book/Der_Stack_Und_Der_Heap.html">
+            
+                
+                    <a href="../book/Der_Stack_Und_Der_Heap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Der Stack und der Heap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2" data-path="book/Testen.html">
+            
+                
+                    <a href="../book/Testen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Testen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="book/Bedingte_Kompilierung.html">
+            
+                
+                    <a href="../book/Bedingte_Kompilierung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Bedingte Kompilierung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="book/Dokumentation.html">
+            
+                
+                    <a href="../book/Dokumentation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Dokumentation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="book/Iteratoren.html">
+            
+                
+                    <a href="../book/Iteratoren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Iteratoren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="book/Nebenläufigkeit.html">
+            
+            <span><b>3.6.</b> Nebenläufigkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="book/Fehlerbehandlung.html">
+            
+            <span><b>3.7.</b> Fehlerbehandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="book/Garantien_Wählen.html">
+            
+            <span><b>3.8.</b> Garantien Wählen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="book/FFI.html">
+            
+            <span><b>3.9.</b> FFI</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="book/Borrow_Und_AsRef.html">
+            
+            <span><b>3.10.</b> Borrow und AsRef</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="book/Release_Kanäle.html">
+            
+            <span><b>3.11.</b> Release Kanäle</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="book/Syntax_Und_Semantik.html">
+            
+                
+                    <a href="../book/Syntax_Und_Semantik.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Syntax und Semantik
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="book/Variablenbindung.html">
+            
+                
+                    <a href="../book/Variablenbindung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Variablenbindung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
+            
+                
+                    <a href="../book/Funktionen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Funktionen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="book/Primitive_Typen.html">
+            
+                
+                    <a href="../book/Primitive_Typen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Primitive Typen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="book/Kommentare.html">
+            
+                
+                    <a href="../book/Kommentare.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Kommentare
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="book/If.html">
+            
+            <span><b>4.5.</b> if</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="book/Schleifen.html">
+            
+            <span><b>4.6.</b> Schleifen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="book/Besitz.html">
+            
+            <span><b>4.7.</b> Besitz</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="book/Referenzen_Und_Ausleihen.html">
+            
+            <span><b>4.8.</b> Referenzen und Ausleihen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="book/Lebzeiten.html">
+            
+            <span><b>4.9.</b> Lebzeiten</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="book/Veränderbarkeit.html">
+            
+            <span><b>4.10.</b> Veränderbarkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="book/Structs.html">
+            
+            <span><b>4.11.</b> Structs</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="book/Enums.html">
+            
+            <span><b>4.12.</b> Enums</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="book/Match.html">
+            
+            <span><b>4.13.</b> Match</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="book/Muster.html">
+            
+            <span><b>4.14.</b> Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="book/Methodensyntax.html">
+            
+            <span><b>4.15.</b> Methodensyntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="book/Vektoren.html">
+            
+            <span><b>4.16.</b> Vektoren</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="book/Strings.html">
+            
+            <span><b>4.17.</b> Strings</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="book/Generics.html">
+            
+            <span><b>4.18.</b> Generics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="book/Traits.html">
+            
+            <span><b>4.19.</b> Traits</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.20" data-path="book/Drop.html">
+            
+            <span><b>4.20.</b> Drop</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.21" data-path="book/If_Let.html">
+            
+            <span><b>4.21.</b> if let</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.22" data-path="book/Trait_Objekte.html">
+            
+            <span><b>4.22.</b> Trait Objekte</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.23" data-path="book/Closures.html">
+            
+            <span><b>4.23.</b> Closures</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.24" data-path="book/UFCS.html">
+            
+            <span><b>4.24.</b> Universal Function Call Syntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.25" data-path="book/Crates_Und_Module.html">
+            
+            <span><b>4.25.</b> Crates und Module</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.26" data-path="book/Const_Und_Static.html">
+            
+            <span><b>4.26.</b> `const` und `static`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.27" data-path="book/Attribute.html">
+            
+            <span><b>4.27.</b> Attribute</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.28" data-path="book/Type_Aliase.html">
+            
+            <span><b>4.28.</b> `type` Aliase</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.29" data-path="book/Zwischen_Typen_Umwandeln.html">
+            
+            <span><b>4.29.</b> Zwischen typen umwandeln</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.30" data-path="book/Assoziierte_Typen.html">
+            
+            <span><b>4.30.</b> Assoziierte Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.31" data-path="book/Größenlose_Typen.html">
+            
+            <span><b>4.31.</b> Größenlose Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.32" data-path="book/Operatoren_Und_Überladen.html">
+            
+            <span><b>4.32.</b> Operatoren und Überladen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.33" data-path="book/Deref_Umwandlung.html">
+            
+            <span><b>4.33.</b> Deref Umwandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.34" data-path="book/Makros.html">
+            
+            <span><b>4.34.</b> Makros</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.35" data-path="book/Raw_Zeiger.html">
+            
+            <span><b>4.35.</b> Raw Zeiger</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.36" data-path="book/Unsafe.html">
+            
+            <span><b>4.36.</b> `unsafe`</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="book/Nightly_Rust.html">
+            
+            <span><b>5.</b> Nightly Rust</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="book/Compiler_Plugins.html">
+            
+            <span><b>5.1.</b> Compiler Plugins</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="book/Inline_Assembly.html">
+            
+            <span><b>5.2.</b> Inline Assembly</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="book/No_Stdlib.html">
+            
+            <span><b>5.3.</b> `no_stdlib`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="book/Intrinsics.html">
+            
+            <span><b>5.4.</b> Intrinsics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="book/Lang_Items.html">
+            
+            <span><b>5.5.</b> Lang items</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="book/Fortgeschrittenes_Linken.html">
+            
+            <span><b>5.6.</b> Fortgeschrittenes Linken</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="book/Benchmark_Tests.html">
+            
+            <span><b>5.7.</b> Benchmark Tests</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="book/Box_Syntax_Und_Muster.html">
+            
+            <span><b>5.8.</b> Box Syntax und Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="book/Slice_Muster.html">
+            
+            <span><b>5.9.</b> Slice Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="book/Assoziierte_Konstanten.html">
+            
+            <span><b>5.10.</b> Assoziierte Konstanten</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="book/Glossar.html">
+            
+            <span><b>6.</b> Glossar</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="book/Akademische_Forschung.html">
+            
+            <span><b>7.</b> Akademische Forschung</span>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Veröffentlicht mit GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Inhaltsverzeichnis"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Suche"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Schrifteinstellungen"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">Hell</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Nacht</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Teilen"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Auf Twitter teilen
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Auf Google teilen
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Auf Facebook teilen
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Auf Weibo teilen
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Auf Instapaper teilen
+                </button>
+            </div>
         </div>
+    </div>
+    
 
-        <div id="page-wrapper" class="page-wrapper">
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
 
-            <div class="page">
-                <div id="menu-bar" class="menu-bar">
-                    <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
-                    </div>
 
-                    <h1 class="menu-title"></h1>
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Die Programmiersprache Rust</a>
+    </h1>
+</div>
 
-                    <div class="right-buttons">
-                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
-                    </div>
-                </div>
-
-                <div id="content" class="content">
-                    <h1>Testing</h1>
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="testing"><a name="testing" class="plugin-anchor" href="#testing"><span class="fa fa-link"></span></a>Testing</h1>
 <blockquote>
 <p>Program testing can be a very effective way to show the presence of bugs, but
 it is hopelessly inadequate for showing their absence.</p>
-<p>*Das Testen von Programmen ist eine sehr effektive Art,
-die Anwesenheit von Bugs zu zeigen, aber ist hoffnungslos unangemessen, deren Abwesenheit zu zeigen.*</p>
+<p><em>Das Testen von Programmen ist eine sehr effektive Art,
+die Anwesenheit von Bugs zu zeigen, aber ist hoffnungslos unangemessen, deren Abwesenheit zu zeigen.</em></p>
 <p>Edsger W. Dijkstra, &quot;The Humble Programmer&quot; (1972)</p>
 </blockquote>
-<h2>Das <code>test</code> Attribut</h2>
+<h2 id="das-test-attribut"><a name="das-test-attribut" class="plugin-anchor" href="#das-test-attribut"><span class="fa fa-link"></span></a>Das <code>test</code> Attribut</h2>
 <p>In Rust ist ein Test ganz einfach eine Funktion die mit <code>test</code> annotiert ist.
 Beginnen wir also ein kleines Cargo Projekt namens <code>adder</code>:</p>
-<pre><code class="language-bash">$ cargo new adder
-$ cd adder
+<pre><code class="lang-bash">$ cargo new adder
+$ <span class="hljs-built_in">cd</span> adder
 </code></pre>
-<p>Wenn wir <code>cargo new</code> ohne <code>--bin</code> ausführen erzeugt Cargo ein Library-Projekt.
+<p>Wenn wir <code>cargo new</code> ohne <code>--bin</code> ausf&#xFC;hren erzeugt Cargo ein Library-Projekt.
 Cargo generiert automatisch einen kleinen Test, wie man am Inhalt von <code>src/lib.rs</code> sieht:</p>
-<pre><code class="language-rust">#[test]
-fn it_works() {
+<pre><code class="lang-rust"><span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
 }
 </code></pre>
 <p>Achte auf <code>#[test]</code>.
 Das ist ein Attribut und es markiert die Funktion <code>it_works()</code> als Test.
 Sie ist erst mal leer.
 Dann kann sie auch auch nicht fehlschlagen.
-Wir können sie ganz einfach mit <code>cargo test</code> ausführen:</p>
-<pre><code class="language-bash">$ cargo test
-   Compiling adder v0.0.1 (file:///home/you/projects/adder)
-     Running target/adder-91b3e234d4ed382a
+Wir k&#xF6;nnen sie ganz einfach mit <code>cargo test</code> ausf&#xFC;hren:</p>
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/you/projects/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 0 tests
+running <span class="hljs-number">0</span> tests
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">0</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
 <p>Hier sehen wir zwei Ausgaben.
-Die erste für den Test den wir geschrieben haben,
-die zweite für Dokumentationstests, davon später mehr.
+Die erste f&#xFC;r den Test den wir geschrieben haben,
+die zweite f&#xFC;r Dokumentationstests, davon sp&#xE4;ter mehr.
 Vorerst:</p>
-<pre><code class="language-text">test it_works ... ok
+<pre><code class="lang-text">test it_works ... ok
 </code></pre>
 <p>Beachte dass hier der Name unserer Funktion <code>it_works</code> steht.</p>
-<pre><code class="language-rust">fn it_works() {
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
 }
 </code></pre>
-<p>Warum schlägt dieser leere Test aber nun nicht fehl?
+<p>Warum schl&#xE4;gt dieser leere Test aber nun nicht fehl?
 Jeder Test der kein <code>panic!()</code> provoziert ist erfolgreich.
-Wie könnten wir ihn nun fehlschlagen lassen?</p>
-<pre><code class="language-rust">#[test]
-fn it_works() {
-    assert!(false);
+Wie k&#xF6;nnten wir ihn nun fehlschlagen lassen?</p>
+<pre><code class="lang-rust"><span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+    <span class="hljs-built_in">assert!</span>(<span class="hljs-keyword">false</span>);
 }
 </code></pre>
 <p><code>assert!</code> ist ein Macro in Rust das genau ein Argument nimmt,
 und wenn das nicht <code>true</code> ist, dann ruft es <code>panic!</code> auf.
 Also nochmal:</p>
-<pre><code class="language-bash">$ cargo test
-   Compiling adder v0.0.1 (file:///home/you/projects/adder)
-     Running target/adder-91b3e234d4ed382a
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/you/projects/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test it_works ... FAILED
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> it_works ... FAILED
 
 failures:
 
 ---- it_works stdout ----
-        thread 'it_works' panicked at 'assertion failed: false', /home/steve/tmp/adder/src/lib.rs:3
+        thread <span class="hljs-string">&apos;it_works&apos;</span> panicked at <span class="hljs-string">&apos;assertion failed: false&apos;</span>, /home/steve/tmp/adder/src/lib.rs:<span class="hljs-number">3</span>
 
 
 
 failures:
     it_works
 
-test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: FAILED. <span class="hljs-number">0</span> passed; <span class="hljs-number">1</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
-thread '&lt;main&gt;' panicked at 'Some tests failed', /home/steve/src/rust/src/libtest/lib.rs:247
+thread <span class="hljs-string">&apos;&lt;main&gt;&apos;</span> panicked at <span class="hljs-string">&apos;Some tests failed&apos;</span>, /home/steve/src/rust/src/libtest/lib.rs:<span class="hljs-number">247</span>
 </code></pre>
 <p>Rust sagt uns, dass unser Test gefailt ist.</p>
-<pre><code class="language-text">test it_works ... FAILED
+<pre><code class="lang-text">test it_works ... FAILED
 </code></pre>
 <p>Was uns auch die Zusammenfassung am Ende sagt:</p>
-<pre><code class="language-text">test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured
+<pre><code class="lang-text">test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured
 </code></pre>
 <p>Wir haben ebenfalls einen non-zero status code bekommen, ein feature unserer Shell (<em>linux und OS X</em>), dass das letzte Kommando fehlgeschlagen ist.</p>
-<pre><code class="language-bash">$ echo $?
-101
+<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> $?
+<span class="hljs-number">101</span>
 </code></pre>
 <p>Auf Windows in <code>cmd</code> :</p>
-<pre><code class="language-bash">&gt; echo %ERRORLEVEL%
+<pre><code class="lang-bash">&gt; <span class="hljs-built_in">echo</span> %ERRORLEVEL%
 </code></pre>
 <p>oder PowerShell:</p>
-<pre><code class="language-bash">&gt; echo $LASTEXITCODE # Der Exitcode selbst
-&gt; echo $? # ein boolean, Erfolgreich oder nicht
+<pre><code class="lang-bash">&gt; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$LASTEXITCODE</span> <span class="hljs-comment"># Der Exitcode selbst</span>
+&gt; <span class="hljs-built_in">echo</span> $? <span class="hljs-comment"># ein boolean, Erfolgreich oder nicht</span>
 </code></pre>
-<p>Das ist nützlich wenn du <code>cargo test</code> in andere Tools integrieren willst.</p>
-<p>Wir können den Test auch invertieren, wenn wir wollen, dass er fehlschlägt: <code>should_panic</code>:</p>
-<pre><code class="language-rust">#[test]
-#[should_panic]
-fn it_works() {
-    assert!(false);
+<p>Das ist n&#xFC;tzlich wenn du <code>cargo test</code> in andere Tools integrieren willst.</p>
+<p>Wir k&#xF6;nnen den Test auch invertieren, wenn wir wollen, dass er fehlschl&#xE4;gt: <code>should_panic</code>:</p>
+<pre><code class="lang-rust"><span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-preprocessor">#[should_panic]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+    <span class="hljs-built_in">assert!</span>(<span class="hljs-keyword">false</span>);
 }
 </code></pre>
-<p>Der Test zählt nun als erfolgreich, wenn <code>panic!</code> eintritt.
+<p>Der Test z&#xE4;hlt nun als erfolgreich, wenn <code>panic!</code> eintritt.
 Gleich mal ausprobieren:</p>
-<pre><code class="language-bash">$ cargo test
-   Compiling adder v0.0.1 (file:///home/you/projects/adder)
-     Running target/adder-91b3e234d4ed382a
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/you/projects/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 0 tests
+running <span class="hljs-number">0</span> tests
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">0</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
 <p>Rust kennt noch ein weiteres Macro: <code>assert_eq!</code>, zum Vergleichen zweier Werte:</p>
-<pre><code class="language-rust">#[test]
-#[should_panic]
-fn it_works() {
-    assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
+<pre><code class="lang-rust"><span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-preprocessor">#[should_panic]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+    <span class="hljs-built_in">assert_eq!</span>(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>);
 }
 </code></pre>
-<p>Schlägt das hier nun fehl?
+<p>Schl&#xE4;gt das hier nun fehl?
 Nein, denn da steht noch <code>should_panic</code>:</p>
-<pre><code class="language-bash">$ cargo test
-   Compiling adder v0.0.1 (file:///home/you/projects/adder)
-     Running target/adder-91b3e234d4ed382a
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/you/projects/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 0 tests
+running <span class="hljs-number">0</span> tests
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">0</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
-<p><code>should_panic</code> ist immer mit etwas Vorsicht zu genießen, denn es schwer sicher zu sein, ob der Test nicht auf Grund anderer Probleme ge<code>panic</code>t hat.
-Wir können aber Bedingungen für bestimmte Fehler hinzufügen:</p>
-<pre><code class="language-rust">#[test]
-#[should_panic(expected = &quot;assertion failed&quot;)]
-fn it_works() {
-    assert_eq!(&quot;Hello&quot;, &quot;world&quot;);
+<p><code>should_panic</code> ist immer mit etwas Vorsicht zu genie&#xDF;en, denn es schwer sicher zu sein, ob der Test nicht auf Grund anderer Probleme ge<code>panic</code>t hat.
+Wir k&#xF6;nnen aber Bedingungen f&#xFC;r bestimmte Fehler hinzuf&#xFC;gen:</p>
+<pre><code class="lang-rust"><span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-preprocessor">#[should_panic(expected = &quot;assertion failed&quot;)]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+    <span class="hljs-built_in">assert_eq!</span>(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>);
 }
 </code></pre>
 <p>Jetzt muss das <code>assert_eq!</code> fehlschlagen, sonst scheitert der Test trotzdem.</p>
-<p>Soviel also zu Grundlagen, schreiben wir endlich einen nützlichen Test!</p>
-<pre><code class="language-rust">pub fn add_two(a: i32) -&gt; i32 {
-    a + 2
+<p>Soviel also zu Grundlagen, schreiben wir endlich einen n&#xFC;tzlichen Test!</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_two</span></span>(a: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    a + <span class="hljs-number">2</span>
 }
 
-#[test]
-fn it_works() {
-    assert_eq!(4, add_two(2));
+<span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+    <span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">4</span>, add_two(<span class="hljs-number">2</span>));
 }
 </code></pre>
-<p>Das ist ein klassischer Fall für <code>assert_eq!</code>: Wir rufen eine Funktion auf und vergleichen ihren Rückgabewert.</p>
-<h2>Das <code>ignore</code> Attribut</h2>
-<p>In Manchen Situationen wollen wir bestimmte Tests nicht immer mit ausführen, besonders, wenn sie teuer sind.
+<p>Das ist ein klassischer Fall f&#xFC;r <code>assert_eq!</code>: Wir rufen eine Funktion auf und vergleichen ihren R&#xFC;ckgabewert.</p>
+<h2 id="das-ignore-attribut"><a name="das-ignore-attribut" class="plugin-anchor" href="#das-ignore-attribut"><span class="fa fa-link"></span></a>Das <code>ignore</code> Attribut</h2>
+<p>In Manchen Situationen wollen wir bestimmte Tests nicht immer mit ausf&#xFC;hren, besonders, wenn sie teuer sind.
 Diese kann man dann mit <code>ignore</code> ausschalten:</p>
-<pre><code class="language-rust">#[test]
-fn it_works() {
-    assert_eq!(4, add_two(2));
+<pre><code class="lang-rust"><span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+    <span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">4</span>, add_two(<span class="hljs-number">2</span>));
 }
 
-#[test]
-#[ignore]
-fn expensive_test() {
-    // Code der eine Stunde läuft
+<span class="hljs-preprocessor">#[test]</span>
+<span class="hljs-preprocessor">#[ignore]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">expensive_test</span></span>() {
+    <span class="hljs-comment">// Code der eine Stunde l&#xE4;uft</span>
 }
 </code></pre>
-<p>Jetzt werden sie exklusiv dann ausgeführt wenn wir <code>cargo test -- --ignored</code> ausführen:</p>
-<pre><code class="language-bash">$ cargo test
-   Compiling adder v0.0.1 (file:///home/you/projects/adder)
-     Running target/adder-91b3e234d4ed382a
+<p>Jetzt werden sie exklusiv dann ausgef&#xFC;hrt wenn wir <code>cargo test -- --ignored</code> ausf&#xFC;hren:</p>
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/you/projects/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 2 tests
-test expensive_test ... ignored
-test it_works ... ok
+running <span class="hljs-number">2</span> tests
+<span class="hljs-built_in">test</span> expensive_<span class="hljs-built_in">test</span> ... ignored
+<span class="hljs-built_in">test</span> it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 1 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">1</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 0 tests
+running <span class="hljs-number">0</span> tests
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">0</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
 <p>Wir sehen: <code>it_works</code> wurde getestet, <code>expensive_test</code> nicht.</p>
-<pre><code class="language-bash">$ cargo test -- --ignored
-     Running target/adder-91b3e234d4ed382a
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span> -- --ignored
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test expensive_test ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> expensive_<span class="hljs-built_in">test</span> ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 0 tests
+running <span class="hljs-number">0</span> tests
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">0</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
 <p>Wichtig: <code>--ignored</code> ist ein Argument, das von dem Testbinary interpretiert wird, nicht von Cargo selbst.
 Das wird mit den extra <code>--</code> vermittelt.</p>
-<h2>Das <code>tests</code> Modul</h2>
-<p>Was ist allerdings, wenn wir noch Hilfsfunktionen für unsere Tests brauchen,
+<h2 id="das-tests-modul"><a name="das-tests-modul" class="plugin-anchor" href="#das-tests-modul"><span class="fa fa-link"></span></a>Das <code>tests</code> Modul</h2>
+<p>Was ist allerdings, wenn wir noch Hilfsfunktionen f&#xFC;r unsere Tests brauchen,
 die selbst keine Tests sind, die wir aber auch nicht mit ausliefern wollen?
-Dafür kann man Tests innerhalb eines <code>tests</code> Moduls implementieren.
+Daf&#xFC;r kann man Tests innerhalb eines <code>tests</code> Moduls implementieren.
 So in etwa:</p>
-<pre><code class="language-rust">pub fn add_two(a: i32) -&gt; i32 {
-    a + 2
+<pre><code class="lang-rust"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_two</span></span>(a: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    a + <span class="hljs-number">2</span>
 }
 
-#[cfg(test)]
-mod tests {
-    use super::add_two;
+<span class="hljs-preprocessor">#[cfg(test)]</span>
+<span class="hljs-keyword">mod</span> tests {
+    <span class="hljs-keyword">use</span> super::add_two;
 
-    #[test]
-    fn it_works() {
-        assert_eq!(4, add_two(2));
+    <span class="hljs-preprocessor">#[test]</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+        <span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">4</span>, add_two(<span class="hljs-number">2</span>));
     }
 }
 </code></pre>
-<p>Das erlaubt es uns alle unsere Tests hier zu gruppieren und zusätzlich auch noch ggf. Hilfsfunktionen zu implementieren.
+<p>Das erlaubt es uns alle unsere Tests hier zu gruppieren und zus&#xE4;tzlich auch noch ggf. Hilfsfunktionen zu implementieren.
 Dieses gesamte Modul wird nicht in unser crate kompiliert, wenn wir es nicht explizit als Test kompilieren, wir haben also nie Testcode in unserer Bibliothek.
 Das spart nicht nur Kompilierzeit, sondern auch noch Platz.</p>
-<p>Eine weitere Änderung ist die <code>use</code> Deklaration.
-Weil wir uns hier in einem Untermodul und damit einem anderen Namespace befinden müssen, müssen wir die zu testende Funktion quasi importieren.
-Das kann nerven, wenn wir irgendwann größere Projekte haben, also vereinfachen wir das doch einfach mit <code>*</code></p>
-<pre><code class="language-rust,ignore">pub fn add_two(a: i32) -&gt; i32 {
+<p>Eine weitere &#xC4;nderung ist die <code>use</code> Deklaration.
+Weil wir uns hier in einem Untermodul und damit einem anderen Namespace befinden m&#xFC;ssen, m&#xFC;ssen wir die zu testende Funktion quasi importieren.
+Das kann nerven, wenn wir irgendwann gr&#xF6;&#xDF;ere Projekte haben, also vereinfachen wir das doch einfach mit <code>*</code></p>
+<pre><code class="lang-rust,ignore">pub fn add_two(a: i32) -&gt; i32 {
     a + 2
 }
 
@@ -320,179 +1092,170 @@ mod tests {
     }
 }
 </code></pre>
-<p>Beachte, dass sich die <code>use</code> Zeile geändert hat:</p>
-<pre><code class="language-bash">$ cargo test
+<p>Beachte, dass sich die <code>use</code> Zeile ge&#xE4;ndert hat:</p>
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
     Updating registry `https://github.com/rust-lang/crates.io-index`
-   Compiling adder v0.0.1 (file:///home/you/projects/adder)
-     Running target/adder-91b3e234d4ed382a
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/you/projects/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test tests::it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> tests::it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 0 tests
+running <span class="hljs-number">0</span> tests
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">0</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
-<p>Schön!</p>
-<p>Die momentane Konvention ist, dass das <code>tests</code> Modul deine &quot;unit-style&quot; tests enthält.
-Alles was nur kleine Funktionalitätstests umfasst.
-Integrationstest jedoch, verdienen etwas mehr platz, dafür haben wir das <code>tests</code> Verzeichnis.</p>
-<h2>Das <code>tests</code> Verzeichnis</h2>
+<p>Sch&#xF6;n!</p>
+<p>Die momentane Konvention ist, dass das <code>tests</code> Modul deine &quot;unit-style&quot; tests enth&#xE4;lt.
+Alles was nur kleine Funktionalit&#xE4;tstests umfasst.
+Integrationstest jedoch, verdienen etwas mehr platz, daf&#xFC;r haben wir das <code>tests</code> Verzeichnis.</p>
+<h2 id="das-tests-verzeichnis"><a name="das-tests-verzeichnis" class="plugin-anchor" href="#das-tests-verzeichnis"><span class="fa fa-link"></span></a>Das <code>tests</code> Verzeichnis</h2>
 <p>Um einen Integrationstest zu schreiben erzeugen wir erst einmal unser <code>tests</code> Verzeichnis und legen darin eine <code>.rs</code> Datei an: <code>tests/lib.rs</code>:</p>
-<pre><code class="language-rust,ignore">extern crate adder;
+<pre><code class="lang-rust,ignore">extern crate adder;
 
 #[test]
 fn it_works() {
     assert_eq!(4, adder::add_two(2));
 }
 </code></pre>
-<p>Das sieht unserem vorherigen Test schon sehr ähnlich, naja, nicht ganz.
+<p>Das sieht unserem vorherigen Test schon sehr &#xE4;hnlich, naja, nicht ganz.
 Wir haben nun die Zeile <code>extern crate adder</code> ganz oben.
-Das ist weil die Tests im <code>tests</code> Verzeichnis ein eigenes Crate sind und daher unsere Bibliothek erst einbinden müssen.
-Das ist auch ein Grund warum Integrationstests hier gut aufgehoben sind, sie verwenden unsere Bibliothek genauso wie es ein dritter tun würde.</p>
-<p>Führen wir sie aus:</p>
-<pre><code class="language-bash">$ cargo test
-   Compiling adder v0.0.1 (file:///home/you/projects/adder)
-     Running target/adder-91b3e234d4ed382a
+Das ist weil die Tests im <code>tests</code> Verzeichnis ein eigenes Crate sind und daher unsere Bibliothek erst einbinden m&#xFC;ssen.
+Das ist auch ein Grund warum Integrationstests hier gut aufgehoben sind, sie verwenden unsere Bibliothek genauso wie es ein dritter tun w&#xFC;rde.</p>
+<p>F&#xFC;hren wir sie aus:</p>
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/you/projects/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test tests::it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> tests::it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
      Running target/lib-c18e7d3494509e74
 
-running 1 test
-test it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 0 tests
+running <span class="hljs-number">0</span> tests
 
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">0</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
-<p>Jetzt haben wir drei Sektionen: unsere vorherigen Tests werden ja immernoch ausgeführt.</p>
+<p>Jetzt haben wir drei Sektionen: unsere vorherigen Tests werden ja immernoch ausgef&#xFC;hrt.</p>
 <p>Das ist alles zum <code>tests</code> Verzeichnis.
 Das <code>tests</code> Modul brauchen wir hier nicht, da alles mit Tests zu tun hat.</p>
 <p>Kommen wir nun zum dritten Teil: Dokumentation.</p>
-<h2>Dokumentationstests</h2>
+<h2 id="dokumentationstests"><a name="dokumentationstests" class="plugin-anchor" href="#dokumentationstests"><span class="fa fa-link"></span></a>Dokumentationstests</h2>
 <p>Nichts ist besser als Dokumentation mit Beispielen.
-Nichts ist blöder als wenn die Beispiele in der Dokumentation nicht funktionieren, zum Beispiel, weil sich die API verändert hat, seitdem die Dokumentation geschrieben wurde.
-Rust macht damit Schluss, indem es automatisch den Code in der Dokumentation mit ausführt.
+Nichts ist bl&#xF6;der als wenn die Beispiele in der Dokumentation nicht funktionieren, zum Beispiel, weil sich die API ver&#xE4;ndert hat, seitdem die Dokumentation geschrieben wurde.
+Rust macht damit Schluss, indem es automatisch den Code in der Dokumentation mit ausf&#xFC;hrt.
 <em>Allerdings nur bei Bibliothek-Crates, nicht Binary-Crates.</em>
 Hier nochmal <code>src/lib.rs</code> mit Beispielen:</p>
-<pre><code class="language-rust">//! The `adder` crate provides functions that add numbers to other numbers.
-//!
-//! # Examples
-//!
-//! ```
-//! assert_eq!(4, adder::add_two(2));
-//! ```
+<pre><code class="lang-rust">
+<span class="hljs-comment">//! The `adder` crate provides functions that add numbers to other numbers.</span>
+<span class="hljs-comment">//!</span>
+<span class="hljs-comment">//! # Examples</span>
+<span class="hljs-comment">//!</span>
+<span class="hljs-comment">//! ```</span>
+<span class="hljs-comment">//! assert_eq!(4, adder::add_two(2));</span>
+<span class="hljs-comment">//! ```</span>
 
-/// This function adds two to its argument.
-///
-/// # Examples
-///
-/// ```
-/// use adder::add_two;
-///
-/// assert_eq!(4, add_two(2));
-/// ```
-pub fn add_two(a: i32) -&gt; i32 {
-    a + 2
+<span class="hljs-comment">/// This function adds two to its argument.</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// # Examples</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// ```</span>
+<span class="hljs-comment">/// use adder::add_two;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// assert_eq!(4, add_two(2));</span>
+<span class="hljs-comment">/// ```</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_two</span></span>(a: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    a + <span class="hljs-number">2</span>
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+<span class="hljs-preprocessor">#[cfg(test)]</span>
+<span class="hljs-keyword">mod</span> tests {
+    <span class="hljs-keyword">use</span> super::*;
 
-    #[test]
-    fn it_works() {
-        assert_eq!(4, add_two(2));
+    <span class="hljs-preprocessor">#[test]</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">it_works</span></span>() {
+        <span class="hljs-built_in">assert_eq!</span>(<span class="hljs-number">4</span>, add_two(<span class="hljs-number">2</span>));
     }
 }
 </code></pre>
+
+
 <p>Wichtig hier: Moduldokumentation beginnt mit <code>//!</code> und Funktionsdokumentation mit <code>///</code>.
 Kommentare die mit <code>//</code> beginnen landen nicht in der Dokumentation.
-Rusts Dokumentationswerkzeug unterstützt Markdown, daher markieren drei Accent grave Zeichen *(backticks &quot;`&quot;)*
-Es ist Konvention eine Überschrift <code># Examples</code> <em>(bitte Englisch)</em> zu haben, dem dann die Beispiele folgen.</p>
+Rusts Dokumentationswerkzeug unterst&#xFC;tzt Markdown, daher markieren drei Accent grave Zeichen <em>(backticks &quot;`&quot;)</em>
+Es ist Konvention eine &#xDC;berschrift <code># Examples</code> <em>(bitte Englisch)</em> zu haben, dem dann die Beispiele folgen.</p>
 <p>Noch ein Testlauf:</p>
-<pre><code class="language-bash">$ cargo test
-   Compiling adder v0.0.1 (file:///home/steve/tmp/adder)
-     Running target/adder-91b3e234d4ed382a
+<pre><code class="lang-bash">$ cargo <span class="hljs-built_in">test</span>
+   Compiling adder v0.<span class="hljs-number">0.1</span> (file:///home/steve/tmp/adder)
+     Running target/adder-<span class="hljs-number">91</span>b3e234d4ed382a
 
-running 1 test
-test tests::it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> tests::it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
      Running target/lib-c18e7d3494509e74
 
-running 1 test
-test it_works ... ok
+running <span class="hljs-number">1</span> <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">test</span> it_works ... ok
 
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">1</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 
    Doc-tests adder
 
-running 2 tests
-test add_two_0 ... ok
-test _0 ... ok
+running <span class="hljs-number">2</span> tests
+<span class="hljs-built_in">test</span> add_two_0 ... ok
+<span class="hljs-built_in">test</span> _0 ... ok
 
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured
+<span class="hljs-built_in">test</span> result: ok. <span class="hljs-number">2</span> passed; <span class="hljs-number">0</span> failed; <span class="hljs-number">0</span> ignored; <span class="hljs-number">0</span> measured
 </code></pre>
 <p>Jetzt haben wir alle drei Arten von Tests getestet.
-Hier heißt der Dokumentationstest <code>_0</code> und der Funktionstest <code>add_two_0</code>.
+Hier hei&#xDF;t der Dokumentationstest <code>_0</code> und der Funktionstest <code>add_two_0</code>.
 Die Zahl wir inkrementiert je mehr Tests dazukommen.</p>
-<p>Wir haben noch nicht alles wichtige zu Dokumentationstests hier erwähnt.
-Für mehr schau in das <a href="documentation">Dokumentationskapitel</a>.</p>
+<p>Wir haben noch nicht alles wichtige zu Dokumentationstests hier erw&#xE4;hnt.
+F&#xFC;r mehr schau in das <a href="documentation">Dokumentationskapitel</a>.</p>
 
+                    
+                    </section>
+                
+                
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a href="book/Der_Stack_Und_Der_Heap.html" class="mobile-nav-chapters previous">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a href="book/Bedingte_Kompilierung.html" class="mobile-nav-chapters next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
-
-            
-                <a href="book/Der_Stack_Und_Der_Heap.html" class="nav-chapters previous">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
-
-            
-                <a href="book/Bedingte_Kompilierung.html" class="nav-chapters next">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
-
         </div>
 
+        
+        <a href="../book/Der_Stack_Und_Der_Heap.html" class="navigation navigation-prev " aria-label="Previous page: Der Stack und der Heap"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../book/Bedingte_Kompilierung.html" class="navigation navigation-next " aria-label="Next page: Bedingte Kompilierung"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
-        </script>
+        
+<script src="../gitbook/app.js"></script>
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
     </body>
+    
 </html>
