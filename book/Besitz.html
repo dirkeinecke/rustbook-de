@@ -1,112 +1,1084 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="de" >
+    
     <head>
+        
         <meta charset="UTF-8">
-        <title></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Besitz | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="{% block description %}{% endblock %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.4.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+    
 
-        <base href="../">
+        
+    
+    
+    
+    <link rel="prev" href="../book/Schleifen.html" />
+    
 
-        <link rel="stylesheet" href="book.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-
-        <!-- MathJax -->
-        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
+        
     </head>
     <body>
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = localStorage.getItem('theme');
-            if (theme == null) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
-        </script>
+        
+        
+    <div class="book" data-level="4.7" data-basepath=".." data-revision="Tue Oct 06 2015 16:50:58 GMT+0200 (CEST)">
+    
 
-        <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = localStorage.getItem('sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
-        </script>
+<div class="book-summary">
+    <div class="book-search" role="search">
+        <input type="text" placeholder="Suchbegriff eingeben" class="form-control" />
+    </div>
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li><a href="Einführung.html"><strong>1.</strong> Einführung</a></li><li><a href="book/Erste_Schritte.html"><strong>2.</strong> Erste Schritte</a></li><li><ul class="section"><li><a href="book/Rust_Installieren.html"><strong>2.1.</strong> Rust installieren</a></li><li><a href="book/Hallo_Welt.html"><strong>2.2.</strong> Hallo Welt</a></li><li><a href="book/Hallo_Cargo.html"><strong>2.3.</strong> Hallo Cargo</a></li></ul></li><li><a href="book/Lerne_Rust.html"><strong>3.</strong> Lerne Rust</a></li><li><ul class="section"><li><a href="book/Ratespiel.html"><strong>3.1.</strong> Ratespiel</a></li><li><a href="book/Speisende_Philosophen.html"><strong>3.2.</strong> Speisende Philosophen</a></li><li><a href="book/Rust_In_Anderen_Sprachen.html"><strong>3.3.</strong> Rust in anderen Sprachen</a></li></ul></li><li><a href="book/Effektives_Rust.html"><strong>4.</strong> Effektives Rust</a></li><li><ul class="section"><li><a href="book/Der_Stack_Und_Der_Heap.html"><strong>4.1.</strong> Der Stack und der Heap</a></li><li><a href="book/Testen.html"><strong>4.2.</strong> Testen</a></li><li><a href="book/Bedingte_Kompilierung.html"><strong>4.3.</strong> Bedingte Kompilierung</a></li><li><a href="book/Dokumentation.html"><strong>4.4.</strong> Dokumentation</a></li><li><a href="book/Iteratoren.html"><strong>4.5.</strong> Iteratoren</a></li><li><a href="book/Nebenläufigkeit.html"><strong>4.6.</strong> Nebenläufigkeit</a></li><li><a href="book/Fehlerbehandlung.html"><strong>4.7.</strong> Fehlerbehandlung</a></li><li><a href="book/Garantien_Wählen.html"><strong>4.8.</strong> Garantien Wählen</a></li><li><a href="book/FFI.html"><strong>4.9.</strong> FFI</a></li><li><a href="book/Borrow_Und_AsRef.html"><strong>4.10.</strong> Borrow und AsRef</a></li><li><a href="book/Release_Kanäle.html"><strong>4.11.</strong> Release Kanäle</a></li></ul></li><li><a href="book/Syntax_Und_Semantik.html"><strong>5.</strong> Syntax und Semantik</a></li><li><ul class="section"><li><a href="book/Variablenbindung.html"><strong>5.1.</strong> Variablenbindung</a></li><li><a href="book/Funktionen.html"><strong>5.2.</strong> Funktionen</a></li><li><a href="book/Primitive_Typen.html"><strong>5.3.</strong> Primitive Typen</a></li><li><a href="book/Kommentare.html"><strong>5.4.</strong> Kommentare</a></li><li><a href="book/If.html"><strong>5.5.</strong> if</a></li><li><a href="book/Schleifen.html"><strong>5.6.</strong> Schleifen</a></li><li><a href="book/Besitz.html" class="active"><strong>5.7.</strong> Besitz</a></li><li><a href="book/Referenzen_Und_Ausleihen.html"><strong>5.8.</strong> Referenzen und Ausleihen</a></li><li><a href="book/Lebzeiten.html"><strong>5.9.</strong> Lebzeiten</a></li><li><a href="book/Veränderbarkeit.html"><strong>5.10.</strong> Veränderbarkeit</a></li><li><a href="book/Structs.html"><strong>5.11.</strong> Structs</a></li><li><a href="book/Enums.html"><strong>5.12.</strong> Enums</a></li><li><a href="book/Match.html"><strong>5.13.</strong> Match</a></li><li><a href="book/Muster.html"><strong>5.14.</strong> Muster</a></li><li><a href="book/Methodensyntax.html"><strong>5.15.</strong> Methodensyntax</a></li><li><a href="book/Vektoren.html"><strong>5.16.</strong> Vektoren</a></li><li><a href="book/Strings.html"><strong>5.17.</strong> Strings</a></li><li><a href="book/Generics.html"><strong>5.18.</strong> Generics</a></li><li><a href="book/Traits.html"><strong>5.19.</strong> Traits</a></li><li><a href="book/Drop.html"><strong>5.20.</strong> Drop</a></li><li><a href="book/If_Let.html"><strong>5.21.</strong> if let</a></li><li><a href="book/Trait_Objekte.html"><strong>5.22.</strong> Trait Objekte</a></li><li><a href="book/Closures.html"><strong>5.23.</strong> Closures</a></li><li><a href="book/UFCS.html"><strong>5.24.</strong> Universal Function Call Syntax</a></li><li><a href="book/Crates_Und_Module.html"><strong>5.25.</strong> Crates und Module</a></li><li><a href="book/Const_Und_Static.html"><strong>5.26.</strong> `const` und `static`</a></li><li><a href="book/Attribute.html"><strong>5.27.</strong> Attribute</a></li><li><a href="book/Type_Aliase.html"><strong>5.28.</strong> `type` Aliase</a></li><li><a href="book/Zwischen_Typen_Umwandeln.html"><strong>5.29.</strong> Zwischen typen umwandeln</a></li><li><a href="book/Assoziierte_Typen.html"><strong>5.30.</strong> Assoziierte Typen</a></li><li><a href="book/Größenlose_Typen.html"><strong>5.31.</strong> Größenlose Typen</a></li><li><a href="book/Operatoren_Und_Überladen.html"><strong>5.32.</strong> Operatoren und Überladen</a></li><li><a href="book/Deref_Umwandlung.html"><strong>5.33.</strong> Deref Umwandlung</a></li><li><a href="book/Makros.html"><strong>5.34.</strong> Makros</a></li><li><a href="book/Raw_Zeiger.html"><strong>5.35.</strong> Raw Zeiger</a></li><li><a href="book/Unsafe.html"><strong>5.36.</strong> `unsafe`</a></li></ul></li><li><a href="book/Nightly_Rust.html"><strong>6.</strong> Nightly Rust</a></li><li><ul class="section"><li><a href="book/Compiler_Plugins.html"><strong>6.1.</strong> Compiler Plugins</a></li><li><a href="book/Inline_Assembly.html"><strong>6.2.</strong> Inline Assembly</a></li><li><a href="book/No_Stdlib.html"><strong>6.3.</strong> `no_stdlib`</a></li><li><a href="book/Intrinsics.html"><strong>6.4.</strong> Intrinsics</a></li><li><a href="book/Lang_Items.html"><strong>6.5.</strong> Lang items</a></li><li><a href="book/Fortgeschrittenes_Linken.html"><strong>6.6.</strong> Fortgeschrittenes Linken</a></li><li><a href="book/Benchmark_Tests.html"><strong>6.7.</strong> Benchmark Tests</a></li><li><a href="book/Box_Syntax_Und_Muster.html"><strong>6.8.</strong> Box Syntax und Muster</a></li><li><a href="book/Slice_Muster.html"><strong>6.9.</strong> Slice Muster</a></li><li><a href="book/Assoziierte_Konstanten.html"><strong>6.10.</strong> Assoziierte Konstanten</a></li></ul></li><li><a href="book/Glossar.html"><strong>7.</strong> Glossar</a></li><li><a href="book/Akademische_Forschung.html"><strong>8.</strong> Akademische Forschung</a></li></ul>
-        </div>
+            
 
-        <div id="page-wrapper" class="page-wrapper">
-
-            <div class="page">
-                <div id="menu-bar" class="menu-bar">
-                    <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
-                    </div>
-
-                    <h1 class="menu-title"></h1>
-
-                    <div class="right-buttons">
-                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
-                    </div>
-                </div>
-
-                <div id="content" class="content">
-                    <h1>Besitz</h1>
-
-                </div>
-
-                <!-- Mobile navigation buttons -->
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
                 
-                    <a href="book/Schleifen.html" class="mobile-nav-chapters previous">
-                        <i class="fa fa-angle-left"></i>
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Einführung
                     </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="book/Erste_Schritte.html">
+            
                 
-
+                    <a href="../book/Erste_Schritte.html">
                 
-                    <a href="book/Referenzen_Und_Ausleihen.html" class="mobile-nav-chapters next">
-                        <i class="fa fa-angle-right"></i>
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Erste Schritte
                     </a>
+            
+            
+            <ul class="articles">
                 
+    
+        <li class="chapter " data-level="1.1" data-path="book/Rust_Installieren.html">
+            
+                
+                    <a href="../book/Rust_Installieren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Rust installieren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="book/Hallo_Welt.html">
+            
+                
+                    <a href="../book/Hallo_Welt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Hallo Welt
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="book/Hallo_Cargo.html">
+            
+                
+                    <a href="../book/Hallo_Cargo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Hallo Cargo
+                    </a>
+            
+            
+        </li>
+    
 
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="book/Lerne_Rust.html">
+            
+                
+                    <a href="../book/Lerne_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Lerne Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="book/Ratespiel.html">
+            
+                
+                    <a href="../book/Ratespiel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Ratespiel
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="book/Speisende_Philosophen.html">
+            
+            <span><b>2.2.</b> Speisende Philosophen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="book/Rust_In_Anderen_Sprachen.html">
+            
+            <span><b>2.3.</b> Rust in anderen Sprachen</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="book/Effektives_Rust.html">
+            
+                
+                    <a href="../book/Effektives_Rust.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Effektives Rust
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="book/Der_Stack_Und_Der_Heap.html">
+            
+                
+                    <a href="../book/Der_Stack_Und_Der_Heap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Der Stack und der Heap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="book/Testen.html">
+            
+                
+                    <a href="../book/Testen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Testen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="book/Bedingte_Kompilierung.html">
+            
+                
+                    <a href="../book/Bedingte_Kompilierung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Bedingte Kompilierung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="book/Dokumentation.html">
+            
+                
+                    <a href="../book/Dokumentation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Dokumentation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="book/Iteratoren.html">
+            
+                
+                    <a href="../book/Iteratoren.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Iteratoren
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="book/Nebenläufigkeit.html">
+            
+            <span><b>3.6.</b> Nebenläufigkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="book/Fehlerbehandlung.html">
+            
+            <span><b>3.7.</b> Fehlerbehandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="book/Garantien_Wählen.html">
+            
+            <span><b>3.8.</b> Garantien Wählen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="book/FFI.html">
+            
+            <span><b>3.9.</b> FFI</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="book/Borrow_Und_AsRef.html">
+            
+            <span><b>3.10.</b> Borrow und AsRef</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="book/Release_Kanäle.html">
+            
+            <span><b>3.11.</b> Release Kanäle</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="book/Syntax_Und_Semantik.html">
+            
+                
+                    <a href="../book/Syntax_Und_Semantik.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Syntax und Semantik
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="book/Variablenbindung.html">
+            
+                
+                    <a href="../book/Variablenbindung.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Variablenbindung
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="book/Funktionen.html">
+            
+                
+                    <a href="../book/Funktionen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Funktionen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="book/Primitive_Typen.html">
+            
+                
+                    <a href="../book/Primitive_Typen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Primitive Typen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="book/Kommentare.html">
+            
+                
+                    <a href="../book/Kommentare.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Kommentare
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="book/If.html">
+            
+                
+                    <a href="../book/If.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        if
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="book/Schleifen.html">
+            
+                
+                    <a href="../book/Schleifen.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Schleifen
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.7" data-path="book/Besitz.html">
+            
+                
+                    <a href="../book/Besitz.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Besitz
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="book/Referenzen_Und_Ausleihen.html">
+            
+            <span><b>4.8.</b> Referenzen und Ausleihen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="book/Lebzeiten.html">
+            
+            <span><b>4.9.</b> Lebzeiten</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="book/Veränderbarkeit.html">
+            
+            <span><b>4.10.</b> Veränderbarkeit</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="book/Structs.html">
+            
+            <span><b>4.11.</b> Structs</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.12" data-path="book/Enums.html">
+            
+            <span><b>4.12.</b> Enums</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.13" data-path="book/Match.html">
+            
+            <span><b>4.13.</b> Match</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.14" data-path="book/Muster.html">
+            
+            <span><b>4.14.</b> Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.15" data-path="book/Methodensyntax.html">
+            
+            <span><b>4.15.</b> Methodensyntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.16" data-path="book/Vektoren.html">
+            
+            <span><b>4.16.</b> Vektoren</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.17" data-path="book/Strings.html">
+            
+            <span><b>4.17.</b> Strings</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.18" data-path="book/Generics.html">
+            
+            <span><b>4.18.</b> Generics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.19" data-path="book/Traits.html">
+            
+            <span><b>4.19.</b> Traits</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.20" data-path="book/Drop.html">
+            
+            <span><b>4.20.</b> Drop</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.21" data-path="book/If_Let.html">
+            
+            <span><b>4.21.</b> if let</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.22" data-path="book/Trait_Objekte.html">
+            
+            <span><b>4.22.</b> Trait Objekte</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.23" data-path="book/Closures.html">
+            
+            <span><b>4.23.</b> Closures</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.24" data-path="book/UFCS.html">
+            
+            <span><b>4.24.</b> Universal Function Call Syntax</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.25" data-path="book/Crates_Und_Module.html">
+            
+            <span><b>4.25.</b> Crates und Module</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.26" data-path="book/Const_Und_Static.html">
+            
+            <span><b>4.26.</b> `const` und `static`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.27" data-path="book/Attribute.html">
+            
+            <span><b>4.27.</b> Attribute</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.28" data-path="book/Type_Aliase.html">
+            
+            <span><b>4.28.</b> `type` Aliase</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.29" data-path="book/Zwischen_Typen_Umwandeln.html">
+            
+            <span><b>4.29.</b> Zwischen typen umwandeln</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.30" data-path="book/Assoziierte_Typen.html">
+            
+            <span><b>4.30.</b> Assoziierte Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.31" data-path="book/Größenlose_Typen.html">
+            
+            <span><b>4.31.</b> Größenlose Typen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.32" data-path="book/Operatoren_Und_Überladen.html">
+            
+            <span><b>4.32.</b> Operatoren und Überladen</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.33" data-path="book/Deref_Umwandlung.html">
+            
+            <span><b>4.33.</b> Deref Umwandlung</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.34" data-path="book/Makros.html">
+            
+            <span><b>4.34.</b> Makros</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.35" data-path="book/Raw_Zeiger.html">
+            
+            <span><b>4.35.</b> Raw Zeiger</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.36" data-path="book/Unsafe.html">
+            
+            <span><b>4.36.</b> `unsafe`</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="book/Nightly_Rust.html">
+            
+            <span><b>5.</b> Nightly Rust</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="book/Compiler_Plugins.html">
+            
+            <span><b>5.1.</b> Compiler Plugins</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="book/Inline_Assembly.html">
+            
+            <span><b>5.2.</b> Inline Assembly</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="book/No_Stdlib.html">
+            
+            <span><b>5.3.</b> `no_stdlib`</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="book/Intrinsics.html">
+            
+            <span><b>5.4.</b> Intrinsics</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="book/Lang_Items.html">
+            
+            <span><b>5.5.</b> Lang items</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="book/Fortgeschrittenes_Linken.html">
+            
+            <span><b>5.6.</b> Fortgeschrittenes Linken</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="book/Benchmark_Tests.html">
+            
+            <span><b>5.7.</b> Benchmark Tests</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="book/Box_Syntax_Und_Muster.html">
+            
+            <span><b>5.8.</b> Box Syntax und Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="book/Slice_Muster.html">
+            
+            <span><b>5.9.</b> Slice Muster</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="book/Assoziierte_Konstanten.html">
+            
+            <span><b>5.10.</b> Assoziierte Konstanten</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="book/Glossar.html">
+            
+            <span><b>6.</b> Glossar</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="book/Akademische_Forschung.html">
+            
+            <span><b>7.</b> Akademische Forschung</span>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Veröffentlicht mit GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Inhaltsverzeichnis"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Suche"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Schrifteinstellungen"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">Hell</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Nacht</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Teilen"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
             </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Auf Twitter teilen
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Auf Google teilen
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Auf Facebook teilen
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Auf Weibo teilen
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Auf Instapaper teilen
+                </button>
+            </div>
+        </div>
+    </div>
+    
 
-            
-                <a href="book/Schleifen.html" class="nav-chapters previous">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
 
-            
-                <a href="book/Referenzen_Und_Ausleihen.html" class="nav-chapters next">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
 
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Die Programmiersprache Rust</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="besitz"><a name="besitz" class="plugin-anchor" href="#besitz"><span class="fa fa-link"></span></a>Besitz</h1>
+<p>Dieser Guide ist einer von dreien, der Rusts Ownership-System.
+pr&#xE4;sentiert. Dies ist eines von Rusts einzigartigen und verlockenden
+Features mit denen Rust Entwickler vertraut sein sollten.
+Durch Ownership [engl.: Besitz] erreicht Rust sein gr&#xF6;&#xDF;tes Ziel,
+die Speichersicherheit.
+Es gibt ein paar verschiedene Konzepte, jedes mit seinem eigenen Kapitel:</p>
+<ul>
+<li>Besitz, das was du gerade liest.</li>
+<li><a href="Referenzen_Und_Ausleihen.md">Ausleihen</a>, und das assozierte Feature &#x2018;Referenzen&#x2019;</li>
+<li><a href="Lebzeiten.md">Lebzeiten</a>, ein fortgeschrittenes Konzept des Ausleihens.</li>
+</ul>
+<p>Diese drei Kapitel sind verwandt und deswegen in dieser Reihenfolge zu lesen.
+Du wirst alle drei ben&#xF6;tigen um das Ownership-System vollst&#xE4;ndig zu verstehen.</p>
+<h1 id="meta"><a name="meta" class="plugin-anchor" href="#meta"><span class="fa fa-link"></span></a>Meta</h1>
+<p>Bevor wir in die Details gehen gibt es zwei wichtige Hinweise &#xFC;ber das
+Ownership-System.</p>
+<p>Rust hat einen Fokus auf Sicherheit und Geschwindigkeit.
+Es erf&#xFC;llt diese Ziele durch viele &quot;kostenfreie Abstraktionen&quot;
+[&#x2018;zero-cost abstractions&#x2019;], was bedeutet, dass in Rust die Kosten so niedrig
+wie m&#xF6;glich sind um diese Abstraktionen funktionieren zu lassen.
+Jegliche Analyse &#xFC;ber die wie in diesem Guide sprechen wird
+<em>zur Kompilierzeit</em> ausgef&#xFC;hrt. Du zahlst f&#xFC;r diese Features
+keine Extrakosten zur Laufzeit.</p>
+<p>Jedoch hat dieses System einen gewissen Preis: Die Lernkurve.
+Viele neue Rust Nutzer erleben etwas,
+was wir &quot;mit dem <em>borrow checker</em> k&#xE4;mpfen&quot; nennen,
+wobei dann Rust verweigert ein Programm zu kompilieren,
+bei dem der Author denkt, dass es korrekt ist.
+Das passiert h&#xE4;ufig, da das mentale Modell des Programmierers von Ownership
+nicht den eigentlichen Regeln entspricht, die Rust implementiert.
+Du wirst wahrscheinlich zuerst etwas &#xE4;hnliches erleben.
+Die guten Nachricht ist aber:
+Erfahrenere Rust Entwickler berichten, dass, sobald sie eine Zeit
+mit den Regeln des Ownership-Systems gearbeitet haben, sie immer weniger
+mit dem <em>borrow checker</em> k&#xE4;mpfen m&#xFC;ssen. </p>
+<p>Mit diesem Wissen, lass uns &#xFC;ber Besitz lernen.</p>
+<h1 id="besitz"><a name="besitz" class="plugin-anchor" href="#besitz"><span class="fa fa-link"></span></a>Besitz</h1>
+<p><a href="Variablenbindung.html">Variablenbindungen</a> haben eine bestimmte Eigenschaft in Rust:
+Sie &#x2018;besitzen&#x2019; das woran sie gebunden sind.
+Das bedeutet, dass Rust die gebundene Ressource freigibt,
+wenn eine Bindung den Scope verl&#xE4;sst. Zum Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>() {
+    <span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+}
+</code></pre>
+<p>Wenn <code>v</code> in den Scope eingef&#xFC;hrt wird, dann wird ein neuer <a href="https://doc.rust-lang.org/std/std/vec/struct.Vec.html" target="_blank"><code>Vec&lt;T&gt;</code></a>
+erzeugt. In diesem Fall alloziert der Vektor auch Speicher auf dem Heap f&#xFC;r
+die ersten drei Elemente. Wenn <code>v</code> dann am Ende von <code>foo</code> den Scope verl&#xE4;sst,
+r&#xE4;umt Rust alles was mit dem Vektor zu tun hat auf, sogar den auf dem Heap
+allozierten Speicher.
+Dies passiert deterministisch am Ende des Scopes.</p>
+<h1 id="move-semantik"><a name="move-semantik" class="plugin-anchor" href="#move-semantik"><span class="fa fa-link"></span></a>Move Semantik</h1>
+<p>Es gibt jedoch noch ein paar mehr Feinheiten hier: Rust stellt sicher,
+dass es <em>genau eine</em> Bindung an eine bestimmte Ressource gibt.
+Zum Beispiel, wenn wir einen Vektor haben, k&#xF6;nnen wir ihn einer
+anderen Bindung zuweisen:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-keyword">let</span> v2 = v;
+</code></pre>
+<p>Aber, wenn wir versuchen <code>v</code> danach zu verwenden,
+bekommen wir einen Fehler:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-keyword">let</span> v2 = v;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;v[0] is: {}&quot;</span>, v[<span class="hljs-number">0</span>]);
+</code></pre>
+<p>Der Fehler sieht so aus:</p>
+<pre><code class="lang-text">error: use of moved value: `v`
+println!(&quot;v[0] is: {}&quot;, v[0]);
+                        ^
+</code></pre>
+<p>Etwas &#xE4;hnliches passiert, wenn wir eine Funktion definieren,
+welche etwas in Besitz nimmt und dann versuchen etwas zu verwenden,
+nachdem wir es ihr als Argument &#xFC;bergeben haben:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">take</span></span>(v: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt;) {
+    <span class="hljs-comment">// what happens here isn&#x2019;t important.</span>
+}
+
+<span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+take(v);
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;v[0] is: {}&quot;</span>, v[<span class="hljs-number">0</span>]);
+</code></pre>
+<p>Der gleiche Fehler: &#x2018;use of moved value&#x2019;.
+Wenn wir den Besitz an etwas &#xFC;bergeben, dann sagen wir,
+dass wir die Sache &quot;bewegt&quot; [moved] haben. Man braucht hier keine
+besondere Annotation, Rust macht das einfach standardm&#xE4;&#xDF;ig.</p>
+<h2 id="die-details"><a name="die-details" class="plugin-anchor" href="#die-details"><span class="fa fa-link"></span></a>Die Details</h2>
+<p>Der Grund warum die Bindung nach einem <em>move</em> nicht verwenden k&#xF6;nnen ist
+subtil, aber sehr wichtig. Wenn wir solchen Code schreiben:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> v = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-keyword">let</span> v2 = v;
+</code></pre>
+<p>Die erste Zeile alloziert Speicher f&#xFC;r das Vektor-Objekt <code>v</code> und f&#xFC;r
+die Daten, die es enth&#xE4;lt. Das Vektor-Objekt wird auf dem <a href="Der_Stack_Und_Der_Heap.html">Stack</a>
+gespeichert und enth&#xE4;lt einen Zeiger auf den Inhalt (<code>[1, 2, 3]</code>), welcher
+auf dem <a href="Der_Stack_Und_Der_Heap.html">Heap</a> gespeichert ist. Wenn wir <code>v</code> zu <code>v2</code> bewegen,
+dann wird eine Kopie dieses Zeigers f&#xFC;r <code>v2</code> erstellt.
+Das bedeutet, dass es zwei Zeiger gibt, die auf den Inhalt des Vektors auf dem
+Heap zeigen. Es w&#xFC;rde Rusts Sicherheitsgarantien verletzen indem es ein
+<em>data race</em> erm&#xF6;glicht. Deswegen verbietet Rust es <code>v</code> zu benutzen,
+nachdem wir es bewegt haben.</p>
+<p>Es ist auch wichtig zu erw&#xE4;hnen, dass Optimierungen die tats&#xE4;chliche Kopie
+der Bytes auf dem Stack entfernen k&#xF6;nnen, je nach den Umst&#xE4;nden.
+Also ist ein <code>move</code> nicht so ineffizient wie er zuerst scheint.</p>
+<h2 id="-copy-typen"><a name="-copy-typen" class="plugin-anchor" href="#-copy-typen"><span class="fa fa-link"></span></a><code>Copy</code> Typen</h2>
+<p>Wir haben etabliert, dass, wenn Besitz an eine andere Bindung &#xFC;bertragen wird,
+man die Originalbindung nicht mehr verwenden lassen. Es gibt jedoch ein
+<a href="Traits.md">Trait</a> namens <code>Copy</code> der dieses Verhalten &#xE4;ndert.
+Wir haben &#xFC;ber Traits noch nicht diskutiert, aber f&#xFC;rs erste kannst du sie
+dir als eine Art Annotation eines bestimmten Types vorstellen,
+welche zus&#xE4;tzliches Verhalten hinzuf&#xFC;gt. Zum Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> v = <span class="hljs-number">1</span>;
+
+<span class="hljs-keyword">let</span> v2 = v;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;v is: {}&quot;</span>, v);
+</code></pre>
+<p>In diesem Fall ist <code>v</code> ein <code>i32</code>, welcher den <code>Copy</code> Trait implementiert.
+Das bedeutet, dass genau wie bei einem <em>move</em> eine Kopie der Daten gemacht
+wird, wenn wir <code>v</code> nach <code>v2</code> zuweisen. Aber anders als bei einem <em>move</em>,
+k&#xF6;nnen wir <code>v</code> danach trotzdem verwenden. Das ist so, weil ein <code>i32</code>
+keine Zeiger auf irgendwelche Daten woanders hat und somit eine
+vollst&#xE4;ndige Kopie ist.</p>
+<p>Alle primitiven Typen implementieren den <code>Copy</code> Trait und ihr Besitz
+wird deswegen nicht bewegt wie man vermuten k&#xF6;nnte, gem&#xE4;&#xDF; den
+&#xB4;Ownership Regeln&#xB4;. Zum Beispiel kompilieren die folgenden beiden
+Codeschnipsel nur, weil <code>i32</code> und <code>bool</code> den <code>Copy</code> Trait implementieren.</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> a = <span class="hljs-number">5</span>;
+
+    <span class="hljs-keyword">let</span> _y = double(a);
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, a);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">double</span></span>(x: <span class="hljs-keyword">i32</span>) -&gt; <span class="hljs-keyword">i32</span> {
+    x * <span class="hljs-number">2</span>
+}
+</code></pre>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> a = <span class="hljs-keyword">true</span>;
+
+    <span class="hljs-keyword">let</span> _y = change_truth(a);
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, a);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">change_truth</span></span>(x: <span class="hljs-keyword">bool</span>) -&gt; <span class="hljs-keyword">bool</span> {
+    !x
+}
+</code></pre>
+<p>Wenn wir Typen verwendet h&#xE4;tten, die nicht den <code>Copy</code> Trait implementieren,
+dann w&#xFC;rden wir einen Kompilierfehler bekommen, da wir versucht h&#xE4;tten
+einen <em>bewegten Wert</em> [moved value] zu verwenden.</p>
+<pre><code class="lang-text">error: use of moved value: `a`
+println!(&quot;{}&quot;, a);
+               ^
+</code></pre>
+<p>Wir werden im <a href="Traits.md">Traits</a> Abschnitt diskutieren wie
+man mit seinen eigenen Typen <code>Copy</code> implementiert.</p>
+<h1 id="mehr-als-besitz"><a name="mehr-als-besitz" class="plugin-anchor" href="#mehr-als-besitz"><span class="fa fa-link"></span></a>Mehr als Besitz</h1>
+<p>Wenn wir jedes mal den Besitz zur&#xFC;ckgeben m&#xFC;ssten,
+dann w&#xFC;rde jede Funktion die wir schreiben so aussehen: </p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(v: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt;) -&gt; <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt; {
+    <span class="hljs-comment">// do stuff with v</span>
+
+    <span class="hljs-comment">// hand back ownership</span>
+    v
+}
+</code></pre>
+<p>Das w&#xFC;rde sehr l&#xE4;stig werden. Es w&#xFC;rde umso schlimmer werden je mehr
+Sachen wir in Besitz nehmen wollen:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(v1: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt;, v2: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt;) -&gt; (<span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt;, <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-keyword">i32</span>&gt;, <span class="hljs-keyword">i32</span>) {
+    <span class="hljs-comment">// do stuff with v1 and v2</span>
+
+    <span class="hljs-comment">// hand back ownership, and the result of our function</span>
+    (v1, v2, <span class="hljs-number">42</span>)
+}
+
+<span class="hljs-keyword">let</span> v1 = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">let</span> v2 = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-keyword">let</span> (v1, v2, answer) = foo(v1, v2);
+</code></pre>
+<p>B&#xE4;h! Der R&#xFC;ckgabetyp, die Return-Zeile und der Funktionsaufruf sind
+viel zu kompliziert.</p>
+<p>Gl&#xFC;cklicherweise bietet uns Rust ein Feature namens &quot;Borrowing&quot;
+[engl.: Ausleihen], welches uns hilft dieses Problem zu l&#xF6;sen.
+Das ist das Thema des n&#xE4;chsten Abschnitts!</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
         </div>
 
+        
+        <a href="../book/Schleifen.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Schleifen"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
 
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
-        </script>
+        
+<script src="../gitbook/app.js"></script>
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
     </body>
+    
 </html>
