@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Lerne Rust | Die Programmiersprache Rust</title>
+        <title>Lebensdauer | Die Programmiersprache Rust</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.2">
@@ -33,10 +33,8 @@
         
     
     
-    <link rel="next" href="../book/Ratespiel.html" />
     
-    
-    <link rel="prev" href="../book/Hallo_Cargo.html" />
+    <link rel="prev" href="../book/Referenzen_Und_Ausleihen.html" />
     
 
         
@@ -44,7 +42,7 @@
     <body>
         
         
-    <div class="book" data-level="2" data-basepath=".." data-revision="Sun Oct 11 2015 22:50:29 GMT+0200 (CEST)">
+    <div class="book" data-level="4.9" data-basepath=".." data-revision="Sun Oct 11 2015 22:50:29 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -141,7 +139,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="book/Lerne_Rust.html">
+        <li class="chapter " data-level="2" data-path="book/Lerne_Rust.html">
             
                 
                     <a href="../book/Lerne_Rust.html">
@@ -473,7 +471,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.9" data-path="book/Lebensdauer.html">
+        <li class="chapter active" data-level="4.9" data-path="book/Lebensdauer.html">
             
                 
                     <a href="../book/Lebensdauer.html">
@@ -885,12 +883,278 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="lerne-rust"><a name="lerne-rust" class="plugin-anchor" href="#lerne-rust"><span class="fa fa-link"></span></a>Lerne Rust</h1>
-<p>Willkommen! Dieser Abschnitt enth&#xE4;lt ein paar Tutorials, welche dir Rust, durch
-aufbauen eines Projektes, beibringen. Du wirst zuerst eine umfassende &#xDC;bersicht
-bekommen, aber Details werden wir &#xFC;berfliegen.</p>
-<p>Falls du lieber eine &#x2018;von Grund auf&#x2019;-artige Erfahrung magst, dann schau dir
-<a href="Syntax_Und_Semantik.html">Syntax und Semantik</a> an.</p>
+                        <h1 id="lebensdauer"><a name="lebensdauer" class="plugin-anchor" href="#lebensdauer"><span class="fa fa-link"></span></a>Lebensdauer</h1>
+<p>Dieser Guide ist einer von dreien, der Rusts Ownership-System.
+pr&#xE4;sentiert. Dies ist eines von Rusts einzigartigen und verlockenden
+Features mit denen Rust Entwickler vertraut sein sollten.
+Durch Ownership [engl.: Besitz] erreicht Rust sein gr&#xF6;&#xDF;tes Ziel,
+die Speichersicherheit.
+Es gibt ein paar verschiedene Konzepte, jedes mit seinem eigenen Kapitel:</p>
+<ul>
+<li><a href="Besitz.html">Besitz</a>, das Schl&#xFC;sselkonzept.</li>
+<li><a href="Referenzen_Und_Ausleihen.html">Ausleihen</a>, und das assozierte Feature &#x2018;Referenzen&#x2019;</li>
+<li>[Lebensdauer][lifetimes], das was du gerade liest.</li>
+</ul>
+<p>Diese drei Kapitel sind verwandt und deswegen in dieser Reihenfolge zu lesen.
+Du wirst alle drei ben&#xF6;tigen um das Ownership-System vollst&#xE4;ndig zu verstehen.</p>
+<h1 id="meta"><a name="meta" class="plugin-anchor" href="#meta"><span class="fa fa-link"></span></a>Meta</h1>
+<p>Bevor wir in die Details gehen gibt es zwei wichtige Hinweise &#xFC;ber das
+Ownership-System.</p>
+<p>Rust hat einen Fokus auf Sicherheit und Geschwindigkeit.
+Es erf&#xFC;llt diese Ziele durch viele &quot;kostenfreie Abstraktionen&quot;
+[&#x2018;zero-cost abstractions&#x2019;], was bedeutet, dass in Rust die Kosten so niedrig
+wie m&#xF6;glich sind um diese Abstraktionen funktionieren zu lassen.
+Jegliche Analyse &#xFC;ber die wie in diesem Guide sprechen wird
+<em>zur Kompilierzeit</em> ausgef&#xFC;hrt. Du zahlst f&#xFC;r diese Features
+keine Extrakosten zur Laufzeit.</p>
+<p>Jedoch hat dieses System einen gewissen Preis: Die Lernkurve.
+Viele neue Rust Nutzer erleben etwas,
+was wir &quot;mit dem <em>borrow checker</em> k&#xE4;mpfen&quot; nennen,
+wobei dann Rust verweigert ein Programm zu kompilieren,
+bei dem der Author denkt, dass es korrekt ist.
+Das passiert h&#xE4;ufig, da das mentale Modell des Programmierers von Ownership
+nicht den eigentlichen Regeln entspricht, die Rust implementiert.
+Du wirst wahrscheinlich zuerst etwas &#xE4;hnliches erleben.
+Die guten Nachricht ist aber:
+Erfahrenere Rust Entwickler berichten, dass, sobald sie eine Zeit
+mit den Regeln des Ownership-Systems gearbeitet haben, sie immer weniger
+mit dem <em>borrow checker</em> k&#xE4;mpfen m&#xFC;ssen. </p>
+<p>Mit diesem Wissen, lass uns &#xFC;ber Lebensdauer lernen.</p>
+<h1 id="lebensdauer"><a name="lebensdauer" class="plugin-anchor" href="#lebensdauer"><span class="fa fa-link"></span></a>Lebensdauer</h1>
+<p>Eine Referenz auf eine Ressource, die jemand anderes besitzt, auszuleihen
+kann kompliziert sein. Stell dir zum Beispiel diese Folge von
+Vorg&#xE4;ngen vor:</p>
+<ul>
+<li>Ich erhalte ein Handle f&#xFC;r irgendeine Ressource.</li>
+<li>Ich leihe dir eine Referenz zu dieser Ressource.</li>
+<li>Ich entscheide mich, dass ich die Ressource nicht mehr brauch und
+gebe sie frei, w&#xE4;hrend du immernoch deine Referenz hast.</li>
+<li>Du entscheidest dich die Ressource zu verwenden.</li>
+</ul>
+<p>Oh-oh! Deine Referenz zeigt auf eine ung&#xFC;ltige Ressource.
+Dies wird &quot;baumelnder Zeiger&quot; oder &quot;use after free&quot; genannt.</p>
+<p>Um das zu beheben m&#xFC;ssen wir sicherstellen, dass Schritt Drei nie nach
+Schritt Vier passiert. Das Ownership-System in Rust macht dies durch ein
+Konzept namens Lebensdauer [lifetimes], welches den Scope beschreibt
+f&#xFC;r den eine Referenz g&#xFC;ltig ist.</p>
+<p>Wenn wir eine Funktion haben, die eine Referenz als Argument nimmt,
+dann ist die Lebenszeit dieser Referenz entweder implizit oder explizit:</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// implicit</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(x: &amp;<span class="hljs-keyword">i32</span>) {
+}
+
+<span class="hljs-comment">// explicit</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bar</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span>) {
+}
+</code></pre>
+<p>Das <code>&apos;a</code> wird als &quot;die Lebenszeit a&quot; gelesen. Technisch gesehen hat jedee
+Referenz eine zugeh&#xF6;rige Lebenszeit, aber der Compiler erlaubt es diese in
+&#xFC;blichen F&#xE4;llen wegzulassen.
+Bevor wir jedoch darauf eingehen gehen wir noch das explizite Beispiel durch:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bar</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(...)
+</code></pre>
+<p>Dieser Teil deklariert unsere Lebenszeit. Er besagt, dass <code>bar</code> eine Lebenszeit
+namens <code>&apos;a</code> hat. H&#xE4;tten wir zwei Referenz, dann w&#xFC;rde das so aussehen:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">bar</span></span>&lt;<span class="hljs-string">&apos;a</span>, <span class="hljs-string">&apos;b</span>&gt;(...)
+</code></pre>
+<p>I unserer Parameterlist benutzen wir dann die benannten Lebenszeiten:</p>
+<pre><code class="lang-rust">...(x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span>)
+</code></pre>
+<p>Wenn wir eine <code>&amp;mut</code> Referenz haben wollten,
+dann w&#xFC;rden wir folgendes schreiben:</p>
+<pre><code class="lang-rust">...(x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">mut</span> <span class="hljs-keyword">i32</span>)
+</code></pre>
+<p>Wenn du <code>&amp;mut i32</code> und <code>&amp;&apos;a mut i32</code> miteinander vergleichst,
+dann siehst du, dass sie eigentlich identisch sind, bis auf den Unterschied,
+dass sich ein <code>&apos;a</code> zwischen dem <code>&amp;</code> und dem <code>mut i32</code> eingeschlichen hat.
+Wir lesen <code>&amp;mut i32</code> als &quot;eine ver&#xE4;nderbare Referenz auf ein i32&quot; und
+<code>&amp;&apos;a mut i32</code> als &quot;eine ver&#xE4;nderbare Referenz auf ein i32
+mit der Lebenszeit <code>&apos;a</code>&quot;.</p>
+<h1 id="in-struct-s"><a name="in-struct-s" class="plugin-anchor" href="#in-struct-s"><span class="fa fa-link"></span></a>In <code>struct</code>s</h1>
+<p>Du wirst auch explizite Lebenszeiten brauchen,
+wenn du mit <a href="Structs.md"><code>struct</code></a>s arbeitest:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">struct</span> Foo&lt;<span class="hljs-string">&apos;a</span>&gt; {
+    x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span>,
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> y = &amp;<span class="hljs-number">5</span>; <span class="hljs-comment">// this is the same as `let _y = 5; let y = &amp;_y;`</span>
+    <span class="hljs-keyword">let</span> f = Foo { x: y };
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, f.x);
+}
+</code></pre>
+<p>Wie du sehen kannst k&#xF6;nnen <code>struct</code>s auch Lebenszeiten haben.
+Auf eine &#xE4;hnliche Art und Weise wie Funktionen deklariert</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">struct</span> Foo&lt;<span class="hljs-string">&apos;a</span>&gt; {
+</code></pre>
+<p>eine Lebenszeit und</p>
+<pre><code class="lang-rust">x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span>,
+</code></pre>
+<p>benutzt sie. Also warum brauchen wir eine Lebenszeit hier?
+Wir m&#xFC;ssen sicherstellen, dass keine Referenz auf <code>Foo</code> l&#xE4;nger lebt,
+als die enthaltene Referenz auf das <code>i32</code>.</p>
+<h2 id="-impl-bl%C3%B6cke"><a name="-impl-bl%C3%B6cke" class="plugin-anchor" href="#-impl-bl%C3%B6cke"><span class="fa fa-link"></span></a><code>impl</code> Bl&#xF6;cke</h2>
+<p>Lass uns eine Methode auf dem Typen <code>Foo</code> implementieren:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">struct</span> Foo&lt;<span class="hljs-string">&apos;a</span>&gt; {
+    x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span>,
+}
+
+<span class="hljs-keyword">impl</span>&lt;<span class="hljs-string">&apos;a</span>&gt; Foo&lt;<span class="hljs-string">&apos;a</span>&gt; {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">x</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span> { <span class="hljs-keyword">self</span>.x }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> y = &amp;<span class="hljs-number">5</span>; <span class="hljs-comment">// this is the same as `let _y = 5; let y = &amp;_y;`</span>
+    <span class="hljs-keyword">let</span> f = Foo { x: y };
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;x is: {}&quot;</span>, f.x());
+}
+</code></pre>
+<p>Wie du sehen kannst m&#xFC;ssen wir eine Lebensdauer f&#xFC;r <code>Foo</code> in der <code>impl</code> Zeile
+deklarieren. Wir wiederholen <code>&apos;a</code> zweimal, genau wie bei Funktionen: <code>impl&lt;&apos;a&gt;</code>
+deklariert eine Lebensdauer <code>&apos;a</code> und <code>Foo&lt;&apos;a&gt;</code> benutzt sie.</p>
+<h2 id="mehr-als-eine-lebensdauer"><a name="mehr-als-eine-lebensdauer" class="plugin-anchor" href="#mehr-als-eine-lebensdauer"><span class="fa fa-link"></span></a>Mehr als eine Lebensdauer</h2>
+<p>Wenn du mehrere Referenzen hast, dann kannst du die gleiche Lebensdauer mehrmals
+verwenden:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">x_or_y</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>, y: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>) -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span> {
+</code></pre>
+<p>Dieser code besagt, dass <code>x</code>, <code>y</code> und
+der R&#xFC;ckgabewert die gleiche Lebenszeit haben.
+Wenn du wolltest, dass <code>x</code> und <code>y</code> verschiedene Lebenszeiten haben,
+dann kannst du mehrere Lebenszeit-Parameter verwenden:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">x_or_y</span></span>&lt;<span class="hljs-string">&apos;a</span>, <span class="hljs-string">&apos;b</span>&gt;(x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>, y: &amp;<span class="hljs-string">&apos;b</span> <span class="hljs-keyword">str</span>) -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span> {
+</code></pre>
+<p>In diesem Beispiel haben <code>x</code> und <code>y</code> also verschiedene g&#xFC;ltige Scopes,
+aber der R&#xFC;ckgabewert hat dieselbe Lebenszeit wie <code>x</code>.</p>
+<h2 id="in-scopes-denken"><a name="in-scopes-denken" class="plugin-anchor" href="#in-scopes-denken"><span class="fa fa-link"></span></a>In Scopes denken</h2>
+<p>Ein Weg &#xFC;ber Lebenszeiten zu nachzudenken ist den Scope, indem eine Referenz
+g&#xFC;ltig ist, zu visualisieren. Zum Beispiel:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> y = &amp;<span class="hljs-number">5</span>;     <span class="hljs-comment">// -+ y goes into scope</span>
+                    <span class="hljs-comment">//  |</span>
+    <span class="hljs-comment">// stuff        //  |</span>
+                    <span class="hljs-comment">//  |</span>
+}                   <span class="hljs-comment">// -+ y goes out of scope</span>
+</code></pre>
+<p>Mit unserem <code>Foo</code> hinzugef&#xFC;gt:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">struct</span> Foo&lt;<span class="hljs-string">&apos;a</span>&gt; {
+    x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span>,
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> y = &amp;<span class="hljs-number">5</span>;           <span class="hljs-comment">// -+ y goes into scope</span>
+    <span class="hljs-keyword">let</span> f = Foo { x: y }; <span class="hljs-comment">// -+ f goes into scope</span>
+    <span class="hljs-comment">// stuff              //  |</span>
+                          <span class="hljs-comment">//  |</span>
+}                         <span class="hljs-comment">// -+ f and y go out of scope</span>
+</code></pre>
+<p>Unser <code>f</code> lebt im Scope von <code>y</code>, also funktioniert alles.
+Aber was wenn nicht? Dieser Code Funktioniert nicht:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">struct</span> Foo&lt;<span class="hljs-string">&apos;a</span>&gt; {
+    x: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">i32</span>,
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+    <span class="hljs-keyword">let</span> x;                    <span class="hljs-comment">// -+ x goes into scope</span>
+                              <span class="hljs-comment">//  |</span>
+    {                         <span class="hljs-comment">//  |</span>
+        <span class="hljs-keyword">let</span> y = &amp;<span class="hljs-number">5</span>;           <span class="hljs-comment">// ---+ y goes into scope</span>
+        <span class="hljs-keyword">let</span> f = Foo { x: y }; <span class="hljs-comment">// ---+ f goes into scope</span>
+        x = &amp;f.x;             <span class="hljs-comment">//  | | error here</span>
+    }                         <span class="hljs-comment">// ---+ f and y go out of scope</span>
+                              <span class="hljs-comment">//  |</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, x);        <span class="hljs-comment">//  |</span>
+}                             <span class="hljs-comment">// -+ x goes out of scope</span>
+</code></pre>
+<p>Uff! Wie du hier siehst ist der Scope von <code>f</code> und <code>y</code> kleiner als der von <code>x</code>.
+Aber wenn wir <code>x = &amp;f.x</code> ausf&#xFC;hren, erzeugen wir eine Referenz auf etwas, was
+kurz davor steht den Scope zu verlassen.</p>
+<h2 id="-static"><a name="-static" class="plugin-anchor" href="#-static"><span class="fa fa-link"></span></a>&apos;static</h2>
+<p>Die Lebenszeit namens &#x2018;static&#x2019; ist eine besondere Lebenszeit. Sie signalisiert,
+dass etwas dieselbe Lebenszeit wie das ganze Programm hat.
+Die meisten Rust Programmierer treffen das erste mal auf <code>&apos;static</code>,
+wenn sie mit Strings arbeiten:</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">let</span> x: &amp;<span class="hljs-string">&apos;static</span> <span class="hljs-keyword">str</span> = <span class="hljs-string">&quot;Hello, world.&quot;</span>;
+</code></pre>
+<p>Stringliterale haben den Typ <code>&amp;&apos;static str</code>, da die Referenz immer g&#xFC;ltig ist:
+Sie sind in das Datensegment der Bin&#xE4;rdatei integriert.
+Ein anderes Beispiel sind <em>globals</em> (globale Variablen):</p>
+<pre><code class="lang-rust"><span class="hljs-keyword">static</span> FOO: <span class="hljs-keyword">i32</span> = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> x: &amp;<span class="hljs-string">&apos;static</span> <span class="hljs-keyword">i32</span> = &amp;FOO;
+</code></pre>
+<p>Dies f&#xFC;gt dem Datensegment der Bin&#xE4;rdatei eine <code>i32</code> hinzu und <code>x</code> ist eine
+Referenz darauf.</p>
+<h2 id="weglassen-von-lebenszeiten"><a name="weglassen-von-lebenszeiten" class="plugin-anchor" href="#weglassen-von-lebenszeiten"><span class="fa fa-link"></span></a>Weglassen von Lebenszeiten</h2>
+<p>Rust unterst&#xFC;tzt m&#xE4;chtige lokale Typinferenz in Funktionsk&#xF6;rpern, aber es ist
+verboten in Signaturen aus der jeweiligen Signatur allein Sachen abzuleiten.
+Es gibt jedoch aus ergonomischen Gr&#xFC;nden eine sehr Eingeschr&#xE4;nkte Form von
+Inferenz namens <em>lifetime elision</em> (&quot;Weglassen von Lebenszeiten&quot;), welche
+das erlaubt. Sie leitet ausschlie&#xDF;lich basierend aus der Signatur einer
+Komponente (also nicht dem K&#xF6;rper) etwas ab und zwar nur Lebenszeit-Parameter.
+Au&#xDF;erdem geschieht <em>lifetime elision</em> gem&#xE4;&#xDF; nur drei einfahc zu merkenden und
+deutlichen Regeln. Dies erlaubt der <em>lifetime elision</em> eine Kurzschreibweise
+f&#xFC;r Signaturen zu erm&#xF6;glichen und gleichzeitig nicht die eigentlichen
+involvierten Typen zu verstecken, wie es eine vollst&#xE4;ndig Inferenz machen w&#xFC;rde.</p>
+<p>Wenn wir &#xFC;ber <em>lifetime elision</em> reden, dann benutzen wir den Begriff
+<em>input lifetime</em> und <em>output lifetime</em>. Eine <em>input lifetime</em> ist eine
+Lebenszeit, die mit einem Parameter einer Funktion assoziiert ist,
+und eine <em>output lifetime</em> ist eine Lebenszeit, die mit dem R&#xFC;ckgabewert einer
+Funktion assoziiert ist. Zum Beispiel hat diese Funktion eine <em>input lifetime</em>:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(bar: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>)
+</code></pre>
+<p>Diese hier hat eine <em>output lifetime</em>:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;() -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>
+</code></pre>
+<p>Und diese hier hat eine Lebenszeit in beiden Positionen:</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(bar: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>) -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>
+</code></pre>
+<p>Hier sind die drei Regeln:</p>
+<ul>
+<li><p>Jede weggelassene Lebenszeit bei den Argumenten einer Funktion bekommt einen
+individuellen Lebenszeit-Paramter.</p>
+</li>
+<li><p>Wenn es genau eine <em>input lifetime</em> gibt, ob weggelassen oder nicht,
+dann wird diese Lebenszeit aller ausgelassenen Lebenszeiten im R&#xFC;ckgabewert
+der Funktion zugewiesen.</p>
+</li>
+<li><p>Wenn es mehrere <em>input lifetime</em> gibt und eines der Argumente <code>&amp;self</code>,
+<code>&amp;mut self</code> oder <code>self</code> ist, dann wird die Lebenszeit von <code>self</code>
+allen weggelassenen <em>output lifetimes</em> zugewiesen.</p>
+</li>
+</ul>
+<p>Andernfalls ist es einen Fehler eine Lebenszeit wegzulassen.</p>
+<h3 id="beispiele"><a name="beispiele" class="plugin-anchor" href="#beispiele"><span class="fa fa-link"></span></a>Beispiele</h3>
+<p>Hier sind ein paar Beispiel-Funktionen mit weggelassenen Lebenszeiten.
+Wir haben jedes Beispiel einer ausgelassenen Lebenszeit mit ihrer
+expandierten Form gepaart.</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print</span></span>(s: &amp;<span class="hljs-keyword">str</span>); <span class="hljs-comment">// elided</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(s: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>); <span class="hljs-comment">// expanded</span>
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">debug</span></span>(lvl: <span class="hljs-keyword">u32</span>, s: &amp;<span class="hljs-keyword">str</span>); <span class="hljs-comment">// elided</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">debug</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(lvl: <span class="hljs-keyword">u32</span>, s: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>); <span class="hljs-comment">// expanded</span>
+
+<span class="hljs-comment">// In dem vorangehenden Beispiel ben&#xF6;tigt `lvl` keine eigene Lebenszeit,</span>
+<span class="hljs-comment">// da es keine Referenz (`&amp;`) ist. Nur Sachen, die mit Referenzen zu tun haben</span>
+<span class="hljs-comment">// (wie z.B. `struct`s, die Referenzen enthalten) ben&#xF6;tigen Lebenszeiten.</span>
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">substr</span></span>(s: &amp;<span class="hljs-keyword">str</span>, until: <span class="hljs-keyword">u32</span>) -&gt; &amp;<span class="hljs-keyword">str</span>; <span class="hljs-comment">// elided</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">substr</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(s: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>, until: <span class="hljs-keyword">u32</span>) -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>; <span class="hljs-comment">// expanded</span>
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_str</span></span>() -&gt; &amp;<span class="hljs-keyword">str</span>; <span class="hljs-comment">// ILLEGAL, no inputs</span>
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">frob</span></span>(s: &amp;<span class="hljs-keyword">str</span>, t: &amp;<span class="hljs-keyword">str</span>) -&gt; &amp;<span class="hljs-keyword">str</span>; <span class="hljs-comment">// ILLEGAL, two inputs</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">frob</span></span>&lt;<span class="hljs-string">&apos;a</span>, <span class="hljs-string">&apos;b</span>&gt;(s: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">str</span>, t: &amp;<span class="hljs-string">&apos;b</span> <span class="hljs-keyword">str</span>) -&gt; &amp;<span class="hljs-keyword">str</span>; <span class="hljs-comment">// Expanded: Output lifetime is ambiguous</span>
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_mut</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; &amp;<span class="hljs-keyword">mut</span> T; <span class="hljs-comment">// elided</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_mut</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(&amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">mut</span> T; <span class="hljs-comment">// expanded</span>
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">args</span></span>&lt;T:ToCStr&gt;(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, args: &amp;[T]) -&gt; &amp;<span class="hljs-keyword">mut</span> Command <span class="hljs-comment">// elided</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">args</span></span>&lt;<span class="hljs-string">&apos;a</span>, <span class="hljs-string">&apos;b</span>, T:ToCStr&gt;(&amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, args: &amp;<span class="hljs-string">&apos;b</span> [T]) -&gt; &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">mut</span> Command <span class="hljs-comment">// expanded</span>
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new</span></span>(buf: &amp;<span class="hljs-keyword">mut</span> [<span class="hljs-keyword">u8</span>]) -&gt; BufWriter; <span class="hljs-comment">// elided</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">new</span></span>&lt;<span class="hljs-string">&apos;a</span>&gt;(buf: &amp;<span class="hljs-string">&apos;a</span> <span class="hljs-keyword">mut</span> [<span class="hljs-keyword">u8</span>]) -&gt; BufWriter&lt;<span class="hljs-string">&apos;a</span>&gt; <span class="hljs-comment">// expanded</span>
+</code></pre>
 
                     
                     </section>
@@ -901,10 +1165,8 @@ bekommen, aber Details werden wir &#xFC;berfliegen.</p>
         </div>
 
         
-        <a href="../book/Hallo_Cargo.html" class="navigation navigation-prev " aria-label="Previous page: Hallo Cargo"><i class="fa fa-angle-left"></i></a>
+        <a href="../book/Referenzen_Und_Ausleihen.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Referenzen und Ausleihen"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../book/Ratespiel.html" class="navigation navigation-next " aria-label="Next page: Ratespiel"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
